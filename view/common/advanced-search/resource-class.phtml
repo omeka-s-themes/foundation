@@ -1,0 +1,33 @@
+<?php
+$translate = $this->plugin('translate');
+// Prepare the resource class query.
+$ids = isset($query['resource_class_id']) ? $query['resource_class_id'] : [];
+if (!is_array($ids)) {
+    $ids = [$ids];
+}
+$ids = array_filter($ids);
+if (!$ids) {
+    $ids = [null];
+}
+?>
+<div id="resource-class" class="field removable multi-value" role="group">
+    <fieldset class="fieldset">
+        <legend id="by-resource-class-label"><?php echo $translate('Search by class'); ?></legend>
+        <div class="help-text"><?php echo $translate('Searches for items that are any of these classes.'); ?></div>
+    <div class="inputs">
+        <?php foreach ($ids as $id): ?>
+        <div class="value">
+            <?php echo $this->resourceClassSelect([
+                'name' => 'resource_class_id[]',
+                'attributes' => [
+                    'value' => $id,
+                    'aria-labelledby' =>  'by-resource-class-label'
+                ],
+            ]); ?>
+            <button type="button" class="o-icon-delete remove-value button" aria-label="<?php echo $translate('Remove value'); ?>" title="<?php echo $translate('Remove value'); ?>"></button>
+        </div>
+        <?php endforeach; ?>
+        <a href="#" class="add-value button"><?php echo $translate('Add new class'); ?></a>
+    </div>
+    </fieldset>
+</div>

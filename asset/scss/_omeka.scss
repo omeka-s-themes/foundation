@@ -1,0 +1,119 @@
+//  Omeka Styles
+//  -----------------------------
+//
+//  Table of Contents:
+
+
+// #. Global Styles
+// ------------------
+
+[type="submit"], 
+[type="button"] {
+  @extend .button;
+}
+
+.input-group .input-group,
+.input-group .button-group,
+.input-group select,
+.input-group [type="text"] {
+  margin-bottom: 0;
+}
+
+.field {
+  margin-bottom: 2 * $global-margin;
+}
+
+select {
+  width: auto;  
+}
+
+[type="text"]:not(:only-child) {
+  width: auto;
+}
+
+.blocks > h2:first-child,
+#content > h2:first-child {
+  margin: (2 * $global-margin) 0;
+}
+
+// #. Header
+// ------------------
+
+.top-bar form {
+  margin-bottom: 0;
+}
+
+.site-title img {
+  margin: $global-margin 0;
+}
+
+// #. Resource Browse
+// ------------------
+
+.browse-controls {
+  @include xy-grid;
+  justify-content: space-between;
+}
+
+.resource-list {
+  list-style-type: none;
+}
+
+.resource-list .item {
+  margin: (2 * $global-margin) 0;
+  justify-content: flex-end;
+}
+
+.resource-list .resource-meta {
+  @include xy-cell(9);
+}
+
+.omeka-pagination,
+.sorting.input-group {
+  @include xy-cell(4);
+}
+
+.sorting.input-group select {
+  width: 100%;
+}
+
+// #. Advanced search
+// ------------------
+
+#advanced-search .input-group.value {
+  margin-bottom: $global-margin;
+}
+
+#advanced-search .query-text {
+  margin-right: 5px;
+}
+
+#advanced-search [class="field"] {
+  @extend .fieldset;
+}
+
+#advanced-search .remove-value {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#advanced-search .value > *:not(:last-child) {
+  margin-right: 5px;
+  margin-left: 0;
+}
+
+.field-meta {
+  @extend legend;
+}
+
+[id^="numeric-"],
+[id*="numeric-"] {
+  .inputs {
+    display: flex;
+  }
+}
+
+[class^="numeric-"],
+[class*="numeric-"] {
+  display: flex;
+}

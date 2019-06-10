@@ -1,0 +1,11 @@
+<?php
+$translate = $this->plugin('translate');
+$searchValue = $this->escapeHtml($this->params()->fromQuery('search', ''));
+?>
+
+<form action="<?php echo $this->escapeHtml($this->url('site/resource', ['controller' => 'item','action' => 'browse'], true)); ?>" id="search-form" class="input-group">
+    <input type="text" name="search" class="input-group-field" value="<?php echo $searchValue; ?>" placeholder="<?php echo $translate('Search'); ?>">
+    <div class="input-group-button">
+        <button class="button" type="submit"><?php echo $translate('Search'); ?></button>
+    </div>
+</form>
