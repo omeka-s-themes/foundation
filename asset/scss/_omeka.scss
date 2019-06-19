@@ -183,6 +183,10 @@ select {
   @include xy-grid;
 }
 
+.blocks {
+  width: 100%;
+}
+
 .sub-menu {
   @include xy-cell(3);
 }
