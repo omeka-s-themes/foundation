@@ -31,9 +31,8 @@ select {
   width: auto;
 }
 
-.blocks > h2:first-child,
-#content > h2:first-child {
-  margin: (2 * $global-margin) 0;
+#content {
+  padding: (2 * $global-padding) 0;
 }
 
 #content {
@@ -70,6 +69,10 @@ select {
   color: #fff;
 }
 
+#search {
+  margin-left: $global-margin;
+}
+
 // #. Resource Browse
 // ------------------
 
@@ -77,6 +80,7 @@ select {
   @include xy-grid;
   justify-content: space-between;
   align-items: center;
+  margin: 0 (-.5 * $global-margin);
 }
 
 .resource-list {
@@ -170,4 +174,19 @@ select {
 [class^="numeric-"],
 [class*="numeric-"] {
   display: flex;
+}
+
+// #. Page
+// ------------------
+
+.page #content {
+  @include xy-grid;
+}
+
+.sub-menu {
+  @include xy-cell(3);
+}
+
+.sub-menu + .blocks { 
+  @include xy-cell(9);
 }
