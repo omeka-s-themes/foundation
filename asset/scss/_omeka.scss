@@ -218,3 +218,22 @@ select {
 .sub-menu + .blocks { 
   @include xy-cell(9);
 }
+
+.left {
+  float: left;
+  margin: 0 $global-margin $global-margin 0;
+}
+
+.right {
+  float: right;
+  margin: 0 0 $global-margin $global-margin;
+}
+
+.large.file {
+  max-width: 40%;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
