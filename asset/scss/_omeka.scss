@@ -2,7 +2,11 @@
 //  -----------------------------
 //
 //  Table of Contents:
-
+//  #. Global Styles
+//  #. Header
+//  #. Resource Browse
+//  #. Advanced Search
+//  #. Page
 
 // #. Global Styles
 // ------------------
@@ -134,6 +138,26 @@ select {
 .sorting button {
   margin-bottom: 0;
 }
+
+// #. Resource Show
+// ------------------
+
+.resource.show .grid-x {
+  padding: (2 * $global-padding) 0;
+}
+
+.resource.show #resource-values {
+  order: 1;
+  @include xy-cell(8);
+  margin-left: 0;
+}
+
+.resource.show .media-embeds {
+  order: 2;
+  @include xy-cell(4);
+  margin-right: 0;
+}
+
 
 // #. Advanced search
 // ------------------
