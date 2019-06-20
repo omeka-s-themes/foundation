@@ -158,6 +158,17 @@ select {
   margin-right: 0;
 }
 
+.resource.show .media-render > a,
+.resource.show .values .resource-link {
+  @include thumbnail;
+  margin-bottom: $global-margin;
+}
+
+.resource.show .values .resource-link {
+  height: 2 * $paragraph-lineheight;
+  width: auto;
+}
+
 
 // #. Advanced search
 // ------------------
@@ -236,4 +247,8 @@ select {
     max-width: 100%;
     height: auto;
   }
+}
+
+.file h3 {
+  @extend .h4;
 }
