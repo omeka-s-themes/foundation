@@ -164,7 +164,8 @@ select {
 }
 
 .resource.show .values .resource-link img {
-  height: 2 * $paragraph-lineheight;
+  @include thumbnail;
+  height: ($paragraph-lineheight * 2rem);
   width: auto;
   margin: 0 $global-margin $global-margin 0;
 }
