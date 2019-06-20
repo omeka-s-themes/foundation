@@ -77,6 +77,12 @@ select {
   margin-left: $global-margin;
 }
 
+// #. Header
+// ------------------
+footer {
+  @include xy-grid-container;
+}
+
 // #. Resource Browse
 // ------------------
 
