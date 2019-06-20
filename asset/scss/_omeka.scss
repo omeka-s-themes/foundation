@@ -167,9 +167,14 @@ select {
   @include thumbnail;
   height: ($paragraph-lineheight * 2rem);
   width: auto;
-  margin: 0 $global-margin $global-margin 0;
+  margin-right: $global-margin;
 }
 
+.resource.show .resource-link {
+  margin-bottom: $global-margin;
+  display: flex;
+  align-items: center;
+}
 
 // #. Advanced search
 // ------------------
