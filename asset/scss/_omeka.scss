@@ -158,15 +158,15 @@ select {
   margin-right: 0;
 }
 
-.resource.show .media-render > a,
-.resource.show .values .resource-link {
+.resource.show .media-render > a {
   @include thumbnail;
   margin-bottom: $global-margin;
 }
 
-.resource.show .values .resource-link {
+.resource.show .values .resource-link img {
   height: 2 * $paragraph-lineheight;
   width: auto;
+  margin: 0 $global-margin $global-margin 0;
 }
 
 
