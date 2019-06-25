@@ -1,0 +1,10 @@
+#item-linked {
+  margin-top: 2 * $global-margin;
+}
+
+.linked-resource .resource-link img {
+  @include thumbnail;
+  height: ($paragraph-lineheight * 2rem);
+  width: auto;
+  margin: 0 $global-margin 0 0;
+}
