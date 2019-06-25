@@ -8,3 +8,26 @@
   width: auto;
   margin: 0 $global-margin 0 0;
 }
+
+.horse-filters {
+  @include xy-cell(2);
+  padding-top: $global-padding;
+  margin: 0;
+}
+
+.horse-filters ul {
+  @extend .no-bullet;
+}
+
+.horse-filters li {
+  padding: $global-padding 0;
+  border-bottom: 1px solid $primary-color;
+  
+  &:last-child {
+    border-bottom: transparent;
+  }
+}
+
+.horse-filters + .resource-list {
+  @include xy-cell(10);
+}
