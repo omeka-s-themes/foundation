@@ -234,6 +234,10 @@ footer {
   width: 100%;
 }
 
+.blocks > h2:first-child {
+  margin-bottom: (2 * $global-margin);
+}
+
 .sub-menu {
   @include xy-cell(3);
 }
@@ -261,6 +265,13 @@ footer {
   }
 }
 
-.file h3 {
-  @extend .h4;
+.attachments .media-render > h3,
+.file h3,
+.item-showcase h3 {
+  font-size: rem-calc(map-deep-get($header-styles, small, h4, font-size));
+  margin: $global-margin 0;
+}
+
+.item-showcase {
+  text-align: center;
 }
