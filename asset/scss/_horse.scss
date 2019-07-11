@@ -115,8 +115,11 @@ header {
 }
 
 #content a.resource-link {
-  border-bottom: 0;
   background-color: transparent;
+  
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 #item-linked {
