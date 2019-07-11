@@ -30,6 +30,12 @@ button,
 .button {
   color: #000;
   font-weight: 700;
+  font-family: $header-font-family;
+  
+  &:hover {
+    background-color: $secondary-color;
+    color: #fff;
+  }
 }
 
 // #. Header
