@@ -59,20 +59,6 @@ select {
   margin: $global-margin 0;
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent.active > a:after {
-  border-color: #fff transparent transparent;
-  margin-right: .5 * $global-margin;
-}
-
-.dropdown.menu > li.is-dropdown-submenu-parent.active > a {
-  padding-right: 2 * $global-padding;
-}
-
-.dropdown.menu > li.is-dropdown-submenu-parent.active:hover > a {
-  background-color: $primary-color;
-  color: #fff;
-}
-
 #search {
   margin-left: $global-margin;
 }

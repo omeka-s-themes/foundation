@@ -8,7 +8,8 @@
 // 1. Global
 // ---------
 
-a {
+a:link,
+a:visited {
   color: #000;
   font-weight: 700;
 }
@@ -48,48 +49,26 @@ header {
 
 .top-bar,
 .top-bar ul {
-  background-color: transparent;
+  background-color: #fff;
 }
 
 .top-bar a {
   font-family: $header-font-family;
   background-color: transparent;
+}
+
+.top-bar .menu .active a {
+  background-color: transparent;
+  color: #000;
   
-  &:active,
   &:hover {
     color: $secondary-color;
   }
 }
 
-.top-bar .menu .active > a {
-  background-color: transparent;
-  color: #000;
-}
-
-.dropdown.menu > li.is-active > a {
-  color: #000;
-}
-
-.dropdown.menu > li.is-dropdown-submenu-parent > a:hover {
-  color: $secondary-color;
-  background-color: transparent;
-  
-  &:after {
-    border-color: $secondary-color transparent transparent;
-  }
-}
-
-.dropdown.menu > li.is-dropdown-submenu-parent > a:after,
-.dropdown.menu > li.is-dropdown-submenu-parent > a.active:after {
-  border-color: #000 transparent transparent;
-}
-
-.is-dropdown-submenu {
-}
-
-.is-dropdown-submenu-item {
-  border-bottom: 1px solid $medium-gray;
-  background-color: #fff;
+.top-bar .menu .active a:hover:after,
+.dropdown.menu > li.is-dropdown-submenu-parent.is-active > a:after {
+  border-color: $secondary-color transparent transparent;
 }
 
 // #. Page
@@ -105,6 +84,24 @@ header {
 
 #content .vertical.menu > li {
   border-bottom: 1px solid #fff;
+}
+
+#content .vertical.menu > li a:hover {
+  color: #000;
+  position: relative;
+  
+  &:before {
+    position: absolute;
+    border: inset 8px;
+    content: '';
+    border-right-width: 0;
+    border-left-style: solid;
+    border-color: transparent transparent transparent #000;
+    left: -.25rem;
+    width: 0;
+    height: 0;
+    display: block;
+  }
 }
 
 #content p a {
