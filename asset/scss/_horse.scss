@@ -66,7 +66,11 @@ header {
   color: #000;
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent.active:hover > a {
+.dropdown.menu > li.is-active > a {
+  color: #000;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a:hover {
   color: $secondary-color;
   background-color: transparent;
   
@@ -75,7 +79,8 @@ header {
   }
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent.active > a::after {
+.dropdown.menu > li.is-dropdown-submenu-parent > a:after,
+.dropdown.menu > li.is-dropdown-submenu-parent > a.active:after {
   border-color: #000 transparent transparent;
 }
 
