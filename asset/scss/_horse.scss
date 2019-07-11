@@ -110,7 +110,7 @@ header {
 // --------------
 
 #resource-values dl a,
-#item-linked a span {
+#resource-values a.resource-link span {
   @include body-link;
 }
 
