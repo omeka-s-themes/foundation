@@ -1,0 +1,10 @@
+@mixin body-link {
+  background-color: $primary-color;
+  color: #000;
+
+  &:active,
+  &:hover {
+    background-color: $secondary-color;
+    color: #fff;
+  }
+}

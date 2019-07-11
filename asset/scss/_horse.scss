@@ -1,3 +1,114 @@
+//  Foundation for Sites Settings
+//  -----------------------------
+//
+//  Table of Contents:
+//
+//   1. Global
+
+// 1. Global
+// ---------
+
+a {
+  color: #000;
+  font-weight: 700;
+}
+
+a:active,
+a:hover {
+  color: $secondary-color;
+}
+
+.label {
+  background-color: $light-gray;
+  color: #000;
+}
+
+// #. Forms
+// --------
+
+button,
+.button {
+  color: #000;
+  font-weight: 700;
+}
+
+// #. Header
+// ---------
+
+header {
+  border-top: 10px solid $secondary-color;
+  padding: $global-padding 0;
+}
+
+.top-bar,
+.top-bar ul {
+  background-color: transparent;
+}
+
+.top-bar a {
+  font-family: $header-font-family;
+  background-color: transparent;
+  
+  &:active,
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+.top-bar .menu .active > a {
+  background-color: transparent;
+  color: #000;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent.active:hover > a {
+  color: $secondary-color;
+  background-color: transparent;
+  
+  &:after {
+    border-color: $secondary-color transparent transparent;
+  }
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent.active > a::after {
+  border-color: #000 transparent transparent;
+}
+
+.is-dropdown-submenu {
+}
+
+.is-dropdown-submenu-item {
+  border-bottom: 1px solid $medium-gray;
+  background-color: #fff;
+}
+
+// #. Page
+// -------
+
+#content .vertical.menu {
+  background-color: $primary-color;
+}
+
+#content .vertical.menu > li {
+  border-bottom: 1px solid #fff;
+}
+
+#content p a {
+  @include body-link;
+}
+
+// #. Single Item
+// --------------
+
+#resource-values dl a,
+#item-linked a span {
+  @include body-link;
+}
+
+#content a.resource-link {
+  border-bottom: 0;
+  background-color: transparent;
+}
+
 #item-linked {
   margin-top: 2 * $global-margin;
 }
