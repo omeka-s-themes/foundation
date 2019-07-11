@@ -90,6 +90,10 @@ header {
 // #. Page
 // -------
 
+#content {
+  margin-top: 0;
+}
+
 #content .vertical.menu {
   background-color: $primary-color;
 }
