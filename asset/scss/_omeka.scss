@@ -228,7 +228,8 @@ footer {
   margin-bottom: $global-margin;
 }
 
-.resource.show .values .resource-link img {
+.resource.show .values .resource-link img,
+#linked-resources img {
   @include thumbnail;
   height: ($paragraph-lineheight * 2rem);
   width: auto;
@@ -239,6 +240,10 @@ footer {
   margin-bottom: $global-margin;
   display: flex;
   align-items: center;
+}
+
+.resource.show #linked-resources .resource-link {
+  margin-bottom: 0;
 }
 
 // #. Advanced search
