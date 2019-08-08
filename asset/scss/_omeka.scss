@@ -93,6 +93,24 @@ footer {
   margin: 0 (-.5 * $global-margin);
 }
 
+.filter {
+  display: flex;
+  margin-bottom: $global-margin;
+}
+
+.filter-label {
+  @extend .label;
+}
+
+.filter-value {
+  @extend .label;
+}
+
+.filter-value {
+  background: $light-gray;
+  color: #000;
+}
+
 .resource-list {
   list-style-type: none;
 }
