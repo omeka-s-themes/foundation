@@ -38,9 +38,8 @@ select {
 #content {
   @include xy-grid-container;
   padding: (2 * $global-padding) 0;
-  margin: (3 * $global-margin) auto 0;
   
-  @include breakpoint(small) {
+  @include breakpoint(small down) {
     padding: 0;
     margin: $global-margin;
   }
@@ -288,23 +287,30 @@ footer {
 
 .page #content {
   @include xy-grid;
-  margin: (3 * $global-margin) auto 0;
 }
 
 .blocks {
-  width: 100%;
+  @include xy-cell(12);
 }
 
 .blocks > h2:first-child {
   margin-bottom: (2 * $global-margin);
 }
 
-.sub-menu {
+.wide.sub-menu {
   @include xy-cell(3);
+
+  @include breakpoint(small down) {
+    display: none;
+  }
 }
 
-.sub-menu + .blocks { 
+.wide.sub-menu + .blocks { 
   @include xy-cell(9);
+  
+  @include breakpoint(small down) {
+    @include xy-cell(12);
+  }
 }
 
 .left {
@@ -335,4 +341,16 @@ footer {
 
 .item-showcase {
   text-align: center;
+}
+
+.site-page-pagination {
+  @include xy-cell;
+}
+
+.site-page-pagination > a {
+  @extend .button;
+}
+
+.site-page-pagination > a {
+  margin: 0;
 }

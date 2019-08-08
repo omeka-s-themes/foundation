@@ -11,13 +11,13 @@ $activePage = $nav->findActive($container);
 if ($activePage):
 ?>
     <?php if ($activePage['depth'] !== 0): ?>
-    <nav class="breadcrumbs"><?php echo $nav->breadcrumbs(); ?></nav>
+    <nav class="exhibit-breadcrumbs"><?php echo $nav->breadcrumbs()->setPartial('common/foundation-breadcrumbs'); ?></nav>
     <?php endif; ?>
 <?php endif; ?>
 
 <?php if ($activePage): ?>
     <?php if ($this->displayNavigation && $activePage['page']->hasPages()): ?>
-    <nav class="sub-menu" data-sticky-container>
+    <nav class="sub-menu wide" data-sticky-container>
         <div class="sticky" data-sticky data-anchor="blocks">
             <?php echo $nav->menu()->setUlClass('vertical menu')->renderSubMenu(); ?>
         </div>
