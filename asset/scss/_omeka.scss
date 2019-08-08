@@ -36,12 +36,14 @@ select {
 }
 
 #content {
-  padding: (2 * $global-padding) 0;
-}
-
-#content {
   @include xy-grid-container;
-  margin-top: 3 * $global-margin;
+  padding: (2 * $global-padding) 0;
+  margin: (3 * $global-margin) auto 0;
+  
+  @include breakpoint(small) {
+    padding: 0;
+    margin: $global-margin;
+  }
 }
 
 // #. Header
@@ -53,6 +55,16 @@ select {
 
 .site-title h1 {
   @extend h4;
+}
+
+.site-title h1 {
+  margin-bottom: 0;
+}
+
+.site-title h1 {
+  @include breakpoint(small down) {
+    font-weight: bold;
+  }
 }
 
 .site-title img {
@@ -73,11 +85,41 @@ select {
   color: #fff;
 }
 
-#search {
+.top-bar-right .search {
   margin-left: $global-margin;
 }
 
-// #. Header
+#offCanvas .search {
+  margin: $global-margin;
+}
+
+header .top-bar-right,
+header .top-bar-left {
+  display: flex;
+  align-items: center;
+}
+
+header .top-bar {
+  @include breakpoint(small down) {
+    padding: 0;    
+  }
+}
+
+.title-bar {
+  display: inline-block;
+  background-color: transparent;
+  padding: 0;
+  
+  button {
+    margin: 0 $global-margin 0 0;
+    background-color: transparent;
+    color: $dark-gray;
+  }
+}
+
+
+
+// #. Footer
 // ------------------
 footer {
   @include xy-grid-container;
@@ -246,6 +288,7 @@ footer {
 
 .page #content {
   @include xy-grid;
+  margin: (3 * $global-margin) auto 0;
 }
 
 .blocks {
