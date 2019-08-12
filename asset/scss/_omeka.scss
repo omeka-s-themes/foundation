@@ -164,6 +164,10 @@ footer {
 .resource-image {
   @include xy-cell(3);
   text-align: right;
+  
+  img {
+    max-width: 100%;
+  }
 }
 
 .resource-list .resource-meta {
