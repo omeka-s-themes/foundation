@@ -36,12 +36,13 @@ select {
 }
 
 #content {
-  padding: (2 * $global-padding) 0;
-}
-
-#content {
   @include xy-grid-container;
-  margin-top: 3 * $global-margin;
+  padding: (2 * $global-padding) 0;
+  
+  @include breakpoint(small down) {
+    padding: 0;
+    margin: $global-margin;
+  }
 }
 
 // #. Header
@@ -55,15 +56,69 @@ select {
   @extend h4;
 }
 
+.site-title h1 {
+  margin-bottom: 0;
+}
+
+.site-title h1 {
+  @include breakpoint(small down) {
+    font-weight: bold;
+  }
+}
+
 .site-title img {
   margin: $global-margin 0;
 }
 
-#search {
+.dropdown.menu > li.is-dropdown-submenu-parent.active > a:after {
+  border-color: #fff transparent transparent;
+  margin-right: .5 * $global-margin;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent.active > a {
+  padding-right: 2 * $global-padding;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent.active:hover > a {
+  background-color: $primary-color;
+  color: #fff;
+}
+
+.top-bar-right .search {
   margin-left: $global-margin;
 }
 
-// #. Header
+#offCanvas .search {
+  margin: $global-margin;
+}
+
+header .top-bar-right,
+header .top-bar-left {
+  display: flex;
+  align-items: center;
+}
+
+header .top-bar {
+  @include breakpoint(small down) {
+    padding: 0;    
+  }
+}
+
+.title-bar {
+  display: inline-block;
+  background-color: transparent;
+  padding: 0;
+  
+  button {
+    margin: 0 $global-margin 0 0;
+    background-color: transparent;
+    color: $dark-gray;
+  }
+}
+
+
+
+// #. Footer
 // ------------------
 footer {
   @include xy-grid-container;
@@ -77,6 +132,24 @@ footer {
   justify-content: space-between;
   align-items: center;
   margin: 0 (-.5 * $global-margin);
+}
+
+.filter {
+  display: flex;
+  margin-bottom: $global-margin;
+}
+
+.filter-label {
+  @extend .label;
+}
+
+.filter-value {
+  @extend .label;
+}
+
+.filter-value {
+  background: $light-gray;
+  color: #000;
 }
 
 .resource-list {
@@ -155,7 +228,8 @@ footer {
   margin-bottom: $global-margin;
 }
 
-.resource.show .values .resource-link img {
+.resource.show .values .resource-link img,
+#linked-resources img {
   @include thumbnail;
   height: ($paragraph-lineheight * 2rem);
   width: auto;
@@ -166,6 +240,10 @@ footer {
   margin-bottom: $global-margin;
   display: flex;
   align-items: center;
+}
+
+.resource.show #linked-resources .resource-link {
+  margin-bottom: 0;
 }
 
 // #. Advanced search
@@ -217,19 +295,27 @@ footer {
 }
 
 .blocks {
-  width: 100%;
+  @include xy-cell(12);
 }
 
 .blocks > h2:first-child {
   margin-bottom: (2 * $global-margin);
 }
 
-.sub-menu {
+.wide.sub-menu {
   @include xy-cell(3);
+
+  @include breakpoint(small down) {
+    display: none;
+  }
 }
 
-.sub-menu + .blocks { 
+.wide.sub-menu + .blocks { 
   @include xy-cell(9);
+  
+  @include breakpoint(small down) {
+    @include xy-cell(12);
+  }
 }
 
 .left {
@@ -260,4 +346,16 @@ footer {
 
 .item-showcase {
   text-align: center;
+}
+
+.site-page-pagination {
+  @include xy-cell;
+}
+
+.site-page-pagination > a {
+  @extend .button;
+}
+
+.site-page-pagination > a {
+  margin: 0;
 }

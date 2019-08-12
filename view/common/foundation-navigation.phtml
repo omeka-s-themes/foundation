@@ -4,8 +4,12 @@
 
 /* @var $container Zend\Navigation\Navigation */
 $container = $this->container;
+$layoutAttributes = [
+  'dropdown' => 'class="dropdown menu" data-dropdown-menu',
+  'vertical' => 'class="vertical menu"',
+]
 ?>
-<ul class="dropdown menu" data-dropdown-menu>
+<ul <?php echo $layoutAttributes[$layout]; ?>>
     <?php foreach ($container as $page): ?>
         <?php if (!$this->navigation()->accept($page)) continue; ?>
         <?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
@@ -44,7 +48,7 @@ $container = $this->container;
                         <?php echo $this->escapeHtml($this->translate($page->getLabel(),$this->navigation($container)->getTranslatorTextDomain())); ?>
                         <b class="caret"></b>
                     </a>
-                    <ul class="menu vertical">
+                    <ul class="menu vertical nested">
                         <?php foreach ($page->getPages() as $child): ?>
                             <?php if (!$this->navigation()->accept($child)) continue; ?>
                             <?php if ($child->get("separator") === true): ?>
