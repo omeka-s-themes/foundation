@@ -289,11 +289,40 @@ footer {
   .inputs {
     display: flex;
   }
+  
+  select {
+    margin: 0 (.25 * $global-margin) 0 0;
+  }
 }
 
 [class^="numeric-"],
 [class*="numeric-"] {
   display: flex;
+}
+
+.numeric-time-inputs {
+  margin-top: 0 !important;
+}
+
+.numeric-time-inputs input,
+.numeric-date-inputs input {
+  margin-bottom: 0;
+}
+
+.search label.numeric-toggle-time.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 (.25 * $global-margin);
+}
+
+.numeric-datetime-inputs input[type="checkbox"] {
+  margin: 0;
+  width: auto;
+}
+
+.numeric-datetime-year {
+  margin-bottom: 0;
 }
 
 // #. Page
