@@ -161,6 +161,11 @@ footer {
   justify-content: flex-end;
 }
 
+.resource-image {
+  @include xy-cell(3);
+  text-align: right;
+}
+
 .resource-list .resource-meta {
   @include xy-cell(9);
 }

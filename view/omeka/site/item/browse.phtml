@@ -72,7 +72,7 @@ $sortHeadings = [
         $body = $bodyTerm ? $item->value($bodyTerm) : $item->displayDescription();
     ?>
         <li class="item resource media-object">
-            <div class="media-object-section">
+            <div class="media-object-section resource-image">
                 <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
                 <?php echo $item->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
                 <?php endif; ?>
