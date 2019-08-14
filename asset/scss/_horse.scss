@@ -8,6 +8,10 @@
 // 1. Global
 // ---------
 
+html {
+  overflow-x: hidden;
+}
+
 a:link,
 a:visited {
   color: #000;
@@ -170,6 +174,20 @@ header {
 
 .tl-timemarker {
   opacity: .5;
+}
+
+.mapping-block.timeline {
+  width: 100vw;
+  transform: translateX(-50%);
+  margin-left: 50%;
+  overflow-x: hidden;
+  display: flex;
+  margin-top: (-2 * $global-margin);
+  
+  .tl-timeline,
+  .mapping-map {
+    width: 50%;
+  }
 }
 
 /* .tl-timemarker .tl-timemarker-content-container {

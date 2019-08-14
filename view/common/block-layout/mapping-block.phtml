@@ -1,0 +1,46 @@
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/leaflet/leaflet.css', 'Mapping'));
+$this->headScript()->appendFile($this->assetUrl('vendor/leaflet/leaflet.js', 'Mapping'));
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/leaflet.markercluster/MarkerCluster.css', 'Mapping'));
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/leaflet.markercluster/MarkerCluster.Default.css', 'Mapping'));
+$this->headScript()->appendFile($this->assetUrl('vendor/leaflet.markercluster/leaflet.markercluster.js', 'Mapping'));
+$this->headScript()->appendFile($this->assetUrl('vendor/leaflet.providers/leaflet-providers.js', 'Mapping'));
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/leaflet.groupedlayercontrol/leaflet.groupedlayercontrol.min.css', 'Mapping'));
+$this->headScript()->appendFile($this->assetUrl('vendor/leaflet.groupedlayercontrol/leaflet.groupedlayercontrol.min.js', 'Mapping'));
+$this->headScript()->appendFile($this->assetUrl('js/control.opacity.js', 'Mapping'));
+$this->headScript()->appendFile($this->assetUrl('js/mapping-block.js', 'Mapping'));
+$this->headLink()->appendStylesheet('https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css');
+$this->headScript()->appendFile('https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js');
+$timelineOptions = [
+  'debug' => false,
+  'height' => '200px',
+  'width' => '50',
+  'timenav_position' => 'bottom',
+  'is_embed' => true,
+];
+?>
+<div class="mapping-block <?php echo ($isTimeline) ? 'timeline' : ''; ?>">
+    <?php if ($isTimeline): ?>
+    <div class='mapping-timeline' style="min-height:600px;" data-data="<?php echo $this->escapeHtml(json_encode($timelineData)); ?>" data-options="<?php echo $this->escapeHtml(json_encode($timelineOptions)); ?>"></div>
+    <div class="mapping-map" style="min-height:600px;" data-markers="<?php echo $this->escapeHtml(json_encode($markers)); ?>" data-data="<?php echo $this->escapeHtml(json_encode($data)); ?>"></div>
+    <?php else: ?>
+    <div class="mapping-map" style="height:500px;" data-markers="<?php echo $this->escapeHtml(json_encode($markers)); ?>" data-data="<?php echo $this->escapeHtml(json_encode($data)); ?>"></div>
+    <?php endif; ?>
+
+    <?php foreach ($markers as $marker): ?>
+    <div class="mapping-marker-popup-content" style="display:none;" data-marker-id="<?php echo $this->escapeHtml($marker->id()); ?>" data-item-id="<?php echo $this->escapeHtml($marker->item()->id()); ?>">
+        <?php if ($marker->label()): ?>
+        <h3><?php echo $this->escapeHtml($marker->label()); ?></h3>
+        <?php endif; ?>
+        <?php if ($marker->media()): ?>
+        <img src="<?php echo $this->escapeHtml($marker->media()->thumbnailUrl('medium')); ?>">
+        <div>
+            <a href="<?php echo $this->escapeHtml($marker->media()->url()); ?>"><?php echo $this->translate('View media'); ?></a>
+        </div>
+        <?php endif; ?>
+        <div>
+            <a href="<?php echo $this->escapeHtml($marker->item()->url()); ?>"><?php echo $this->translate('View item'); ?></a>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
