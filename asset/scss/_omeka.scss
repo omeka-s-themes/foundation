@@ -122,6 +122,7 @@ header .top-bar {
 // ------------------
 footer {
   @include xy-grid-container;
+  padding: (2 * $global-padding) 0;
 }
 
 // #. Resource Browse
