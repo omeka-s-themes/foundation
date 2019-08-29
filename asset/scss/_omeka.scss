@@ -154,15 +154,31 @@ footer {
 
 .resource-list {
   list-style-type: none;
+  margin: (2 * $global-margin) 0;
+  border-top: 1px solid $light-gray;
 }
 
 .resource-list .item {
-  margin: (2 * $global-margin) 0;
-  justify-content: flex-end;
+  margin: $global-margin 0;
+  border-bottom: 1px solid $light-gray;
+  padding-bottom: $global-padding;
 }
 
 .resource-list .resource-meta {
+  @include xy-cell(12);
+}
+
+.media-object-section:last-child:not(:nth-child(2)) {
+ padding-left:0;
+}
+
+.resource-list .resource-image {
+  order: 2;
+}
+
+.resource-list .resource-meta:not(:only-child) {
   @include xy-cell(9);
+  order: 1;
 }
 
 .omeka-pagination,

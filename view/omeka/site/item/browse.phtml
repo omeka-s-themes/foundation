@@ -59,11 +59,11 @@ foreach ($items as $item):
     $body = $bodyTerm ? $item->value($bodyTerm) : $item->displayDescription();
 ?>
     <li class="item resource media-object">
-        <div class="media-object-section">
-            <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
+        <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
+        <div class="media-object-section resource-image">
             <?php echo $item->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
-            <?php endif; ?>
         </div>
+        <?php endif; ?>
         <div class="media-object-section resource-meta">
             <h4><?php echo $item->link($heading); ?></h4>
             <?php if ($body): ?>
