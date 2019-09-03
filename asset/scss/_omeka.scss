@@ -36,13 +36,17 @@ select {
 }
 
 #content {
-  @include xy-grid-container;
-  padding: (2 * $global-padding) 0;
-  
+  padding: (2 * $global-padding) $global-padding;
+
   @include breakpoint(small down) {
     padding: 0;
     margin: $global-margin;
   }
+}
+
+body:not(.browse) #content {
+  @include xy-grid-container;
+  padding: (2 * $global-padding) 0;  
 }
 
 // #. Header
@@ -133,6 +137,15 @@ footer {
   justify-content: space-between;
   align-items: center;
   margin: 0 (-.5 * $global-margin);
+  font-size: .875 * $global-font-size;
+  
+  input,
+  select,
+  button,
+  .button {
+    font-size: .875 * $global-font-size;
+    padding: (.5 * $global-padding);
+  }
 }
 
 .filter {
@@ -153,10 +166,14 @@ footer {
   color: #000;
 }
 
-.resource-list {
+.resource-list,
+.resource-grid {
   list-style-type: none;
   margin: (2 * $global-margin) 0;
-  border-top: 1px solid $light-gray;
+}
+
+.resource-list {
+    border-top: 1px solid $light-gray;
 }
 
 .resource-list .item {
@@ -169,7 +186,7 @@ footer {
   @include xy-cell(12);
 }
 
-.media-object-section:last-child:not(:nth-child(2)) {
+.resource-list .media-object-section:last-child:not(:nth-child(2)) {
  padding-left:0;
 }
 
@@ -182,9 +199,23 @@ footer {
   order: 1;
 }
 
-.omeka-pagination,
-.sorting {
+.resource-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.resource-grid .item {
+  width: 25%;
+  padding: $global-padding;
+  
+  @include breakpoint(medium down) {
+    width: 50%;
+  }
+}
+
+.omeka-pagination {
   @include xy-cell(4);
+  @include xy-cell(3);
 }
 
 .omeka-pagination, 
@@ -219,6 +250,16 @@ footer {
 
 .sorting button {
   margin-bottom: 0;
+}
+
+.o-icon-grid:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f009";
+}
+
+.o-icon-list:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f03a";
 }
 
 // #. Resource Show
