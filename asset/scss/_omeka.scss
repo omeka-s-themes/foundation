@@ -47,6 +47,11 @@ select {
 body:not(.browse) #content {
   @include xy-grid-container;
   padding: (2 * $global-padding) 0;  
+
+  @include breakpoint(small down) {
+    padding: 0;
+    margin: $global-margin;
+  }
 }
 
 // #. Header
@@ -127,10 +132,54 @@ header .top-bar {
 footer {
   @include xy-grid-container;
   padding: (2 * $global-padding) 0;
+  
+  @include breakpoint(small down) {
+    margin: 0 $global-margin;
+  }
 }
 
 // #. Resource Browse
 // ------------------
+
+.resource.browse #content > h2:first-child {
+  @include breakpoint(small down) {
+    display: inline-block;
+    margin-top: (.25 * $global-margin);
+  }
+}
+
+.browse-control-mobile {
+  display: none;
+  
+  @include breakpoint(small down) {
+    display: inline-block;
+    float: right;
+  }
+}
+
+.browse-toggle {
+    font-size: .875 * $global-font-size;
+    padding: (.5 * $global-padding);
+
+    &:after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      margin-left: (.5 * $global-margin);
+    }
+    
+    &.closed:after {
+      content: "\f055";
+    }
+
+    &.open:after {
+      content: "\f056";
+    }
+}
+
+.resources,
+.browse-controls {
+  clear: both;
+}
 
 .browse-controls {
   @include xy-grid;
@@ -145,6 +194,29 @@ footer {
   .button {
     font-size: .875 * $global-font-size;
     padding: (.5 * $global-padding);
+  }
+  
+  @include breakpoint(small down) {
+    margin: 0;
+    display: none;
+
+    &.open {
+      display: flex;
+    }
+    
+    &.closed {
+      display: none;
+    }
+    
+    .sorting,
+    .omeka-pagination,
+    .advanced-search {
+      margin-bottom: $global-margin;
+    }
+
+    .advanced-search {
+      order: 3;
+    }
   }
 }
 
@@ -170,6 +242,10 @@ footer {
 .resource-grid {
   list-style-type: none;
   margin: (2 * $global-margin) 0;
+  
+  @include breakpoint(small down) {
+    margin: 0;
+  }
 }
 
 .resource-list {
@@ -213,9 +289,10 @@ footer {
   }
 }
 
-.omeka-pagination {
-  @include xy-cell(4);
-  @include xy-cell(3);
+.omeka-pagination {  
+  @include breakpoint(medium) {
+    @include xy-cell(4);
+  }
 }
 
 .omeka-pagination, 
@@ -249,6 +326,10 @@ footer {
 }
 
 .sorting button {
+  margin-bottom: 0;
+}
+
+.layout-toggle button {
   margin-bottom: 0;
 }
 
@@ -307,8 +388,27 @@ footer {
 // #. Advanced search
 // ------------------
 
+#advanced-search .input-group {
+  @include breakpoint(small down) {
+    flex-wrap: wrap;
+  }
+}
+
+#advanced-search select {
+  @include breakpoint(small down) {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
 #advanced-search .input-group.value {
-  margin-bottom: $global-margin;
+  margin-bottom: $global-margin !important;
+}
+
+#advanced-search .value {
+  @include breakpoint(small down) {
+    margin-bottom: $global-margin;
+  }
 }
 
 #advanced-search .query-text {
@@ -322,6 +422,10 @@ footer {
 #advanced-search .remove-value {
   padding-top: 0;
   padding-bottom: 0;
+  
+  @include breakpoint(small down) {
+    margin-bottom: 0;
+  }
 }
 
 #advanced-search .value > *:not(:last-child) {
@@ -333,16 +437,25 @@ footer {
   @extend legend;
 }
 
-[id^="numeric-"],
-[id*="numeric-"] {
-  .inputs {
-    display: flex;
+[class^="numeric-"],
+[class*="numeric-"],
+[id^="numeric-"] .inputs,
+[id*="numeric-"] .inputs {
+  display: flex;
+  
+  @include breakpoint(small down) {
+    flex-wrap: wrap;
   }
 }
 
-[class^="numeric-"],
-[class*="numeric-"] {
-  display: flex;
+.numeric-date-inputs {
+  
+}
+
+#property-queries select {
+  @include breakpoint(small down) {
+    margin-bottom: (.5 * $global-margin);
+  }
 }
 
 // #. Page

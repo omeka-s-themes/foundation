@@ -1,10 +1,15 @@
 <?php
 $escape = $this->plugin('escapeHtml');
+$stylesheet = $this->themeSetting('stylesheet');
 $this->htmlElement('html')->setAttribute('lang', $this->lang());
 $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
 $this->headTitle($this->setting('installation_title', 'Omeka S'))->setSeparator(' · ');
-$this->headLink()->prependStylesheet($this->assetUrl('css/app.css'));
+if (isset($stylesheet)) {
+    $this->headLink()->prependStylesheet($this->assetUrl("css/$stylesheet.css"));    
+} else {
+    $this->headLink()->prependStylesheet($this->assetUrl('css/default.css'));
+}
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headScript()->prependFile('//cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js', 'text/javascript', [
   'integrity' => 'sha256-/PFxCnsMh+nTuM0k3VJCRch1gwnCfKjaP8rJNq5SoBg= sha384-9ksAFjQjZnpqt6VtpjMjlp2S0qrGbcwF/rvrLUg2vciMhwc1UJJeAAOLuJ96w+Nj sha512-UMSn6RHqqJeJcIfV1eS2tPKCjzaHkU/KqgAnQ7Nzn0mLicFxaVhm9vq7zG5+0LALt15j1ljlg8Fp9PT1VGNmDw==',
