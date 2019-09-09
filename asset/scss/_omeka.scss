@@ -126,7 +126,6 @@ header .top-bar {
 }
 
 
-
 // #. Footer
 // ------------------
 footer {
@@ -346,6 +345,16 @@ footer {
 // #. Resource Show
 // ------------------
 
+.resource-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  
+  h2 {
+    margin-right: $global-margin;
+  }
+}
+
 .resource.show .grid-x {
   padding: (2 * $global-padding) 0;
 }
@@ -385,6 +394,28 @@ footer {
   margin-bottom: 0;
 }
 
+.media-list img {
+  @extend .thumbnail;
+}
+
+.media-list img {
+  margin: 0 $global-margin 0 0;
+  height: 5 * $global-padding;
+  width: auto;
+}
+
+.inline .property {
+  display: flex;
+  
+  dt {
+    @include xy-cell(4);
+    text-align: right;
+  }
+  
+  .values {
+    @include xy-cell(8);
+  }
+}
 // #. Advanced search
 // ------------------
 

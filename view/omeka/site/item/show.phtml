@@ -4,10 +4,13 @@ $escape = $this->plugin('escapeHtml');
 $this->htmlElement('body')->appendAttribute('class', 'item resource show');
 $embedMedia = $this->siteSetting('item_media_embed', false);
 $itemMedia = $item->media();
+$showLayout = $this->themeSetting('show_layout');
 ?>
 
+<div class="resource-title">
 <?php echo $this->pageTitle($item->displayTitle(), 2); ?>
 <h3 class="label"><?php echo $translate('Item'); ?></h3>
+</div>
 
 <div class="grid-x">
   
@@ -20,19 +23,22 @@ endforeach;
 </div>
 <?php endif; ?>
 
-<div id="resource-values">
+<div id="resource-values" class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
     <?php $this->trigger('view.show.before'); ?>
     <?php echo $item->displayValues(); ?>
     <?php $itemSets = $item->itemSets(); ?>
+    <dl>
     <?php if (count($itemSets) > 0): ?>
     <div class="property">
-        <h4><?php echo $translate('Item sets'); ?></h4>
-        <?php foreach ($itemSets as $itemSet): ?>
-        <div class="value"><a href="<?php echo $escape($itemSet->url()); ?>"><?php echo $itemSet->displayTitle(); ?></a></div>
-        <?php endforeach; ?>
+        <dt><?php echo $translate('Item sets'); ?></dt>
+        <div class="values">
+            <?php foreach ($itemSets as $itemSet): ?>
+            <dd class="value"><a href="<?php echo $escape($itemSet->url()); ?>"><?php echo $itemSet->displayTitle(); ?></a></dd>
+            <?php endforeach; ?>
+        </div>
     </div>
     <?php endif; ?>
-    
+    </dl>
     <?php if (!$embedMedia && $itemMedia): ?>
     <div class="media-list">
         <?php foreach ($itemMedia as $media): ?>
