@@ -561,3 +561,28 @@ footer {
 .site-page-pagination > a {
   margin: 0;
 }
+
+.item-with-metadata .resource.show {
+  display: flex;
+  margin: (2 * $global-margin) 0;
+  
+  .media-list {
+    order: 1;
+    @include xy-cell(3);
+    text-align: right;
+    
+    .media {
+      width: 100%;
+      display: block;
+    }
+    
+    img {
+      height: auto;
+    }
+  }
+  
+  dl:not(:only-child) {
+    order: 2;
+    @include xy-cell(9);
+  }
+}
