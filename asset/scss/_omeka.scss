@@ -586,3 +586,45 @@ footer {
     @include xy-cell(9);
   }
 }
+
+.toc-block {
+  background-color: $light-gray;
+  position: sticky;
+  border-width: 1px 0;
+  padding: $global-padding;
+  @include xy-cell(3);
+  float: left;
+  top: $global-margin;
+
+  @include breakpoint(small down) {
+    width: 100%;
+    margin: 0 0 $global-margin;
+    position: static;
+    float: none;
+  }
+
+  & > ul,
+  ul ul {
+    @extend .menu;
+    @extend .vertical;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  ul ul {
+    @extend .nested;
+  }
+  
+  & ~ * {
+    @include xy-cell(9);
+    float: right;
+   
+    @include breakpoint(small down) {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    } 
+  }
+}
