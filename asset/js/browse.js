@@ -4,7 +4,7 @@
             $('.layout-toggle button:disabled').removeAttr('disabled');
             $(this).attr('disabled', true);
             $('.resources').toggleClass('resource-list').toggleClass('resource-grid');
-            $('.item.resource').toggleClass('media-object');
+            $('.resources .resource').toggleClass('media-object');
             $('.resource-meta, .resource-image').toggleClass('media-object-section');
         });
         

@@ -251,7 +251,7 @@ footer {
     border-top: 1px solid $light-gray;
 }
 
-.resource-list .item {
+.resource-list .resource {
   margin: $global-margin 0;
   border-bottom: 1px solid $light-gray;
   padding-bottom: $global-padding;
@@ -279,7 +279,7 @@ footer {
   flex-wrap: wrap;
 }
 
-.resource-grid .item {
+.resource-grid .resource {
   width: 25%;
   padding: $global-padding;
   
