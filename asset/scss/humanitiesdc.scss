@@ -1,0 +1,155 @@
+@import "default";
+
+// Page
+// ====
+
+#blocks {
+  @include xy-grid;
+  
+  & > h2:first-child {
+    width: 100%;
+  }
+}
+
+// Home
+// ====
+
+.home #intro {
+  font-size: 1.5 * $global-font-size;
+  padding: (2 * $global-padding);
+  background-color: $light-gray;
+  @include xy-cell(4);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.home .item-showcase {
+  @include xy-grid;
+  margin-top: $global-margin;
+  width: 100%;
+}
+
+.home #blocks > .item-showcase:first-child {
+  @include xy-cell(8);
+  
+  .item {
+    @include xy-cell(full, false, 0);
+    margin: 0;
+  }
+}
+
+.home .item-showcase .item {
+  display: flex;
+  background-color: $light-gray;
+  flex-wrap: wrap;
+  margin-bottom: $global-margin;
+  position: relative;
+  @include xy-cell(6);
+  
+  & > a {
+    width: 100%;
+    padding-bottom: 66.66%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  img {
+    position: absolute;
+    left: 0;
+  }
+  
+  h3 {
+    margin: 0;
+    padding: $global-padding (2 * $global-padding);
+    text-align: left;
+    width: 100%;
+  }
+  
+  .caption {
+    @extend .label;
+  }
+  
+  .caption {
+    position: absolute;
+    top: $global-margin;
+    left: $global-margin;
+  }
+  
+  .caption p {
+    margin-bottom: 0;
+  }
+  
+  .caption a {
+    color: #fff;
+  }
+}
+
+.home #blocks > h2 {
+  @include xy-cell(full);
+  border-bottom: 1px solid $light-gray;
+  margin-bottom: 2 * $global-margin;
+  padding-bottom: $global-padding;
+}
+
+
+.home .preview-block {
+  @include xy-cell(5);
+  margin-right: auto;
+  margin-bottom: (2 * $global-margin);
+}
+
+.home #neighborhood {
+  @include xy-cell(6);
+  border-left: 5px solid $light-gray;
+  margin-bottom: 2 * $global-padding;
+  padding: $global-padding;
+}
+
+.home .resource-grid .resource {
+  @include xy-cell(6, false, 0);
+}
+
+.home .preview-block h3 {
+  @extend .h4;
+}
+
+#engage,
+#lesson-plans,
+#about-dcdcm {
+  @include xy-cell(4);
+  background-color: $light-gray;
+  padding: $global-padding;
+}
+
+// Explore
+// =======
+
+.explore-map {
+  @include xy-cell(7, none);
+  margin: 0 $global-margin 0 0;
+}
+
+.explore-map + .toc-block {
+  border: 1px solid $medium-gray;
+  @include xy-cell(5);
+  margin: 0;
+  
+  .navigation > li > a {
+    @extend .h3;
+  }
+  
+  .navigation ul {
+    columns: 2;
+    margin-left: 0;
+    display: block;
+  }
+}
+
+.explore-all {
+  width: 100%;
+  
+  h3 {
+    margin-bottom: 0;
+  }
+}
