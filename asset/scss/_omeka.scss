@@ -54,9 +54,13 @@ body:not(.browse) #content {
   }
 }
 
-.break.transparent {
+.break {
   width: 100%;
   margin: (2 * $global-margin) 0;
+}
+
+.break.opaque {
+  border-top: 1px solid $light-gray;
 }
 
 // #. Header
@@ -690,4 +694,8 @@ footer {
     width: 100%;
     margin: (.25 * $global-margin) 0;  
   }
+}
+
+.mapping-block {
+  width: 100%;
 }
