@@ -1,0 +1,12 @@
+@import "util/util";
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700,700i|Playfair+Display:400,400i&display=swap');
+
+$foundation-palette: (
+  primary: #ffcc00,
+  secondary: #c5f4f2,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #cc4b37,
+);
+$global-font-size: 18px;
+$body-font-family: 'EB Garamond', serif;

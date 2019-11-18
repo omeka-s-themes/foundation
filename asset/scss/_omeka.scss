@@ -36,13 +36,31 @@ select {
 }
 
 #content {
-  @include xy-grid-container;
-  padding: (2 * $global-padding) 0;
-  
+  padding: (2 * $global-padding) $global-padding;
+
   @include breakpoint(small down) {
     padding: 0;
     margin: $global-margin;
   }
+}
+
+body:not(.browse) #content {
+  @include xy-grid-container;
+  padding: (2 * $global-padding) 0;  
+
+  @include breakpoint(small down) {
+    padding: 0;
+    margin: $global-margin;
+  }
+}
+
+.break {
+  width: 100%;
+  margin: (2 * $global-margin) 0;
+}
+
+.break.opaque {
+  border-top: 1px solid $light-gray;
 }
 
 // #. Header
@@ -117,21 +135,97 @@ header .top-bar {
 }
 
 
-
 // #. Footer
 // ------------------
 footer {
   @include xy-grid-container;
+  padding: (2 * $global-padding) 0;
+  
+  @include breakpoint(small down) {
+    margin: 0 $global-margin;
+  }
 }
 
 // #. Resource Browse
 // ------------------
+
+.resource.browse #content > h2:first-child {
+  @include breakpoint(small down) {
+    display: inline-block;
+    margin-top: (.25 * $global-margin);
+  }
+}
+
+.browse-control-mobile {
+  display: none;
+  
+  @include breakpoint(small down) {
+    display: inline-block;
+    float: right;
+  }
+}
+
+.browse-toggle {
+    font-size: .875 * $global-font-size;
+    padding: (.5 * $global-padding);
+
+    &:after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      margin-left: (.5 * $global-margin);
+    }
+    
+    &.closed:after {
+      content: "\f055";
+    }
+
+    &.open:after {
+      content: "\f056";
+    }
+}
+
+.resources,
+.browse-controls {
+  clear: both;
+}
 
 .browse-controls {
   @include xy-grid;
   justify-content: space-between;
   align-items: center;
   margin: 0 (-.5 * $global-margin);
+  font-size: .875 * $global-font-size;
+  
+  input,
+  select,
+  button,
+  .button {
+    font-size: .875 * $global-font-size;
+    padding: (.5 * $global-padding);
+  }
+  
+  @include breakpoint(small down) {
+    margin: 0;
+    display: none;
+
+    &.open {
+      display: flex;
+    }
+    
+    &.closed {
+      display: none;
+    }
+    
+    .sorting,
+    .omeka-pagination,
+    .advanced-search {
+      margin-bottom: $global-margin;
+    }
+
+    .advanced-search {
+      order: 3;
+    }
+  }
 }
 
 .filter {
@@ -152,13 +246,24 @@ footer {
   color: #000;
 }
 
-.resource-list {
+.resource-list,
+.resource-grid {
   list-style-type: none;
+  margin: (2 * $global-margin) 0;
+  
+  @include breakpoint(small down) {
+    margin: 0;
+  }
 }
 
-.resource-list .item {
-  margin: (2 * $global-margin) 0;
-  justify-content: flex-end;
+.resource-list {
+    border-top: 1px solid $light-gray;
+}
+
+.resource-list .resource {
+  margin: $global-margin 0;
+  border-bottom: 1px solid $light-gray;
+  padding-bottom: $global-padding;
 }
 
 .resource-image {
@@ -171,12 +276,41 @@ footer {
 }
 
 .resource-list .resource-meta {
-  @include xy-cell(9);
+  @include xy-cell(12);
 }
 
-.omeka-pagination,
-.sorting {
-  @include xy-cell(4);
+.resource-list .media-object-section:last-child:not(:nth-child(2)) {
+ padding-left:0;
+}
+
+.resource-list .resource-image {
+  order: 2;
+}
+
+.resource-list .resource-meta:not(:only-child) {
+  @include xy-cell(9);
+  order: 1;
+}
+
+.resource-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-1 * $global-margin);
+}
+
+.resource-grid .resource {
+  width: 25%;
+  padding: $global-padding;
+  
+  @include breakpoint(medium down) {
+    width: 50%;
+  }
+}
+
+.omeka-pagination {  
+  @include breakpoint(medium) {
+    @include xy-cell(4);
+  }
 }
 
 .omeka-pagination, 
@@ -213,8 +347,32 @@ footer {
   margin-bottom: 0;
 }
 
+.layout-toggle button {
+  margin-bottom: 0;
+}
+
+.o-icon-grid:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f009";
+}
+
+.o-icon-list:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f03a";
+}
+
 // #. Resource Show
 // ------------------
+
+.resource-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  
+  h2 {
+    margin-right: $global-margin;
+  }
+}
 
 .resource.show .grid-x {
   padding: (2 * $global-padding) 0;
@@ -255,11 +413,52 @@ footer {
   margin-bottom: 0;
 }
 
+.media-list img {
+  @extend .thumbnail;
+}
+
+.media-list img {
+  margin: 0 $global-margin 0 0;
+  height: 5 * $global-padding;
+  width: auto;
+}
+
+.inline .property {
+  display: flex;
+  
+  dt {
+    @include xy-cell(4);
+    text-align: right;
+  }
+  
+  .values {
+    @include xy-cell(8);
+  }
+}
 // #. Advanced search
 // ------------------
 
+#advanced-search .input-group {
+  @include breakpoint(small down) {
+    flex-wrap: wrap;
+  }
+}
+
+#advanced-search select {
+  @include breakpoint(small down) {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
 #advanced-search .input-group.value {
-  margin-bottom: $global-margin;
+  margin-bottom: $global-margin !important;
+}
+
+#advanced-search .value {
+  @include breakpoint(small down) {
+    margin-bottom: $global-margin;
+  }
 }
 
 #advanced-search .query-text {
@@ -273,6 +472,10 @@ footer {
 #advanced-search .remove-value {
   padding-top: 0;
   padding-bottom: 0;
+  
+  @include breakpoint(small down) {
+    margin-bottom: 0;
+  }
 }
 
 #advanced-search .value > *:not(:last-child) {
@@ -284,10 +487,9 @@ footer {
   @extend legend;
 }
 
-[id^="numeric-"],
-[id*="numeric-"] {
-  .inputs {
-    display: flex;
+#property-queries select {
+  @include breakpoint(small down) {
+    margin-bottom: (.5 * $global-margin);
   }
   
   select {
@@ -327,6 +529,10 @@ footer {
 
 // #. Page
 // ------------------
+
+.breadcrumbs {
+  width: 100%;
+}
 
 .page #content {
   @include xy-grid;
@@ -396,4 +602,143 @@ footer {
 
 .site-page-pagination > a {
   margin: 0;
+}
+
+.item-with-metadata .resource.show {
+  display: flex;
+  margin: (2 * $global-margin) 0;
+  
+  .media-list {
+    order: 1;
+    @include xy-cell(3);
+    text-align: right;
+    
+    .media {
+      width: 100%;
+      display: block;
+    }
+    
+    img {
+      height: auto;
+    }
+  }
+  
+  dl:not(:only-child) {
+    order: 2;
+    @include xy-cell(9);
+  }
+}
+
+.toc-block {
+  background-color: $light-gray;
+  border-width: 1px 0;
+  padding: $global-padding;
+
+  @include breakpoint(small down) {
+    width: 100%;
+    margin: 0 0 $global-margin;
+    position: static;
+    float: none;
+  }
+
+  &:first-child {
+    position: sticky;
+    @include xy-cell(3);
+    float: left;
+    top: $global-margin;
+
+    & ~ * {
+      @include xy-cell(9);
+      float: right;
+     
+      @include breakpoint(small down) {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      } 
+    }
+  }
+
+  & > ul,
+  ul ul {
+    @extend .menu;
+    @extend .vertical;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  ul ul {
+    @extend .nested;
+  }
+  
+}
+
+.preview-block .preview-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid $light-gray;
+  align-items: flex-end;
+  
+  a {
+    margin-bottom: (.5 * $global-margin);
+  }
+}
+
+.preview-block h4 {
+  @extend h5;
+}
+
+// -- Modules
+
+[class^="numeric-"],
+[class*="numeric-"],
+[id^="numeric-"] .inputs,
+[id*="numeric-"] .inputs {
+  display: flex;
+  
+  @include breakpoint(small down) {
+    flex-wrap: wrap;
+  }
+}
+
+[class^="numeric-"] [type="checkbox"],
+[class*="numeric-"] [type="checkbox"] {
+  margin-bottom: 0;
+  width: auto;
+}
+
+[class^="numeric-"] label.numeric-toggle-time.button,
+[class*="numeric-"] label.numeric-toggle-time.button {
+  @extend .button;
+}
+
+.inputs label.numeric-toggle-time.button {
+  border: 0;
+  display: inline-flex;
+  
+  @include breakpoint(small down) {
+    margin: (.25 * $global-margin) 0 0;
+  }
+}
+
+@include breakpoint(medium up) {
+  .inputs .numeric-time-inputs,
+  .inputs .numeric-datetime-inputs {
+    margin: 0 0 0 (.25 * $global-margin);
+  }  
+}
+
+@include breakpoint(small down) {
+  #advanced-search [type="number"],
+  #advanced-search select {
+    width: 100%;
+    margin: (.25 * $global-margin) 0;  
+  }
+}
+
+.mapping-block {
+  width: 100%;
 }

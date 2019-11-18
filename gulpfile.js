@@ -9,14 +9,14 @@ var sassPaths = [
 ];
 
 function sass() {
-  return gulp.src('asset/scss/app.scss')
+  return gulp.src('asset/scss/*.scss')
     .pipe($.sass({
       includePaths: sassPaths,
       outputStyle: 'compressed' // if css compressed **file size**
     })
       .on('error', $.sass.logError))
     .pipe($.postcss([
-      autoprefixer({ browsers: ['last 2 versions', 'ie >= 9'] })
+      autoprefixer()
     ]))
     .pipe(gulp.dest('asset/css'))
     .pipe(browserSync.stream());

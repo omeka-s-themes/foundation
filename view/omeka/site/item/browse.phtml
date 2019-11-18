@@ -1,6 +1,7 @@
 <?php
 $translate = $this->plugin('translate');
 $escape = $this->plugin('escapeHtml');
+$this->headScript()->appendFile($this->assetUrl('js/browse.js'));
 $this->htmlElement('body')->appendAttribute('class', 'item resource browse');
 
 $query = $this->params()->fromQuery();
@@ -9,6 +10,14 @@ if ($itemSetShow):
     $this->htmlElement('body')->appendAttribute('class', 'item-set');
     $query['item_set_id'] = $itemSet->id();
 endif;
+
+$layoutSetting = $this->themeSetting('browse_layout');
+$gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
+$listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
+$isGrid = (!isset($layoutSetting) || strpos($layoutSetting, 'grid') !== false) ? true : false;
+$headingTerm = $this->siteSetting('browse_heading_property_term');
+$bodyTerm = $this->siteSetting('browse_body_property_term');
+
 $sortHeadings = [
     [
         'label' => $translate('Title'),
@@ -42,9 +51,17 @@ $sortHeadings = [
 <?php endif; ?>
 
 <?php echo $this->searchFilters(); ?>
-
-<div class="browse-controls">
+<div class="browse-control-mobile">
+<button type="button" class="browse-toggle closed">Tools</button>
+</div>
+<div class="browse-controls closed">
     <?php echo $this->pagination(); ?>
+    <?php if (strpos($layoutSetting, 'toggle') !== false): ?>
+    <div class="layout-toggle">
+        <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid o-icon-grid" <?php echo $gridState; ?>></button>
+        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>        
+    </div>
+    <?php endif; ?>
     <?php echo $this->hyperlink($translate('Advanced search'), $this->url('site/resource', ['controller' => 'item', 'action' => 'search'], ['query' => $query], true), ['class' => 'advanced-search']); ?>
     <?php echo $this->sortSelector($sortHeadings); ?>
 </div>
@@ -88,6 +105,7 @@ $sortHeadings = [
     </ul>
 
 </dv>
+
 <?php echo ($itemSetShow) ? '</div>' : ''; ?>
 <?php $this->trigger('view.browse.after'); ?>
 

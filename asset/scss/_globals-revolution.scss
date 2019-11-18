@@ -1,0 +1,15 @@
+@import "util/util";
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica:400,400i|IM+Fell+English+SC|Lusitana:400,700&display=swap');
+
+$brown: #520603;
+$red: #dd231b;
+$gold: #e8bf00;
+$foundation-palette: (
+  primary: $red,
+  secondary: $gold,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #cc4b37,
+);
+$body-font-color: $brown;
+$body-font-family: 'Lusitana', serif;
