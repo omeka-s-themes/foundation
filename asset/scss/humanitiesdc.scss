@@ -34,6 +34,12 @@ body {
   z-index: -1;
 }
 
+.label {
+  @extend .label;
+  background-color: $light-blue;
+  color: $dark-blue;
+}
+
 // Header
 // ======
 
@@ -49,6 +55,8 @@ header a {
 
 header .button {
   background-color: $light-blue;
+  color: $dark-blue;
+  font-family: $header-font-family;
 }
 
 // Page
