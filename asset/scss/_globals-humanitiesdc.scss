@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Zilla+Slab:300,300i,400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,600');
+
+$global-font-size: 1.25rem;
+$global-line-height: 1.75rem;
+$body-font-family: 'Zilla Slab', serif;
+$dark-blue: #211d71;
+$light-blue: #8db9f8;
+$purple: #5f0f40;
+$orange: #da8103;
+$dark-green: #70a288;
+$light-green: #bde4a7;
+$red: #9a031e;
+$yellow: #fc0;
+$white: #fff;
+$pink: #df7ac6;
+
+$foundation-palette: (
+  primary: $dark-blue,
+  secondary: $purple,
+  success: $light-green,
+  warning: #ffae00,
+  alert: #cc4b37,
+);
+
