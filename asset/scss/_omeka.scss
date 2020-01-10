@@ -66,7 +66,9 @@ body:not(.browse) #content {
 /* Styles for vertical menu layout */
 
 body.vertical-menu {
-  background-color: $primary-color;
+  @include breakpoint(medium up) {
+    background-color: $primary-color;    
+  }
 }
 
 body.vertical-menu .off-canvas-content {
@@ -74,14 +76,25 @@ body.vertical-menu .off-canvas-content {
 }
 
 body.vertical-menu #content {
-  @include xy-cell(10, $gutters: 0);
-  background-color: $white;
-  max-width: none;
-  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+
+  @include breakpoint(medium up) {
+    background-color: $white;
+    @include xy-cell(auto, $gutters: 0);
+    max-width: none;
+    min-height: 90vh;    
+  }
 }
 
 body.vertical-menu #user-bar {
   width: 100%;
+}
+
+body.vertical-menu #user-bar ~ #content {
+  @include breakpoint(medium up) {
+    min-height: calc(90vh - 38px);
+  }
 }
 
 // #. Header
@@ -156,8 +169,50 @@ header .top-bar {
 }
 
 body.vertical-menu header {
-  @include xy-cell(2, $gutters: 0);
+  background-color: $primary-color;
+  width: 100%;
+
+  @include breakpoint(medium up) {
+    padding: $global-padding;     
+    @include xy-cell(2, $gutters: 0);
+  }
+  
+  a {
+    color: $white;
+  }
+  
+  .title-bar {
+    display: flex;
+  }
+  
+  .title-bar button {
+    color: $white;
+  }
+  
+  .site-title h1 {
+    font-size: 1.125 * $global-font-size;
+    font-weight: bold;  
+  }
+  
+  .vertical.menu {
+    margin: $global-margin 0;
+  }
+  
+  .vertical.menu li {
+    margin: 0;
+  }
+  
+  .vertical.menu li a {
+    padding: (.5 * $global-padding)  0;
+  }
 }
+
+body.vertical-menu header .desktop {
+  @include breakpoint(small down) {
+    display: none;
+  }
+}
+
 
 // #. Footer
 // ------------------
@@ -171,10 +226,17 @@ footer {
 }
 
 body.vertical-menu footer {
-  @include xy-cell(auto, $gutter-output: false);
-  @include xy-cell-offset(2, $gutters: 0);
   background-color: $white;
   max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: $global-padding;
+  min-height: 10vh;
+  
+  @include breakpoint(medium up) {
+    width: calc(100% - #{xy-cell-size(2)});
+    margin-left: xy-cell-size(2);
+  }
 }
 
 // #. Resource Browse
