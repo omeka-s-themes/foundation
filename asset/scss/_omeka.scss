@@ -104,6 +104,11 @@ body.vertical-menu #user-bar ~ #content {
   margin-bottom: 0;
 }
 
+.site-title img {
+  max-height: 2rem;
+  width: auto;
+}
+
 .site-title h1 {
   @extend h4;
 }
