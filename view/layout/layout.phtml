@@ -23,6 +23,9 @@ $userBar = $this->userBar();
 
 $navLayout = ($this->themeSetting('nav_layout')) ? $this->themeSetting('nav_layout') : 'dropdown';
 $this->htmlElement('body')->appendAttribute('class', $navLayout . '-menu');
+if ($userBar) {
+  $this->htmlElement('body')->appendAttribute('class', 'user-bar');
+}
 
 $logo = $this->themeSettingAssetUrl('logo');
 if ($logo):
