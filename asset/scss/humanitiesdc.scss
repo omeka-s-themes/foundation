@@ -64,7 +64,8 @@ header .button {
 
 #blocks {
   @include xy-grid;
-  
+  align-content: flex-start;  
+
   & > h2:first-child {
     width: 100%;
   }
@@ -116,6 +117,7 @@ header .button {
   margin-bottom: $global-margin;
   position: relative;
   @include xy-cell(6);
+  align-items: flex-start;
   
   & > a {
     width: 100%;
@@ -138,17 +140,22 @@ header .button {
   }
   
   .caption {
-    @extend .label;
-  }
-  
-  .caption {
     position: absolute;
     top: $global-margin;
     left: $global-margin;
+    white-space: normal;
+    display: inline;
+    text-align: left;
+    max-width: calc(100% - #{2 * $global-margin});
   }
   
   .caption p {
     margin-bottom: 0;
+    display: inline;
+    background-color: $light-blue;
+    box-shadow: #{.5 * $global-padding} 0 0 $light-blue, -#{.5 * $global-padding} 0 0 $light-blue;
+    box-decoration-break: clone;
+    padding: .5 * $global-padding;
   }
   
   .caption a {
