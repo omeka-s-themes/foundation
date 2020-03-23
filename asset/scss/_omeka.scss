@@ -33,9 +33,8 @@ select {
   background-position: right 6px center;
   background-size: 8px;
   border: 1px solid $light-gray;
-  line-height: 2 * $paragraph-lineheight;
   margin: 0;
-  padding: 0 $global-padding 0 (.5 * $global-padding) !important;
+  padding: (.25 * $global-padding) $global-padding (.25 * $global-padding) (.25 * $global-padding) !important;
   border-radius: 3px;
   vertical-align: top;
   -webkit-appearance: none;
