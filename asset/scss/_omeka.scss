@@ -29,6 +29,18 @@
 
 select {
   width: auto;  
+  background: #fff url("../../../../application/asset/img/select-arrow.svg") no-repeat;
+  background-position: right 6px center;
+  background-size: 8px;
+  border: 1px solid $light-gray;
+  line-height: 2 * $paragraph-lineheight;
+  margin: 0;
+  padding: 0 $global-padding 0 (.5 * $global-padding) !important;
+  border-radius: 3px;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 [type="text"]:not(:only-child) {
@@ -301,7 +313,11 @@ body.vertical-menu footer {
     font-size: .875 * $global-font-size;
     padding: (.5 * $global-padding);
   }
-  
+
+  .sorting select {
+    margin-right: .5 * $global-margin;
+  }
+
   @include breakpoint(small down) {
     margin: 0;
     display: none;
@@ -319,7 +335,7 @@ body.vertical-menu footer {
     .advanced-search {
       margin-bottom: $global-margin;
     }
-
+    
     .advanced-search {
       order: 3;
     }
