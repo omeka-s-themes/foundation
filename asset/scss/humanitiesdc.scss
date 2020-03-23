@@ -40,6 +40,11 @@ body {
   color: $dark-blue;
 }
 
+.value a,
+p a {
+  border-bottom: 1px dotted $primary-color;
+}
+
 // Header
 // ======
 
@@ -59,6 +64,20 @@ header .button {
   font-family: $header-font-family;
 }
 
+// Footer
+// ======
+
+footer .hdc-logo {
+  display: block;
+  height: 3 * $global-padding;
+  margin-bottom: $global-margin;
+  
+  img {
+      height: 100%;
+      width: auto;
+  }
+}
+
 // Page
 // ====
 
@@ -66,7 +85,8 @@ header .button {
   @include xy-grid;
   align-content: flex-start;  
 
-  & > h2:first-child {
+  & > h2:first-child,
+  & > * {
     width: 100%;
   }
 }
@@ -216,7 +236,7 @@ header .button {
 // Explore
 // =======
 
-.explore-map {
+#blocks > .explore-map {
   @include xy-cell(7, none);
   margin: 0 $global-margin 0 0;
   background: center / cover no-repeat url('../img/map.jpg');
@@ -240,7 +260,7 @@ header .button {
   }
 }
 
-.explore-map + .toc-block {
+#blocks > .explore-map + .toc-block {
   border: 1px solid $medium-gray;
   @include xy-cell(5);
   background: center / cover no-repeat url('../img/dchp.jpg');
@@ -266,7 +286,7 @@ header .button {
   }
 }
 
-.explore-all {
+#blocks > .explore-all {
   width: 100%;
   padding: 2 * $global-padding;
   background-color: $pink;
@@ -292,4 +312,36 @@ header .button {
 
 .mapping-map {
   width: 100%;
+}
+
+// How to Use
+// ==========
+
+.how-to-use-single {
+  #blocks {
+    display: block;
+  }
+  
+  #blocks > * {
+    width: 70%;
+    margin-left: auto;    
+  }
+
+  #blocks > #guide-nav {
+    width: 30%;
+    position: sticky;
+    top: $global-margin;
+    float: left;
+  }
+}
+
+#guide-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: $global-padding;
+}
+
+#guide-nav li:not(:last-of-type) {
+  border-bottom: 1px solid $primary-color;
+  margin-bottom: .25 * $global-margin;
 }
