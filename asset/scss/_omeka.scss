@@ -29,6 +29,18 @@
 
 select {
   width: auto;  
+  background: #fff url("../../../../application/asset/img/select-arrow.svg") no-repeat;
+  background-position: right 6px center;
+  background-size: 8px;
+  border: 1px solid $light-gray;
+  line-height: 2 * $paragraph-lineheight;
+  margin: 0;
+  padding: 0 $global-padding 0 (.5 * $global-padding) !important;
+  border-radius: 3px;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 [type="text"]:not(:only-child) {
@@ -63,11 +75,50 @@ body:not(.browse) #content {
   border-top: 1px solid $light-gray;
 }
 
+/* Styles for vertical menu layout */
+
+body.vertical-menu {
+  @include breakpoint(medium up) {
+    background-color: $primary-color;    
+  }
+}
+
+body.vertical-menu .off-canvas-content {
+  @include xy-grid();
+}
+
+body.vertical-menu #content {
+  width: 100%;
+  margin: 0;
+
+  @include breakpoint(medium up) {
+    background-color: $white;
+    @include xy-cell(auto, $gutters: 0);
+    max-width: none;
+    min-height: 90vh;    
+  }
+}
+
+body.vertical-menu #user-bar {
+  width: 100%;
+}
+
+body.vertical-menu #user-bar ~ #content {
+  @include breakpoint(medium up) {
+    min-height: calc(90vh - 38px);
+  }
+}
+
 // #. Header
 // ------------------
 
 .top-bar form {
   margin-bottom: 0;
+}
+
+.site-title img {
+  max-height: 2rem;
+  width: auto;
 }
 
 .site-title h1 {
@@ -134,6 +185,51 @@ header .top-bar {
   }
 }
 
+body.vertical-menu header {
+  background-color: $primary-color;
+  width: 100%;
+
+  @include breakpoint(medium up) {
+    padding: $global-padding;     
+    @include xy-cell(2, $gutters: 0);
+  }
+  
+  a {
+    color: $white;
+  }
+  
+  .title-bar {
+    display: flex;
+  }
+  
+  .title-bar button {
+    color: $white;
+  }
+  
+  .site-title h1 {
+    font-size: 1.125 * $global-font-size;
+    font-weight: bold;  
+  }
+  
+  .vertical.menu {
+    margin: $global-margin 0;
+  }
+  
+  .vertical.menu li {
+    margin: 0;
+  }
+  
+  .vertical.menu li a {
+    padding: (.5 * $global-padding)  0;
+  }
+}
+
+body.vertical-menu header .desktop {
+  @include breakpoint(small down) {
+    display: none;
+  }
+}
+
 
 // #. Footer
 // ------------------
@@ -143,6 +239,20 @@ footer {
   
   @include breakpoint(small down) {
     margin: 0 $global-margin;
+  }
+}
+
+body.vertical-menu footer {
+  background-color: $white;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: $global-padding;
+  min-height: 10vh;
+  
+  @include breakpoint(medium up) {
+    width: calc(100% - #{xy-cell-size(2)});
+    margin-left: xy-cell-size(2);
   }
 }
 
@@ -203,7 +313,11 @@ footer {
     font-size: .875 * $global-font-size;
     padding: (.5 * $global-padding);
   }
-  
+
+  .sorting select {
+    margin-right: .5 * $global-margin;
+  }
+
   @include breakpoint(small down) {
     margin: 0;
     display: none;
@@ -221,7 +335,7 @@ footer {
     .advanced-search {
       margin-bottom: $global-margin;
     }
-
+    
     .advanced-search {
       order: 3;
     }
