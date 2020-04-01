@@ -21,6 +21,22 @@ body {
 
 #content {
   position: relative;
+  
+  @include breakpoint(small down) {
+    margin: 0;
+    padding: $global-padding;
+  }
+}
+
+.off-canvas-content {
+  overflow-x: hidden;
+}
+
+body:not(.browse) #content {
+  @include breakpoint(medium down) {
+    margin: 0;
+    padding: $global-padding;
+  }
 }
 
 #content:after {
@@ -64,6 +80,26 @@ header .button {
   font-family: $header-font-family;
 }
 
+.off-canvas {
+  background-color: $primary-color;
+  
+  a {
+    color: #fff;
+  }
+}
+
+.off-canvas .dropdown.menu {
+  padding: $global-padding 0;
+}
+
+.off-canvas .dropdown.menu li {
+  width: 100%;
+}
+
+.off-canvas button[type="submit"] {
+  background-color: $secondary-color;
+}
+
 // Footer
 // ======
 
@@ -91,8 +127,36 @@ footer .hdc-logo {
   }
 }
 
+@include breakpoint (small down) {
+  .blocks > h2:first-child {
+    margin-top: $global-margin;
+  }
+  
+  .breadcrumbs {
+    margin-bottom: 0;
+  }
+}
+
 .preview-block .preview-header {
   border-bottom: 1px solid $pink;
+}
+
+// Item Show
+// =========
+
+.resource.show #resource-values {
+    @include breakpoint(medium down) {
+        width: 100%;
+    }
+}
+
+// Item Browse
+// =========
+
+.omeka-pagination {
+  @include breakpoint(small down) {
+    flex-wrap: wrap;    
+  }
 }
 
 // Home
@@ -112,12 +176,21 @@ footer .hdc-logo {
     background-color: $yellow;
     color: $dark-blue;
   }
+  
+  @include breakpoint(medium down) {
+    @include xy-cell(full, false, 0);
+    margin: $global-margin 0;
+  }
 }
 
 .home .item-showcase {
   @include xy-grid;
   margin-top: $global-margin;
   width: 100%;
+  
+  @include breakpoint(small down) {
+      margin: 0;
+  }
 }
 
 .home #blocks > .item-showcase:first-child {
@@ -127,6 +200,11 @@ footer .hdc-logo {
   .item {
     @include xy-cell(full, false, 0);
     margin: 0;
+  }
+  
+  @include breakpoint(medium down) {
+    @include xy-cell(full, false, 0);
+    margin: $global-margin 0;
   }
 }
 
@@ -138,6 +216,11 @@ footer .hdc-logo {
   position: relative;
   @include xy-cell(6);
   align-items: flex-start;
+
+  @include breakpoint(small down) {
+      @include xy-cell(full, false, 0);
+      margin: $global-margin 0;
+  }
   
   & > a {
     width: 100%;
@@ -151,15 +234,20 @@ footer .hdc-logo {
     left: 0;
     width: 100%;
   }
-  
-  h3 {
+}
+
+.home .item-showcase .item h3 {
     margin: 0;
     padding: $global-padding (2 * $global-padding);
     text-align: left;
     width: 100%;
-  }
-  
-  .caption {
+
+    @include breakpoint(small down) {
+        padding: $global-padding;
+    }
+}
+
+.home .item-showcase .item .caption {
     position: absolute;
     top: $global-margin;
     left: $global-margin;
@@ -167,34 +255,49 @@ footer .hdc-logo {
     display: inline;
     text-align: left;
     max-width: calc(100% - #{2 * $global-margin});
-  }
   
-  .caption p {
+    a {
+      color: #fff;
+    }
+    
+    @include breakpoint(small down) {
+      position: static;
+      padding: 0 $global-padding $global-padding;
+    }
+}
+
+.home .item-showcase .item .caption p {
     margin-bottom: 0;
     display: inline;
     background-color: $light-blue;
     box-shadow: #{.5 * $global-padding} 0 0 $light-blue, -#{.5 * $global-padding} 0 0 $light-blue;
     box-decoration-break: clone;
     padding: .5 * $global-padding;
-  }
-  
-  .caption a {
-    color: #fff;
-  }
+    
+    @include breakpoint(small down) {
+      box-shadow: none;
+      background-color: transparent;
+      padding: 0;
+    }
 }
 
 .home #blocks > h2 {
-  @include xy-cell(full);
+  @include xy-cell(full, false, 0);
   border-bottom: 1px solid $pink;
   margin-bottom: 2 * $global-margin;
   padding-bottom: $global-padding;
 }
 
 
-.home .preview-block {
+.home #blocks > .preview-block {
   @include xy-cell(5);
   margin-right: auto;
   margin-bottom: (2 * $global-margin);
+  
+  @include breakpoint(medium down) {
+    @include xy-cell(full, false, 0);
+    margin: 0 0 $global-margin;
+  }
 }
 
 .home #neighborhood {
@@ -205,6 +308,11 @@ footer .hdc-logo {
   
   h2 a {
     font-weight: 600;
+  }
+  
+  @include breakpoint(medium down) {
+    @include xy-cell(full, false, 0);
+    margin: $global-margin 0;
   }
 }
 
@@ -231,10 +339,21 @@ footer .hdc-logo {
   &:hover {
     background-color: $light-blue;
   }
+  
+  @include breakpoint(small down) {
+    @include xy-cell(full, false, 0);
+    margin: 0 0 $global-margin;
+  }
 }
 
 // Explore
 // =======
+
+#blocks {
+  @include breakpoint(small down) {
+    margin: 0;
+  }
+}
 
 #blocks > .explore-map {
   @include xy-cell(7, none);
@@ -257,6 +376,12 @@ footer .hdc-logo {
   
   p {
     margin-bottom: auto;
+  }
+  
+  @include breakpoint(small down) {
+    @include xy-cell(full, false, 0);
+    margin: 0 0 $global-margin 0;
+    padding: 2 * $global-padding;
   }
 }
 
@@ -284,6 +409,11 @@ footer .hdc-logo {
   a {
     color: #fff;
   }
+  
+  @include breakpoint(small down) {
+    @include xy-cell(full, false, 0);
+    margin: 0;
+  }
 }
 
 #blocks > .explore-all {
@@ -304,6 +434,16 @@ footer .hdc-logo {
         color: $yellow;
       }
     }
+  }
+}
+
+// DCHPA
+// =====
+
+.dc-heritage-projects-archive .wide.sub-menu {
+  @include breakpoint(medium down) {
+    display: block;
+    order: 3;
   }
 }
 

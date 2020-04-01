@@ -45,7 +45,7 @@ endif;
     <?php echo $this->htmlElement('body'); ?>
     
         <div id="offCanvas" class="off-canvas position-left" data-off-canvas>
-            <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'vertical']); ?>
+            <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => $navLayout]); ?>
             <div class="search">
                 <?php echo $this->partial('common/search-form'); ?>
             </div>
