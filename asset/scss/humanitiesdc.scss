@@ -103,14 +103,25 @@ header .button {
 // Footer
 // ======
 
-footer .hdc-logo {
+footer .hdc-logo,
+footer a.logo {
   display: block;
   height: 3 * $global-padding;
-  margin-bottom: $global-margin;
+  margin: 0 $global-margin $global-margin $global-margin;
+  float: left;
   
   img {
       height: 100%;
       width: auto;
+  }
+}
+
+footer .logos {
+  text-align: center;
+  margin: (2 * $global-margin) 0;
+  
+  a.logo {
+    float: none;
   }
 }
 
@@ -450,8 +461,13 @@ footer .hdc-logo {
 // Map
 // ===
 
-.mapping-map {
-  width: 100%;
+#blocks > .map-intro,
+#blocks > .mapping-map {
+  width: calc(50% - #{$global-margin});
+}
+
+#blocks > .map-intro {
+  margin-right: $global-margin;
 }
 
 // How to Use
@@ -479,6 +495,20 @@ footer .hdc-logo {
   list-style: none;
   margin: 0;
   padding: $global-padding;
+}
+
+@include breakpoint(small down) {
+  .how-to-use-single #blocks > *,
+  .how-to-use-single #blocks > #guide-nav {
+    width: 100%;
+    position: static;
+    top: 0;
+    float: none;
+  }
+  
+  #guide-nav ul {
+    padding: $global-padding 0;
+  }
 }
 
 #guide-nav li:not(:last-of-type) {
