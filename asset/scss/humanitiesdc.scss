@@ -191,6 +191,8 @@ footer .logos {
   @include breakpoint(medium down) {
     @include xy-cell(full, false, 0);
     margin: $global-margin 0;
+    font-size: .75 * $global-font-size;
+    padding: $global-padding;
   }
 }
 
@@ -464,6 +466,13 @@ footer .logos {
 #blocks > .map-intro,
 #blocks > .mapping-map {
   width: calc(50% - #{$global-margin});
+}
+
+@include breakpoint(small down) {
+  #blocks > .map-intro,
+  #blocks > .mapping-map {
+    width: 100%;
+  }
 }
 
 #blocks > .map-intro {
