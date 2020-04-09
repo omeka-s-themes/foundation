@@ -499,6 +499,11 @@ body.vertical-menu footer {
   margin-bottom: $global-margin;
 }
 
+.resource.show .media-render > * {
+  max-width: 100%;
+  height: auto;
+}
+
 .resource.show .values .resource-link img,
 #linked-resources img {
   @include thumbnail;
