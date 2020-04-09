@@ -472,7 +472,8 @@ body.vertical-menu footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  
+  word-break: break-word;  
+
   h2 {
     margin-right: $global-margin;
   }
