@@ -495,7 +495,7 @@ body.vertical-menu footer {
   margin-right: 0;
 }
 
-.resource.show .media-render > a {
+.resource.show .media-render > a:only-child {
   @include thumbnail;
   margin-bottom: $global-margin;
 }
