@@ -68,6 +68,7 @@ body:not(.browse) #content {
 .break {
   width: 100%;
   margin: (2 * $global-margin) 0;
+  clear: both;
 }
 
 .break.opaque {
@@ -641,20 +642,18 @@ body.vertical-menu footer {
 .left {
   float: left;
   margin: 0 $global-margin $global-margin 0;
+  max-width: 40%;
 }
 
 .right {
   float: right;
   margin: 0 0 $global-margin $global-margin;
+  max-width: 40%;  
 }
 
-.large.file {
-  max-width: 40%;
-  
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+.file img {
+  max-width: 100%;
+  height: auto;
 }
 
 .attachments .media-render > h3,
