@@ -324,6 +324,7 @@ body.vertical-menu footer {
 
     &.open {
       display: flex;
+      align-items: stretch;
     }
     
     &.closed {
@@ -390,11 +391,26 @@ body.vertical-menu footer {
 
 .resource-list .resource-image {
   order: 2;
+  text-align: center;
+  width: 25%;
+  
+  @include breakpoint(medium down) {
+    margin: 0;
+    width: 50%;
+  }
+}
+
+.resource-list .resource-image.media-object-section img {
+  max-width: 100%;
 }
 
 .resource-list .resource-meta:not(:only-child) {
   @include xy-cell(9);
   order: 1;
+  
+  @include breakpoint(small down) {
+    width: 50%;
+  }
 }
 
 .resource-grid {
@@ -422,6 +438,11 @@ body.vertical-menu footer {
 .omeka-pagination form {
   display: flex;
   align-items: center;
+}
+
+.omeka-pagination .button-group {
+  flex-wrap: nowrap;
+  flex-grow: 0;
 }
 
 .omeka-pagination form,
@@ -488,12 +509,23 @@ body.vertical-menu footer {
   order: 1;
   @include xy-cell(8);
   margin-left: 0;
+  
+  @include breakpoint(medium down) {
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
-.resource.show .media-embeds {
+.resource.show .media-embeds,
+.resource.show .media-list {
   order: 2;
   @include xy-cell(4);
   margin-right: 0;
+  
+  @include breakpoint(medium down) {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .resource.show .media-render > a:only-child {
@@ -627,7 +659,15 @@ body.vertical-menu footer {
   @include xy-cell(3);
 
   @include breakpoint(small down) {
-    display: none;
+    @include xy-cell(12);
+    margin-bottom: $global-margin;
+  }
+}
+
+.wide.sub-menu a {
+  @include breakpoint(small down) {
+    padding-left: 0;
+    padding-right: 0;    
   }
 }
 
@@ -643,12 +683,20 @@ body.vertical-menu footer {
   float: left;
   margin: 0 $global-margin $global-margin 0;
   max-width: 40%;
+  
+  @include breakpoint(small down) {
+    max-width: 25%;
+  }
 }
 
 .right {
   float: right;
   margin: 0 0 $global-margin $global-margin;
   max-width: 40%;  
+
+  @include breakpoint(small down) {
+    max-width: 25%;
+  }
 }
 
 .file img {
