@@ -189,7 +189,7 @@ body.vertical-menu header {
   background-color: $primary-color;
   width: 100%;
 
-  @include breakpoint(medium up) {
+  @include breakpoint(large up) {
     padding: $global-padding;     
     @include xy-cell(2, $gutters: 0);
   }
@@ -222,10 +222,25 @@ body.vertical-menu header {
   .vertical.menu li a {
     padding: (.5 * $global-padding)  0;
   }
+
+}
+
+body.vertical-menu .vertical.menu.nested .active > a {
+  position: relative;
+  
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1 * $global-padding;
+    width: $global-padding;
+    bottom: 0;
+    background-color: $primary-color;
+  }
 }
 
 body.vertical-menu header .desktop {
-  @include breakpoint(small down) {
+  @include breakpoint(medium down) {
     display: none;
   }
 }
