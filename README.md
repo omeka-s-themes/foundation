@@ -1,8 +1,14 @@
-# Foundation for Sites Template
+# Foundation S
 
-**Please open all issues with this template on the main [Foundation for Sites](https://github.com/zurb/foundation-sites/issues) repo.**
+This is an Omeka S theme based on ZURB Foundation Sites. It currently comes with a default stylesheet for prototyping as well as 3 other style options. 
 
-This is the basic starter project for [Foundation for Sites 6](http://foundation.zurb.com/sites). It includes a Sass compiler and a starter HTML file for you.
+Other theme configuration options include:
+
+* **Browse view layouts**: Omeka resources can be displayed as lists, within a grid, or both by providing users with a toggle for preferred layouts.
+* **Show view layouts**: Resource metadata can show display as stacked with properties as headings above their values, or inline with properties as headings inline with their values.
+* **Navigation layouts**: Global navigation can display as a horizontal top bar or a left vertical column.
+
+The following instructions are Foundation Sites' installation guide for using their sass compiling tools.
 
 ## Installation
 
