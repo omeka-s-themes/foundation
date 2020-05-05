@@ -614,9 +614,7 @@ body.vertical-menu footer {
 }
 
 #advanced-search .value {
-  @include breakpoint(small down) {
-    margin-bottom: $global-margin;
-  }
+  margin-bottom: $global-margin !important;
 }
 
 #advanced-search .query-text {
@@ -627,6 +625,10 @@ body.vertical-menu footer {
   @extend .fieldset;
 }
 
+#advanced-search .help-text {
+  margin-bottom: $global-margin;
+}
+
 #advanced-search .remove-value {
   padding-top: 0;
   padding-bottom: 0;
@@ -634,6 +636,10 @@ body.vertical-menu footer {
   @include breakpoint(small down) {
     margin-bottom: 0;
   }
+}
+
+#advanced-search .value > * {
+  margin-bottom: 0;
 }
 
 #advanced-search .value > *:not(:last-child) {
