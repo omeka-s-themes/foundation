@@ -167,6 +167,19 @@ header .top-bar-left {
   align-items: center;
 }
 
+.menu a.dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vertical-menu .dropdown-toggle {
+  width: 100%;
+}
+
+.submenu-toggle:after {
+  border-color: #fff transparent transparent;
+}
+
 header .top-bar {
   @include breakpoint(small down) {
     padding: 0;    
@@ -211,6 +224,11 @@ body.vertical-menu header {
     font-weight: bold;  
   }
   
+  .site-title img {
+    max-height: none;
+    max-width: 100%;
+  }
+  
   .vertical.menu {
     margin: $global-margin 0;
   }
@@ -220,9 +238,13 @@ body.vertical-menu header {
   }
   
   .vertical.menu li a {
-    padding: (.5 * $global-padding)  0;
+    padding-left: 0;
+    padding-right: 0;
   }
 
+  .dropdown .vertical.menu {
+    margin: 0 0 0 $global-margin;
+  }
 }
 
 body.vertical-menu .vertical.menu.nested .active > a {
@@ -295,7 +317,7 @@ body.vertical-menu footer {
     padding: (.5 * $global-padding);
 
     &:after {
-      font-family: "Font Awesome 5 Free";
+      font-family: "Font Awesome 5 Pro";
       font-weight: 900;
       margin-left: (.5 * $global-margin);
     }
@@ -493,12 +515,12 @@ body.vertical-menu footer {
 }
 
 .o-icon-grid:before {
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     content: "\f009";
 }
 
 .o-icon-list:before {
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     content: "\f03a";
 }
 
