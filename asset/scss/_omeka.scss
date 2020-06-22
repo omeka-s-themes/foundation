@@ -515,12 +515,12 @@ body.vertical-menu footer {
 }
 
 .o-icon-grid:before {
-    font-family: "Font Awesome 5 Pro";
+    font-family: "Font Awesome 5 Free";
     content: "\f009";
 }
 
 .o-icon-list:before {
-    font-family: "Font Awesome 5 Pro";
+    font-family: "Font Awesome 5 Free";
     content: "\f03a";
 }
 
@@ -856,6 +856,34 @@ body.vertical-menu footer {
 .preview-block h4 {
   @extend h5;
 }
+
+// -- Search
+
+.index.search .results {
+  margin-bottom: 2 * $global-margin;
+}
+
+.index.search .results ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+  
+  @include breakpoint(medium up) {
+    columns: 2;
+  }
+  
+  li {
+    padding: $global-padding 0;
+    border-bottom: 1px solid $light-gray;
+  }
+  
+  & + a {
+    display: block;
+    margin-top: $global-margin;
+  }
+}
+
 
 // -- Modules
 
