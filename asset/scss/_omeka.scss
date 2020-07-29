@@ -89,13 +89,13 @@ body.vertical-menu .off-canvas-content {
 
 body.vertical-menu #content {
   width: 100%;
-  margin: 0;
 
   @include breakpoint(medium up) {
     background-color: $white;
     @include xy-cell(auto, $gutters: 0);
     max-width: none;
     min-height: 90vh;    
+    margin: 0;
   }
 }
 
@@ -615,6 +615,7 @@ body.vertical-menu footer {
     @include xy-cell(8);
   }
 }
+
 // #. Advanced search
 // ------------------
 
@@ -635,12 +636,16 @@ body.vertical-menu footer {
   margin-bottom: $global-margin !important;
 }
 
+#advanced-search .multi-value .value:only-child .remove-value {
+  display: none;
+}
+
 #advanced-search .value {
   margin-bottom: $global-margin !important;
 }
 
 #advanced-search .query-text {
-  margin-right: 5px;
+  margin-right: .25 * $global-margin;
 }
 
 #advanced-search [class="field"] {
@@ -858,6 +863,103 @@ body.vertical-menu footer {
 }
 
 // -- Search
+
+.results {
+  margin-bottom: 2 * $global-margin;
+  clear: both;
+}
+
+.results ul {
+  list-style: none;
+  padding-left: 0;  
+  
+  @include breakpoint(medium up) {
+    display: flex;
+    flex-wrap: wrap;    
+  }
+}
+
+.results .result-title {
+  font-weight: bold;
+}
+
+.results > ul {
+  margin: 0;
+}
+
+.results .result-site,
+.results ul ul {
+  display: block;
+  padding-left: .5 * $global-padding;
+}
+
+.results > ul > li {
+  margin-bottom: $global-padding;
+  
+  @include breakpoint(medium up) {
+    width: 50%;	
+  }
+}
+
+.pagination + .results {
+  margin: $global-margin 0 0;
+  clear: both;
+}
+
+.sitewide-search-form {
+  display: flex;
+  margin-bottom: $global-margin;
+
+  @include breakpoint(medium up) {
+    display: none;
+  }
+  
+  [type="text"],
+  [type="submit"] {
+    margin: 0;
+    padding: (.25 * $global-padding) (.5 * $global-padding);
+  }
+}
+
+.sitewide-search-form ~ .results + .pagination {
+  margin-top: 0;
+}
+
+.sitewide-search-form ~ .advanced-search {
+  display: block;
+  
+  @include breakpoint(small down) {
+    margin: (-.5 * $global-margin) 0 $global-margin;
+  }
+}
+
+.sitewide-search-form ~ h2 {
+  margin-bottom: 2 * $global-margin;
+
+  @include breakpoint(medium up) {
+    width: 50%;
+    float: left;    
+  }
+}
+
+.results > h3 {
+  border-bottom: 1px solid $light-gray;  
+}
+
+.sitewide-search-form ~ .omeka-pagination {
+  margin: (-1 * $global-margin) 0 $global-margin;  
+  
+  @include breakpoint(medium up) {
+    margin: (.5 * $global-margin) 0 $global-margin;
+    text-align: right;
+    width: 50%;
+    float: right;
+  }
+}
+
+.sitewide-search-form ~ p {
+  clear: both;
+}
 
 .index.search .results {
   margin-bottom: 2 * $global-margin;
