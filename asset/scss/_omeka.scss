@@ -48,7 +48,8 @@ select {
 
 #content {
   padding: (2 * $global-padding) $global-padding;
-
+  @include xy-grid-container;
+  
   @include breakpoint(small down) {
     padding: 0;
     margin: $global-margin;
