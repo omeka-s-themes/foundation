@@ -640,6 +640,12 @@ body.vertical-menu footer {
   }
 }
 
+.value .language {
+  @include label;
+  background-color: $light-gray;
+}
+
+
 // #. Advanced search
 // ------------------
 
