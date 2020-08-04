@@ -466,6 +466,29 @@ body.vertical-menu footer {
   }
 }
 
+.description.ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.description.fadeout {
+  position: relative;
+  max-height: 6.5rem;
+  overflow: hidden;
+  
+  &:after {
+    content: "";
+    position: absolute;
+    top: 4.5rem;
+    left: 50%;
+    right: 0;
+    height: 2.5 * $global-padding;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 60%);
+  }
+}
+
 .omeka-pagination {  
   @include breakpoint(medium) {
     @include xy-cell(4);

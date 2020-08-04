@@ -17,6 +17,7 @@ $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $isGrid = (!isset($layoutSetting) || strpos($layoutSetting, 'grid') !== false) ? true : false;
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
+$bodyTruncate = $this->themeSetting('truncate_body_property');
 
 $sortHeadings = [
     [
@@ -82,7 +83,7 @@ foreach ($items as $item):
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
             <h4><?php echo $item->link($heading); ?></h4>
             <?php if ($body): ?>
-            <div class="description"><?php echo $body; ?></div>
+            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $body; ?></div>
             <?php endif; ?>
         </div>
     </li>
