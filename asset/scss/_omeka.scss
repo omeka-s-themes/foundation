@@ -638,6 +638,12 @@ body.vertical-menu footer {
     @include xy-cell(8);
   }
 }
+
+.value .language {
+  @include label;
+  background-color: $light-gray;
+}
+
 // #. Advanced search
 // ------------------
 
