@@ -44,6 +44,13 @@ header {
   border-color: $gold;
 }
 
-.resource-list .item  {
+.resource-list .resource  {
   border-bottom-color: $gold;
+}
+
+.description.fadeout:after {
+  background: transparent url('../images/revolution-fade.png') no-repeat;
+  background-size: cover;
+  background-position: right;
+  right: -1rem;
 }
