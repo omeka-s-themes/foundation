@@ -288,7 +288,7 @@ body.vertical-menu footer {
   padding: $global-padding;
   min-height: 10vh;
   
-  @include breakpoint(medium up) {
+  @include breakpoint(large up) {
     width: calc(100% - #{xy-cell-size(2)});
     margin-left: xy-cell-size(2);
   }

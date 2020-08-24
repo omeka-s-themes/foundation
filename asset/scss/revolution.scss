@@ -23,22 +23,9 @@ body {
   background-size: auto;
 }
 
-body.vertical-menu {
-  @include breakpoint(medium up) {
-    background-image: none;
-  }
-}
-
-body.vertical-menu #content,
-body.vertical-menu footer {
-  @include breakpoint(medium up) {
-    background: transparent url('../img/revolution-bg.jpg') repeat;
-  }
-}
-
-header {
+body:not(.vertical-menu) header {
   border-top: ($global-padding) solid $primary-color;
-}
+}  
 
 .fieldset {
   border-color: $gold;
@@ -53,4 +40,15 @@ header {
   background-size: cover;
   background-position: right;
   right: -1rem;
+}
+
+@include breakpoint(medium up) {
+  body.vertical-menu {
+      background-image: none;
+  }
+  
+  body.vertical-menu #content,
+  body.vertical-menu footer {
+      background: transparent url('../img/revolution-bg.jpg') repeat;
+  }
 }
