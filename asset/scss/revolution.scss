@@ -23,14 +23,32 @@ body {
   background-size: auto;
 }
 
-header {
+body:not(.vertical-menu) header {
   border-top: ($global-padding) solid $primary-color;
-}
+}  
 
 .fieldset {
   border-color: $gold;
 }
 
-.resource-list .item  {
+.resource-list .resource  {
   border-bottom-color: $gold;
+}
+
+.description.fadeout:after {
+  background: transparent url('../img/revolution-fade.png') no-repeat;
+  background-size: cover;
+  background-position: right;
+  right: -1rem;
+}
+
+@include breakpoint(medium up) {
+  body.vertical-menu {
+      background-image: none;
+  }
+  
+  body.vertical-menu #content,
+  body.vertical-menu footer {
+      background: transparent url('../img/revolution-bg.jpg') repeat;
+  }
 }

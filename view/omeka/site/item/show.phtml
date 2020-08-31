@@ -22,6 +22,13 @@ endforeach;
 ?>
 </div>
 <?php endif; ?>
+<?php if (!$embedMedia && $itemMedia): ?>
+<div class="media-list">
+    <?php foreach ($itemMedia as $media): ?>
+        <?php echo $media->linkPretty(); ?>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>
 
 <div id="resource-values" class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
     <?php $this->trigger('view.show.before'); ?>
@@ -39,13 +46,6 @@ endforeach;
     </div>
     <?php endif; ?>
     </dl>
-    <?php if (!$embedMedia && $itemMedia): ?>
-    <div class="media-list">
-        <?php foreach ($itemMedia as $media): ?>
-            <?php echo $media->linkPretty(); ?>
-        <?php endforeach; ?>
-    </div>
-    <?php endif; ?>
     
     <?php
     $page = $this->params()->fromQuery('page', 1);

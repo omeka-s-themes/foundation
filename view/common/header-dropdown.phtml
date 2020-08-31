@@ -1,0 +1,18 @@
+<div class="top-bar">
+    <nav class="top-bar-left">
+        <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
+            <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
+        </div>
+        <?php if ($this->themeSetting('logo')): ?>
+        <a href="<?php echo $site->url(); ?>" class="site-title"><img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" title="Logo"></a>
+        <?php else: ?>
+        <a href="<?php echo $site->url(); ?>" class="site-title"><?php echo $this->pageTitle($site->title()); ?></a>
+        <?php endif; ?>
+    </nav>
+    <div class="top-bar-right" id="responsive-menu">
+        <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'dropdown']); ?>
+        <div class="search">
+            <?php echo $this->partial('common/search-form'); ?>
+        </div>
+    </div>
+</div>

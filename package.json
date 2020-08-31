@@ -7,25 +7,26 @@
     "start": "gulp",
     "build": "gulp sass"
   },
-  "author": "ZURB <foundation@zurb.com>",
+  "author": "Omeka Team <outreach@omeka.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zurb/foundation-sites/issues",
-    "email": "foundation@zurb.com"
+    "url": "https://github.com/omeka-s-themes/foundation-s/issues",
+    "email": "outreach@omeka.org"
   },
   "dependencies": {
     "foundation-sites": "^6.5.3",
     "jquery": "^3.5.1",
     "motion-ui": "~2.0.0",
-    "what-input": "^5.2.3"
+    "what-input": "^5.2.7"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
     "browser-sync": "^2.26.12",
     "gulp": "^4.0.2",
-    "gulp-load-plugins": "^2.0.1",
+    "gulp-load-plugins": "^2.0.3",
     "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "^4.1.0",
+    "minimist": "^1.2.3"
   },
   "browserslist": [
     "last 2 versions",

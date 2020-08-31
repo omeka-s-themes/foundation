@@ -6,7 +6,7 @@
 $container = $this->container;
 $layoutAttributes = [
   'dropdown' => 'class="dropdown menu" data-dropdown-menu',
-  'vertical' => 'class="vertical menu"',
+  'vertical' => 'class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true"',
 ]
 ?>
 <ul <?php echo $layoutAttributes[$layout]; ?>>
@@ -43,9 +43,6 @@ $layoutAttributes = [
                 ?>
                 <li class="dropdown<?php if ($page->isActive(true)) echo ' active' ?>">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $page->getHref(); ?>">
-                        <?php if ($page->get("icon") !== ""): ?>
-                            <span class="<?php echo $page->get("icon"); ?>"></span>
-                        <?php endif; ?>
                         <?php echo $this->escapeHtml($this->translate($page->getLabel(),$this->navigation($container)->getTranslatorTextDomain())); ?>
                         <b class="caret"></b>
                     </a>

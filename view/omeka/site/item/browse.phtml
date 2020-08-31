@@ -17,6 +17,7 @@ $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $isGrid = (!isset($layoutSetting) || strpos($layoutSetting, 'grid') !== false) ? true : false;
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
+$bodyTruncate = $this->themeSetting('truncate_body_property');
 
 $sortHeadings = [
     [
@@ -67,38 +68,22 @@ $sortHeadings = [
 </div>
 
 <?php $this->trigger('view.browse.before'); ?>
-
-<div class="grid-x">
-    <div class="horse-filters" data-sticky-container>
-      <ul class="sticky" data-sticky data-top-anchor="resource-list">
-        <li>Filter by:
-        <ul>
-          <li><a href="#">Decade</a></li>
-          <li><a href="#">Country</a></li>
-          <li><a href="#">Media type</a></li>
-        </ul>
-        </li>
-    </div>
-    
-    <ul class="resource-list" id="resource-list">
-    <?php
-    $headingTerm = $this->siteSetting('browse_heading_property_term');
-    $bodyTerm = $this->siteSetting('browse_body_property_term');
-    foreach ($items as $item):
-        $heading = $headingTerm ? $item->value($headingTerm, ['default' => $translate('[Untitled]')]) : $item->displayTitle();
-        $body = $bodyTerm ? $item->value($bodyTerm) : $item->displayDescription();
-    ?>
-        <li class="item resource media-object">
-            <div class="media-object-section resource-image">
-                <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
-                <?php echo $item->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
-                <?php endif; ?>
-            </div>
-            <div class="media-object-section resource-meta">
-                <h4><?php echo $item->link($heading); ?></h4>
-                <?php if ($body): ?>
-                <div class="description"><?php echo $body; ?></div>
-            </div>
+<ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
+<?php
+foreach ($items as $item):
+    $heading = $headingTerm ? $item->value($headingTerm, ['default' => $translate('[Untitled]')]) : $item->displayTitle();
+    $body = $bodyTerm ? $item->value($bodyTerm) : $item->displayDescription();
+?>  
+    <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
+        <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
+        <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
+            <?php echo $item->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
+        </div>
+        <?php endif; ?>
+        <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
+            <h4><?php echo $item->link($heading); ?></h4>
+            <?php if ($body): ?>
+            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $body; ?></div>
             <?php endif; ?>
         </li>
     <?php endforeach; ?>
