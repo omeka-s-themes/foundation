@@ -1,7 +1,7 @@
 {
-  "name": "foundation-sites-template",
+  "name": "horses-in-medicine",
   "version": "1.0.0",
-  "description": "Basic template for a new Foundation for Sites project.",
+  "description": "A customized Foundation S theme for Uses of Horses in Medicine.",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
@@ -15,21 +15,21 @@
   },
   "dependencies": {
     "foundation-sites": "^6.5.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "motion-ui": "~2.0.0",
     "what-input": "^5.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.12",
     "gulp": "^4.0.2",
     "gulp-load-plugins": "^2.0.1",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2"
   },
   "browserslist": [
-      "last 2 versions", 
-      "ie >= 9"
+    "last 2 versions",
+    "ie >= 9"
   ],
   "repository": {
     "type": "git",
