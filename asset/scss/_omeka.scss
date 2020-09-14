@@ -113,6 +113,23 @@ body.vertical-menu #user-bar ~ #content {
 // #. Header
 // ------------------
 
+#skipnav {
+  position: fixed;
+  top: $global-margin;
+  left: 50%;
+  border: 1px solid $light-gray;
+  transform: translateX(-50%);
+  z-index: -5;
+  padding: (.25 * $global-padding);
+  background-color: #fff;
+  opacity: 0;
+  
+  &:focus {
+    z-index: 1000;
+    opacity: 1;
+  }
+}
+
 .top-bar form {
   margin-bottom: 0;
 }
