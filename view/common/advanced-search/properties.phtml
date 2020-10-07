@@ -71,8 +71,8 @@ $queryText = function(array $search, $index) {
                     <?php echo $queryOption('nex', $property, 'type', $translate('has no values')); ?>
                 </select>
                     <?php echo $queryText($property, $index); ?>
-                <div class="input-group-button">
-                    <button type="button" class="o-icon-delete remove-value button" aria-label="<?php echo $translate('Remove value'); ?>" title="<?php echo $translate('Remove value'); ?>"></button>
+                <div class="input-group-button remove-value">
+                    <button type="button" class="o-icon-delete button" aria-label="<?php echo $translate('Remove value'); ?>" title="<?php echo $translate('Remove value'); ?>"></button>
                 </div>
             </div>
             <?php
