@@ -19,14 +19,14 @@ $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse')
 
 <?php echo $this->searchFilters(); ?>
 <div class="browse-control-mobile">
-<button type="button" class="browse-toggle closed">Tools</button>
+<button type="button" class="browse-toggle closed"><?php echo $translate('Options'); ?></button>
 </div>
 <div class="browse-controls closed">
     <?php echo $this->pagination(); ?>
     <?php if (strpos($layoutSetting, 'toggle') !== false): ?>
     <div class="layout-toggle">
         <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid o-icon-grid" <?php echo $gridState; ?>></button>
-        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>        
+        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>
     </div>
     <?php endif; ?>
 </div>
