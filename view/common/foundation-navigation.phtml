@@ -2,7 +2,7 @@
 
 /* Based on https://github.com/fabiopaiva/zf2-navigation-bootstrap3 */
 
-/* @var $container Zend\Navigation\Navigation */
+/* @var $container Laminas\Navigation\Navigation */
 $container = $this->container;
 $layoutAttributes = [
   'dropdown' => 'class="dropdown menu" data-dropdown-menu',
@@ -12,13 +12,13 @@ $layoutAttributes = [
 <ul <?php echo $layoutAttributes[$layout]; ?>>
     <?php foreach ($container as $page): ?>
         <?php if (!$this->navigation()->accept($page)) continue; ?>
-        <?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
+        <?php /* @var $page Laminas\Navigation\Page\Mvc */ ?>
         <?php $hasChildren = $page->hasPages() ?>
         <?php $showChildren = $this->themeSetting('nav_show_levels'); ?>
         <?php if (!$hasChildren || ($showChildren == 0)): ?>
             <li<?php if ($page->isActive()) echo ' class="active"' ?>>
-                <a 
-                    class="nav-header" 
+                <a
+                    class="nav-header"
                     href="<?php echo $page->getHref() ?>"
                     <?php if ($page->getTarget() != ""): ?>
                         target="<?php echo $page->getTarget(); ?>"
@@ -46,30 +46,8 @@ $layoutAttributes = [
                         <?php echo $this->escapeHtml($this->translate($page->getLabel(),$this->navigation($container)->getTranslatorTextDomain())); ?>
                         <b class="caret"></b>
                     </a>
-                    <ul class="menu vertical nested">
-                        <?php foreach ($page->getPages() as $child): ?>
-                            <?php if (!$this->navigation()->accept($child)) continue; ?>
-                            <?php if ($child->get("separator") === true): ?>
-                                <li class="divider"></li>
-                                    <?php
-                                    continue;
-                                endif;
-                                ?>
-                            <li<?php if ($child->isActive()) echo ' class="active"' ?>>
-                                <a 
-                                    href="<?php echo $child->getHref() ?>"
-                                    <?php if ($child->getTarget() != ""): ?>
-                                        target="<?php echo $child->getTarget(); ?>"
-                                    <?php endif; ?> >
-                                        <?php if ($child->get("icon") !== ""): ?>
-                                        <span class="<?php echo $child->get("icon"); ?>"></span>
-                                    <?php endif; ?>
-                                    <?php echo $this->escapeHtml($this->translate($child->getLabel(),$this->navigation($container)->getTranslatorTextDomain())); ?>
-                                </a>
-                            </li>
-                        <?php endforeach ?>
-                    </ul>
-                </li>   
+                    <?php echo $this->partial('common/sub-navigation', ['container'=> $container, 'children' => $page->getPages(), 'level' => 1]); ?>
+                </li>
             <?php endif; ?>
         <?php endif ?>
     <?php endforeach ?>
