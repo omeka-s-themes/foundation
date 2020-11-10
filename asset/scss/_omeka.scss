@@ -620,6 +620,7 @@ body.vertical-menu footer {
   @include thumbnail;
   height: ($paragraph-lineheight * 2rem);
   width: auto;
+  min-width: 1px;
   margin: 0 $global-margin 0 0;
 }
 
