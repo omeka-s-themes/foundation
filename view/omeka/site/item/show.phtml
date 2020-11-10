@@ -13,7 +13,7 @@ $showLayout = $this->themeSetting('show_layout');
 </div>
 
 <div class="grid-x">
-  
+
 <?php if ($embedMedia && $itemMedia): ?>
 <div class="media-embeds">
 <?php foreach ($itemMedia as $media):
@@ -46,7 +46,20 @@ endforeach;
     </div>
     <?php endif; ?>
     </dl>
-    
+
+	<dl>
+	<?php if (($this->siteSetting('show_attached_pages', true)) && ($sitePages = $item->sitePages($site->id()))): ?>
+		<div class="property">
+    		<dt><?php echo $translate('Site pages'); ?></dt>
+    		<div class="values">
+        		<?php foreach ($sitePages as $sitePage): ?>
+        		<dd class="value"><?php echo $sitePage->link($sitePage->title()); ?></dd>
+        		<?php endforeach; ?>
+    		</div>
+		</div>
+	<?php endif; ?>
+	</dl>
+
     <?php
     $page = $this->params()->fromQuery('page', 1);
     $property = $this->params()->fromQuery('property');
@@ -58,7 +71,7 @@ endforeach;
         <?php echo $subjectValues; ?>
     </div>
     <?php endif; ?>
-    
+
     <?php $this->trigger('view.show.after'); ?>
 </div>
 
