@@ -634,6 +634,24 @@ body.vertical-menu footer {
   margin-bottom: 0;
 }
 
+.linked-header .omeka-pagination {
+  margin: (.5 * $global-margin) 0;
+}
+
+@include breakpoint(medium up) {
+  .linked-header {
+    display:  flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  
+  .linked-header .omeka-pagination {
+    width: 50%;
+    justify-content: flex-end;
+    margin: 0;
+  }  
+}
+
 .media-list img {
   @extend .thumbnail;
 }
