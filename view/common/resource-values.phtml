@@ -38,7 +38,7 @@ $siteLang = $this->lang();
             }
             ?>
             <?php if (($filterLocale == 0) || ($valueLang == '') || ($valueLang == $siteLang)): ?>
-            <dl class="<?php echo implode(' ', $class); ?>" lang="<?php echo $escape($value->lang()); ?>">
+            <dl class="<?php echo implode(' ', $class); ?>" lang="<?php echo $escape($valueLang); ?>">
                 <?php if (($showLocale == 1) && ($valueLang)): ?>
                 <span class="language"><?php echo $valueLang; ?></span>
                 <?php endif; ?>
