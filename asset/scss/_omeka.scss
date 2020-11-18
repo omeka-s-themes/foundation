@@ -634,7 +634,8 @@ body.vertical-menu footer {
   margin-bottom: 0;
 }
 
-.linked-header .omeka-pagination {
+.linked-header .omeka-pagination,
+.linked-footer .omeka-pagination {
   margin: (.5 * $global-margin) 0;
 }
 
@@ -650,6 +651,18 @@ body.vertical-menu footer {
     justify-content: flex-end;
     margin: 0;
   }  
+
+  .linked-footer {
+	display:  flex;
+	align-items: flex-start;
+	justify-content: space-between;
+  }
+
+  .linked-footer .omeka-pagination {
+	width: 100%;
+    justify-content: flex-start;
+    margin: 0;
+  }
 }
 
 .media-list img {
