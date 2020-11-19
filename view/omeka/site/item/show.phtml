@@ -68,7 +68,25 @@ endforeach;
         <dt><?php echo $translate('Item sets'); ?></dt>
         <div class="values">
             <?php foreach ($itemSets as $itemSet): ?>
-            <dd class="value"><a href="<?php echo $escape($itemSet->url()); ?>"><?php echo $itemSet->displayTitle(); ?></a></dd>
+            <?php
+            $itemSetTitle = null;
+            if ($headingTerm) {
+                if (!($itemSetTitle = $itemSet->value($headingTerm, ['lang' => $lang]))) {
+                    $itemSetTitle = $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]);
+                }
+            } else {
+                $template = $itemSet->resourceTemplate();
+                if ($template && $template->titleProperty()) {
+                    if (($filterLocale == 0) || !($itemSetTitle = $itemSet->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                        $itemSetTitle = $itemSet->value($template->titleProperty()->term());
+                    }
+                }
+            }
+            if (!$itemSetTitle) {
+                $itemSetTitle = $itemSet->displayTitle();
+            }
+            ?>
+            <dd class="value"><a href="<?php echo $escape($itemSet->url()); ?>"><?php echo $itemSetTitle; ?></a></dd>
             <?php endforeach; ?>
         </div>
     </div>
