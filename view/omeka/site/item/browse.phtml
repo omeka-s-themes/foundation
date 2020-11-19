@@ -38,6 +38,7 @@ $sortHeadings = [
     ],
 ];
 
+$filterLocale = $this->themeSetting('filter_locale_values');
 $lang = $this->lang();
 ?>
 
@@ -93,7 +94,7 @@ foreach ($items as $item):
         // Based on resource template
         $template = $item->resourceTemplate();
         if ($template && $template->descriptionProperty()) {
-            if (!($bodyTermValue = $item->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+            if (($filterLocale == 0) || !($bodyTermValue = $item->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
                 $bodyTermValue = $item->value($template->descriptionProperty()->term());
             }
             if (null !== $bodyTermValue) {

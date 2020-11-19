@@ -11,6 +11,8 @@ $bodyTerm = $this->siteSetting('browse_body_property_term');
 $bodyTruncate = $this->themeSetting('truncate_body_property');
 
 $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse');
+
+$filterLocale = $this->themeSetting('filter_locale_values');
 $lang = $this->lang();
 ?>
 
@@ -54,7 +56,7 @@ foreach ($itemSets as $itemSet):
         // Based on resource template
         $template = $itemSet->resourceTemplate();
         if ($template && $template->descriptionProperty()) {
-            if (!($bodyTermValue = $itemSet->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+            if (($filterLocale == 0) || !($bodyTermValue = $itemSet->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
                 $bodyTermValue = $itemSet->value($template->descriptionProperty()->term());
             }
             if (null !== $bodyTermValue) {
