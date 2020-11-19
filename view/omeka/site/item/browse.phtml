@@ -37,10 +37,21 @@ $sortHeadings = [
         'value' => 'created'
     ],
 ];
+
+$lang = $this->lang();
 ?>
 
 <?php if ($itemSetShow): ?>
-    <?php echo $this->pageTitle($itemSet->displayTitle(), 2); ?>
+	<?php
+	if ($headingTerm) {
+	    if (!($itemSetTitle = $itemSet->value($headingTerm, ['lang' => $lang]))) {
+	        $itemSetTitle = $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]);
+	    }
+	} else {
+	   $itemSetTitle = $itemSet->displayTitle();
+	}
+    echo $this->pageTitle($itemSetTitle, 2);
+    ?>
     <h3><?php echo $translate('Item set'); ?></h3>
     <div class="metadata">
         <?php echo $itemSet->displayValues(); ?>

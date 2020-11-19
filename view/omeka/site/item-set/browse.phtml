@@ -11,6 +11,7 @@ $bodyTerm = $this->siteSetting('browse_body_property_term');
 $bodyTruncate = $this->themeSetting('truncate_body_property');
 
 $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse');
+$lang = $this->lang();
 ?>
 
 <?php echo $this->pageTitle($translate('Item sets'), 2); ?>
@@ -35,7 +36,14 @@ $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse')
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 foreach ($itemSets as $itemSet):
-    $heading = $headingTerm ? $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]) : $itemSet->displayTitle();
+
+    if ($headingTerm) {
+        if (!($heading = $itemSet->value($headingTerm, ['lang' => $lang]))) {
+            $heading = $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]);
+        }
+    } else {
+        $heading = $itemSet->displayTitle();
+    }
     $body = $bodyTerm ? $itemSet->value($bodyTerm) : $itemSet->displayDescription();
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
