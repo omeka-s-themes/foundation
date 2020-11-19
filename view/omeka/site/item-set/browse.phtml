@@ -44,7 +44,28 @@ foreach ($itemSets as $itemSet):
     } else {
         $heading = $itemSet->displayTitle();
     }
-    $body = $bodyTerm ? $itemSet->value($bodyTerm) : $itemSet->displayDescription();
+
+    $body = null;
+    if ($bodyTerm) {
+        $bodyTermValue = $itemSet->value($bodyTerm);
+        $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+        $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+    } else {
+        // Based on resource template
+        $template = $itemSet->resourceTemplate();
+        if ($template && $template->descriptionProperty()) {
+            if (!($bodyTermValue = $itemSet->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+                $bodyTermValue = $itemSet->value($template->descriptionProperty()->term());
+            }
+            if (null !== $bodyTermValue) {
+                $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+                $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+            }
+        }
+    }
+    if (!$body) {
+        $body = $itemSet->displayDescription();
+    }
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($thumbnail = $this->thumbnail($itemSet, 'medium')): ?>
