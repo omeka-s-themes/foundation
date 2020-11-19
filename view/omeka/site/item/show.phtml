@@ -5,10 +5,38 @@ $this->htmlElement('body')->appendAttribute('class', 'item resource show');
 $embedMedia = $this->siteSetting('item_media_embed', false);
 $itemMedia = $item->media();
 $showLayout = $this->themeSetting('show_layout');
+$headingTerm = $this->siteSetting('browse_heading_property_term');
+
+$filterLocale = $this->themeSetting('filter_locale_values');
+$lang = $this->lang();
+
+$this->headScript()->appendFile($this->assetUrl('js/lightslider.js'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/lightslider.css'));
+$this->headScript()->appendFile($this->assetUrl('js/lightgallery.js'));
+$this->headScript()->appendFile($this->assetUrl('js/lg-zoom.js'));
+$this->headScript()->appendFile($this->assetUrl('js/lg-fullscreen.js'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/lightgallery.css'));
 ?>
 
 <div class="resource-title">
-<?php echo $this->pageTitle($item->displayTitle(), 2); ?>
+<?php
+	if ($headingTerm) {
+	    if (!($itemTitle = $item->value($headingTerm, ['lang' => $lang]))) {
+	        $itemTitle = $item->value($headingTerm, ['default' => $translate('[Untitled]')]);
+	    }
+	} else {
+	    $template = $item->resourceTemplate();
+	    if ($template && $template->titleProperty()) {
+	        if (($filterLocale == 0) || !($itemTitle = $item->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+	            $itemTitle = $item->value($template->titleProperty()->term());
+	        }
+	    }
+	}
+	if (!$itemTitle) {
+	    $itemTitle = $item->displayTitle();
+	}
+    echo $this->pageTitle($itemTitle, 2);
+?>
 <h3 class="label"><?php echo $translate('Item'); ?></h3>
 </div>
 
