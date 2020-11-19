@@ -49,7 +49,15 @@ $lang = $this->lang();
 	        $itemSetTitle = $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]);
 	    }
 	} else {
-	   $itemSetTitle = $itemSet->displayTitle();
+	    $template = $itemSet->resourceTemplate();
+	    if ($template && $template->titleProperty()) {
+	        if (($filterLocale == 0) || !($itemSetTitle = $itemSet->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+	            $itemSetTitle = $itemSet->value($template->titleProperty()->term());
+	        }
+	    }
+	}
+	if (!$itemSetTitle) {
+	    $itemSetTitle = $itemSet->displayTitle();
 	}
     echo $this->pageTitle($itemSetTitle, 2);
     ?>
@@ -83,7 +91,22 @@ $lang = $this->lang();
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 foreach ($items as $item):
-    $heading = $headingTerm ? $item->value($headingTerm, ['default' => $translate('[Untitled]')]) : $item->displayTitle();
+    $heading = null;
+    if ($headingTerm) {
+        if (!($heading = $item->value($headingTerm, ['lang' => $lang]))) {
+            $heading = $item->value($headingTerm, ['default' => $translate('[Untitled]')]);
+        }
+    } else {
+        $template = $item->resourceTemplate();
+        if ($template && $template->titleProperty()) {
+            if (($filterLocale == 0) || !($heading = $item->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                $heading = $item->value($template->titleProperty()->term());
+            }
+        }
+    }
+    if (!$heading) {
+        $heading = $item->displayTitle();
+    }
 
     $body = null;
     if ($bodyTerm) {

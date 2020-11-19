@@ -39,11 +39,20 @@ $lang = $this->lang();
 <?php
 foreach ($itemSets as $itemSet):
 
+    $heading = null;
     if ($headingTerm) {
         if (!($heading = $itemSet->value($headingTerm, ['lang' => $lang]))) {
             $heading = $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]);
         }
     } else {
+        $template = $itemSet->resourceTemplate();
+        if ($template && $template->titleProperty()) {
+            if (($filterLocale == 0) || !($heading = $itemSet->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                $heading = $itemSet->value($template->titleProperty()->term());
+            }
+        }
+    }
+    if (!$heading) {
         $heading = $itemSet->displayTitle();
     }
 
