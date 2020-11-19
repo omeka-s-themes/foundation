@@ -10,6 +10,12 @@ $isGrid = ($currentLayout == 'grid') ? true : false;
 $queryUrl = $this->url(
     'site/resource', ['controller' => $this->resourceType, 'action' => 'browse'], ['query' => $this->query], true
 );
+
+$headingTerm = $this->siteSetting('browse_heading_property_term');
+$bodyTerm = $this->siteSetting('browse_body_property_term');
+
+$filterLocale = $this->themeSetting('filter_locale_values');
+$lang = $this->lang();
 ?>
 <div class="preview-block">
 
@@ -28,7 +34,7 @@ $queryUrl = $this->url(
 <div class="browse-controls">
     <div class="layout-toggle">
         <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid o-icon-grid" <?php echo $gridState; ?>></button>
-        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>        
+        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>
     </div>
 </div>
 <?php endif; ?>
@@ -36,11 +42,30 @@ $queryUrl = $this->url(
 
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
-$headingTerm = $this->siteSetting('browse_heading_property_term');
-$bodyTerm = $this->siteSetting('browse_body_property_term');
 foreach ($this->resources as $resource):
-    $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]')]) : $resource->displayTitle();
-    $body = $bodyTerm ? $resource->value($bodyTerm) : $resource->displayDescription();
+$heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]')]) : $resource->displayTitle();
+
+$body = null;
+if ($bodyTerm) {
+    $bodyTermValue = $resource->value($bodyTerm);
+    $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+    $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+} else {
+    // Based on resource template
+    $template = $resource->resourceTemplate();
+    if ($template && $template->descriptionProperty()) {
+        if (($filterLocale == 0) || !($bodyTermValue = $resource->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+            $bodyTermValue = $resource->value($template->descriptionProperty()->term());
+        }
+        if (null !== $bodyTermValue) {
+            $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+            $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+        }
+    }
+}
+if (!$body) {
+    $body = $resource->displayDescription();
+}
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($thumbnail = $this->thumbnail($resource, 'medium')): ?>
