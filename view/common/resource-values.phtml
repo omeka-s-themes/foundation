@@ -43,12 +43,9 @@ $headingTerm = $this->siteSetting('browse_heading_property_term');
                 <?php if (($showLocale == 1) && ($valueLang)): ?>
                 <span class="language"><?php echo $valueLang; ?></span>
                 <?php endif; ?>
-
-				<?php if ($linkedResource = $value->valueResource()):?>
-					<?php
-
+                <?php if ($linkedResource = $value->valueResource()):?>
+                <?php
                     $linkedResourceTitle = null;
-
                     if ($headingTerm) {
                         if (! ($linkedResourceTitle = $linkedResource->value($headingTerm, ['lang' => $lang]))) {
                             $linkedResourceTitle = $linkedResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
@@ -65,18 +62,15 @@ $headingTerm = $this->siteSetting('browse_heading_property_term');
                     if (! $linkedResourceTitle) {
                         $linkedResourceTitle = $linkedResource->displayTitle();
                     }
-
                     $linkContent = $this->thumbnail($value->valueResource(), 'square')
                                     . '<span class="resource-name">'
                                     . $escape($linkedResourceTitle)
                                     . "</span>";
-                    echo $value->valueResource()->linkRaw($linkContent, null, [
-                        'class' => 'resource-link'
-                    ]);
-                    ?>
-				<?php else: ?>
-					<?php echo $value->asHtml(); ?>
-                <?php endif;?>
+                    echo $value->valueResource()->linkRaw($linkContent, null, ['class' => 'resource-link']);
+                 ?>
+                 <?php else: ?>
+                 <?php echo $value->asHtml(); ?>
+                 <?php endif;?>
             </dl>
             <?php endif; ?>
         <?php endforeach; ?>
