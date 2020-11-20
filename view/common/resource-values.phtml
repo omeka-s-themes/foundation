@@ -50,22 +50,15 @@ $headingTerm = $this->siteSetting('browse_heading_property_term');
                     $linkedResourceTitle = null;
 
                     if ($headingTerm) {
-                        if (! ($linkedResourceTitle = $linkedResource->value($headingTerm, [
-                            'lang' => $lang
-                        ]))) {
-                            $linkedResourceTitle = $linkedResource->value($headingTerm, [
-                                'default' => $translate('[Untitled]')
-                            ]);
+                        if (! ($linkedResourceTitle = $linkedResource->value($headingTerm, ['lang' => $lang]))) {
+                            $linkedResourceTitle = $linkedResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
                         }
                     } else {
                         $template = $linkedResource->resourceTemplate();
                         if ($template && $template->titleProperty()) {
-                            if (($filterLocale == 0) || ! ($linkedResourceTitle = $linkedResource->value($template->titleProperty()
-                                ->term(), [
-                                'lang' => $lang
-                            ]))) {
-                                $linkedResourceTitle = $linkedResource->value($template->titleProperty()
-                                    ->term());
+                            if (($filterLocale == 0)
+                                || ! ($linkedResourceTitle = $linkedResource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                                $linkedResourceTitle = $linkedResource->value($template->titleProperty()->term());
                             }
                         }
                     }
@@ -73,7 +66,10 @@ $headingTerm = $this->siteSetting('browse_heading_property_term');
                         $linkedResourceTitle = $linkedResource->displayTitle();
                     }
 
-                    $linkContent = $this->thumbnail($value->valueResource(), 'square') . '<span class="resource-name">' . $escape($linkedResourceTitle) . "</span>";
+                    $linkContent = $this->thumbnail($value->valueResource(), 'square')
+                                    . '<span class="resource-name">'
+                                    . $escape($linkedResourceTitle)
+                                    . "</span>";
                     echo $value->valueResource()->linkRaw($linkContent, null, [
                         'class' => 'resource-link'
                     ]);
