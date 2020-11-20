@@ -122,7 +122,26 @@ foreach ($items as $item):
             }
             if (null !== $bodyTermValue) {
                 $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
-                $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+                if ($bodyTermValue && $bodyResource) {
+                    if ($headingTerm) {
+                        if (! ($body = $bodyResource->value($headingTerm, ['lang' => $lang]))) {
+                            $body = $bodyResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
+                        }
+                    } else {
+                        $template = $bodyResource->resourceTemplate();
+                        if ($template && $template->titleProperty()) {
+                            if (($filterLocale == 0)
+                                || ! ($body = $bodyResource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                                    $body = $bodyResource->value($template->titleProperty()->term());
+                                }
+                        }
+                    }
+                    if (!$body) {
+                        $body = $bodyResource->displayTitle();
+                    }
+                } else {
+                    $body = $bodyTermValue;
+                }
             }
         }
     }
