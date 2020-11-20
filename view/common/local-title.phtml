@@ -1,0 +1,51 @@
+<?php 
+$translate = $this->plugin('translate');
+$escape = $this->plugin('escapeHtml');
+
+$headingTerm = $this->siteSetting('browse_heading_property_term');
+$filterLocale = $this->themeSetting('filter_locale_values');
+$lang = $this->lang();
+
+$method = isset($method) ? $method : "echo";
+
+if (isset($resource)) {
+    $title = null;
+    if ($headingTerm) {
+        if (!($title = $resource->value($headingTerm, ['lang' => $lang]))) {
+            $title = $resource->value($headingTerm, ['default' => $translate('[Untitled]')]);
+        }
+    } else {
+        $template = $resource->resourceTemplate();
+        if ($template && $template->titleProperty()) {
+            if (($filterLocale == 0) || !($title = $resource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                $title = $resource->value($template->titleProperty()->term());
+            }
+        }
+    }
+    if (!$title) {
+        $title = $resource->displayTitle();
+    }
+    
+    switch ($method) {
+        case "pageTitle":
+            echo $this->pageTitle($title, $level);
+            break;
+            
+        case "link":
+            echo $resource->link($title);
+            break;
+            
+        case "linkRaw":
+            $linkContent = $this->thumbnail($resource, 'square')
+            . '<span class="resource-name">'
+                . $escape($title)
+                . "</span>";
+            echo $resource->linkRaw($linkContent, null, ['class' => 'resource-link']);
+            break;
+            
+        case "echo":
+        default:
+            echo $escape($title);
+    }
+}
+?>

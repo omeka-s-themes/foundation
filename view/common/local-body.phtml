@@ -1,0 +1,61 @@
+<?php 
+$translate = $this->plugin('translate');
+$escape = $this->plugin('escapeHtml');
+
+$bodyTerm = $this->siteSetting('browse_body_property_term');
+$headingTerm = $this->siteSetting('browse_heading_property_term');
+$filterLocale = $this->themeSetting('filter_locale_values');
+$lang = $this->lang();
+
+$method = isset($method) ? $method : "echo";
+
+
+if (isset($resource)) {
+    $body = null;
+    if ($bodyTerm) {
+        $bodyTermValue = $resource->value($bodyTerm);
+        $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+        $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+    } else {
+        // Based on resource template
+        $template = $resource->resourceTemplate();
+        if ($template && $template->descriptionProperty()) {
+            if (($filterLocale == 0) || !($bodyTermValue = $resource->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+                $bodyTermValue = $resource->value($template->descriptionProperty()->term());
+            }
+            if (null !== $bodyTermValue) {
+                $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+                if ($bodyTermValue && $bodyResource) {
+                    if ($headingTerm) {
+                        if (! ($body = $bodyResource->value($headingTerm, ['lang' => $lang]))) {
+                            $body = $bodyResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
+                        }
+                    } else {
+                        $template = $bodyResource->resourceTemplate();
+                        if ($template && $template->titleProperty()) {
+                            if (($filterLocale == 0)
+                                || ! ($body = $bodyResource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                                    $body = $bodyResource->value($template->titleProperty()->term());
+                                }
+                        }
+                    }
+                    if (!$body) {
+                        $body = $bodyResource->displayTitle();
+                    }
+                } else {
+                    $body = $bodyTermValue;
+                }
+            }
+        }
+    }
+    if (!$body) {
+        $body = $item->displayDescription();
+    }
+    
+    switch ($method) {
+        case "echo":
+        default:
+            echo $escape($body);
+    }
+}
+?>

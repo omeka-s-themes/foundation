@@ -44,22 +44,7 @@ $lang = $this->lang();
 
 <?php if ($itemSetShow): ?>
 	<?php
-	if ($headingTerm) {
-	    if (!($itemSetTitle = $itemSet->value($headingTerm, ['lang' => $lang]))) {
-	        $itemSetTitle = $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]);
-	    }
-	} else {
-	    $template = $itemSet->resourceTemplate();
-	    if ($template && $template->titleProperty()) {
-	        if (($filterLocale == 0) || !($itemSetTitle = $itemSet->value($template->titleProperty()->term(), ['lang' => $lang]))) {
-	            $itemSetTitle = $itemSet->value($template->titleProperty()->term());
-	        }
-	    }
-	}
-	if (!$itemSetTitle) {
-	    $itemSetTitle = $itemSet->displayTitle();
-	}
-    echo $this->pageTitle($itemSetTitle, 2);
+	echo $this->partial('common/local-title', ['resource' => $itemSet, 'method' => 'pageTitle', 'level' => 2]);
     ?>
     <h3><?php echo $translate('Item set'); ?></h3>
     <div class="metadata">
@@ -91,64 +76,7 @@ $lang = $this->lang();
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 foreach ($items as $item):
-    $heading = null;
-    if ($headingTerm) {
-        if (!($heading = $item->value($headingTerm, ['lang' => $lang]))) {
-            $heading = $item->value($headingTerm, ['default' => $translate('[Untitled]')]);
-        }
-    } else {
-        $template = $item->resourceTemplate();
-        if ($template && $template->titleProperty()) {
-            if (($filterLocale == 0) || !($heading = $item->value($template->titleProperty()->term(), ['lang' => $lang]))) {
-                $heading = $item->value($template->titleProperty()->term());
-            }
-        }
-    }
-    if (!$heading) {
-        $heading = $item->displayTitle();
-    }
-
-    $body = null;
-    if ($bodyTerm) {
-        $bodyTermValue = $item->value($bodyTerm);
-        $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
-        $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
-    } else {
-        // Based on resource template
-        $template = $item->resourceTemplate();
-        if ($template && $template->descriptionProperty()) {
-            if (($filterLocale == 0) || !($bodyTermValue = $item->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
-                $bodyTermValue = $item->value($template->descriptionProperty()->term());
-            }
-            if (null !== $bodyTermValue) {
-                $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
-                if ($bodyTermValue && $bodyResource) {
-                    if ($headingTerm) {
-                        if (! ($body = $bodyResource->value($headingTerm, ['lang' => $lang]))) {
-                            $body = $bodyResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
-                        }
-                    } else {
-                        $template = $bodyResource->resourceTemplate();
-                        if ($template && $template->titleProperty()) {
-                            if (($filterLocale == 0)
-                                || ! ($body = $bodyResource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
-                                    $body = $bodyResource->value($template->titleProperty()->term());
-                                }
-                        }
-                    }
-                    if (!$body) {
-                        $body = $bodyResource->displayTitle();
-                    }
-                } else {
-                    $body = $bodyTermValue;
-                }
-            }
-        }
-    }
-    if (!$body) {
-        $body = $item->displayDescription();
-    }
-
+    $body = $bodyTerm ? $item->value($bodyTerm) : $item->displayDescription();
 ?>
     <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
@@ -157,9 +85,9 @@ foreach ($items as $item):
         </div>
         <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h4><?php echo $item->link($heading); ?></h4>
+            <h4><?php echo $this->partial('common/local-title', ['resource' => $item, 'method' => 'link']); ?></h4>
             <?php if ($body): ?>
-            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
+            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $this->partial('common/local-body', ['resource' => $item]); ?></div>
             <?php endif; ?>
         </div>
     </li>

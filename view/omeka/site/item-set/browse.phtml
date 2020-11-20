@@ -6,14 +6,10 @@ $layoutSetting = $this->themeSetting('browse_layout');
 $gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
 $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $isGrid = (!isset($layoutSetting) || strpos($layoutSetting, 'grid') !== false) ? true : false;
-$headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
 $bodyTruncate = $this->themeSetting('truncate_body_property');
 
 $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse');
-
-$filterLocale = $this->themeSetting('filter_locale_values');
-$lang = $this->lang();
 ?>
 
 <?php echo $this->pageTitle($translate('Item sets'), 2); ?>
@@ -38,45 +34,7 @@ $lang = $this->lang();
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 foreach ($itemSets as $itemSet):
-
-    $heading = null;
-    if ($headingTerm) {
-        if (!($heading = $itemSet->value($headingTerm, ['lang' => $lang]))) {
-            $heading = $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]);
-        }
-    } else {
-        $template = $itemSet->resourceTemplate();
-        if ($template && $template->titleProperty()) {
-            if (($filterLocale == 0) || !($heading = $itemSet->value($template->titleProperty()->term(), ['lang' => $lang]))) {
-                $heading = $itemSet->value($template->titleProperty()->term());
-            }
-        }
-    }
-    if (!$heading) {
-        $heading = $itemSet->displayTitle();
-    }
-
-    $body = null;
-    if ($bodyTerm) {
-        $bodyTermValue = $itemSet->value($bodyTerm);
-        $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
-        $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
-    } else {
-        // Based on resource template
-        $template = $itemSet->resourceTemplate();
-        if ($template && $template->descriptionProperty()) {
-            if (($filterLocale == 0) || !($bodyTermValue = $itemSet->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
-                $bodyTermValue = $itemSet->value($template->descriptionProperty()->term());
-            }
-            if (null !== $bodyTermValue) {
-                $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
-                $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
-            }
-        }
-    }
-    if (!$body) {
-        $body = $itemSet->displayDescription();
-    }
+    $body = $bodyTerm ? $itemSet->value($bodyTerm) : $itemSet->displayDescription();
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($thumbnail = $this->thumbnail($itemSet, 'medium')): ?>
@@ -85,9 +43,9 @@ foreach ($itemSets as $itemSet):
         </div>
         <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h4><?php echo $itemSet->link($heading); ?></h4>
+            <h4><?php echo $this->partial('common/local-title', ['resource' => $itemSet, 'method' => 'link']); ?></h4>
             <?php if ($body): ?>
-            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
+            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $this->partial('common/local-body', ['resource' => $itemSet]); ?></div>
             <?php endif; ?>
         </div>
     </li>

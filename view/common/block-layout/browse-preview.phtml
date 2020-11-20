@@ -11,11 +11,7 @@ $queryUrl = $this->url(
     'site/resource', ['controller' => $this->resourceType, 'action' => 'browse'], ['query' => $this->query], true
 );
 
-$headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
-
-$filterLocale = $this->themeSetting('filter_locale_values');
-$lang = $this->lang();
 ?>
 <div class="preview-block">
 
@@ -43,44 +39,7 @@ $lang = $this->lang();
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 foreach ($this->resources as $resource):
-    $heading = null;
-    if ($headingTerm) {
-        if (!($heading = $resource->value($headingTerm, ['lang' => $lang]))) {
-            $heading = $resource->value($headingTerm, ['default' => $translate('[Untitled]')]);
-        }
-    } else {
-        $template = $resource->resourceTemplate();
-        if ($template && $template->titleProperty()) {
-            if (($filterLocale == 0) || !($heading = $resource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
-                $heading = $resource->value($template->titleProperty()->term());
-            }
-        }
-    }
-    if (!$heading) {
-        $heading = $resource->displayTitle();
-    }
-
-    $body = null;
-    if ($bodyTerm) {
-        $bodyTermValue = $resource->value($bodyTerm);
-        $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
-        $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
-    } else {
-        // Based on resource template
-        $template = $resource->resourceTemplate();
-        if ($template && $template->descriptionProperty()) {
-            if (($filterLocale == 0) || !($bodyTermValue = $resource->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
-                $bodyTermValue = $resource->value($template->descriptionProperty()->term());
-            }
-            if (null !== $bodyTermValue) {
-                $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
-                $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
-            }
-        }
-    }
-    if (!$body) {
-        $body = $resource->displayDescription();
-    }
+    $body = $bodyTerm ? $resource->value($bodyTerm) : $resource->displayDescription();
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($thumbnail = $this->thumbnail($resource, 'medium')): ?>
@@ -89,9 +48,9 @@ foreach ($this->resources as $resource):
         </div>
         <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h4><?php echo $resource->link($heading); ?></h4>
+            <h4><?php echo $this->partial('common/local-title', ['resource' => $resource, 'method' => 'link']); ?></h4>
             <?php if ($body): ?>
-            <div class="description"><?php echo $escape($body); ?></div>
+            <div class="description"><?php echo $this->partial('common/local-body', ['resource' => $resource]); ?></div>
             <?php endif; ?>
         </div>
     </li>

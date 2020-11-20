@@ -5,7 +5,6 @@ $labelInfo = $this->setting('property_label_information');
 $filterLocale = $this->themeSetting('filter_locale_values');
 $showLocale = $this->themeSetting('show_locale_label');
 $lang = $this->lang();
-$headingTerm = $this->siteSetting('browse_heading_property_term');
 ?>
 <dl>
 <?php foreach ($values as $term => $propertyData): ?>
@@ -45,28 +44,7 @@ $headingTerm = $this->siteSetting('browse_heading_property_term');
                 <?php endif; ?>
                 <?php if ($linkedResource = $value->valueResource()):?>
                 <?php
-                    $linkedResourceTitle = null;
-                    if ($headingTerm) {
-                        if (! ($linkedResourceTitle = $linkedResource->value($headingTerm, ['lang' => $lang]))) {
-                            $linkedResourceTitle = $linkedResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
-                        }
-                    } else {
-                        $template = $linkedResource->resourceTemplate();
-                        if ($template && $template->titleProperty()) {
-                            if (($filterLocale == 0)
-                                || ! ($linkedResourceTitle = $linkedResource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
-                                $linkedResourceTitle = $linkedResource->value($template->titleProperty()->term());
-                            }
-                        }
-                    }
-                    if (! $linkedResourceTitle) {
-                        $linkedResourceTitle = $linkedResource->displayTitle();
-                    }
-                    $linkContent = $this->thumbnail($value->valueResource(), 'square')
-                                    . '<span class="resource-name">'
-                                    . $escape($linkedResourceTitle)
-                                    . "</span>";
-                    echo $value->valueResource()->linkRaw($linkContent, null, ['class' => 'resource-link']);
+                echo $this->partial('common/local-title', ['resource' => $linkedResource, 'method' => 'linkRaw']);
                  ?>
                  <?php else: ?>
                  <?php echo $value->asHtml(); ?>
