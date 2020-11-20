@@ -4,7 +4,8 @@ $escape = $this->plugin('escapeHtml');
 $labelInfo = $this->setting('property_label_information');
 $filterLocale = $this->themeSetting('filter_locale_values');
 $showLocale = $this->themeSetting('show_locale_label');
-$siteLang = $this->lang();
+$lang = $this->lang();
+$headingTerm = $this->siteSetting('browse_heading_property_term');
 ?>
 <dl>
 <?php foreach ($values as $term => $propertyData): ?>
@@ -37,12 +38,49 @@ $siteLang = $this->lang();
                 $class[] = 'private';
             }
             ?>
-            <?php if (($filterLocale == 0) || ($valueLang == '') || ($valueLang == $siteLang)): ?>
+            <?php if (($filterLocale == 0) || ($valueLang == '') || ($valueLang == $lang)): ?>
             <dl class="<?php echo implode(' ', $class); ?>" lang="<?php echo $escape($valueLang); ?>">
                 <?php if (($showLocale == 1) && ($valueLang)): ?>
                 <span class="language"><?php echo $valueLang; ?></span>
                 <?php endif; ?>
-                <?php echo $value->asHtml(); ?>
+
+				<?php if ($linkedResource = $value->valueResource()):?>
+					<?php
+
+                    $linkedResourceTitle = null;
+
+                    if ($headingTerm) {
+                        if (! ($linkedResourceTitle = $linkedResource->value($headingTerm, [
+                            'lang' => $lang
+                        ]))) {
+                            $linkedResourceTitle = $linkedResource->value($headingTerm, [
+                                'default' => $translate('[Untitled]')
+                            ]);
+                        }
+                    } else {
+                        $template = $linkedResource->resourceTemplate();
+                        if ($template && $template->titleProperty()) {
+                            if (($filterLocale == 0) || ! ($linkedResourceTitle = $linkedResource->value($template->titleProperty()
+                                ->term(), [
+                                'lang' => $lang
+                            ]))) {
+                                $linkedResourceTitle = $linkedResource->value($template->titleProperty()
+                                    ->term());
+                            }
+                        }
+                    }
+                    if (! $linkedResourceTitle) {
+                        $linkedResourceTitle = $linkedResource->displayTitle();
+                    }
+
+                    $linkContent = $this->thumbnail($value->valueResource(), 'square') . '<span class="resource-name">' . $escape($linkedResourceTitle) . "</span>";
+                    echo $value->valueResource()->linkRaw($linkContent, null, [
+                        'class' => 'resource-link'
+                    ]);
+                    ?>
+				<?php else: ?>
+					<?php echo $value->asHtml(); ?>
+                <?php endif;?>
             </dl>
             <?php endif; ?>
         <?php endforeach; ?>
