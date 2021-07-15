@@ -693,6 +693,15 @@ body.vertical-menu footer {
   background-color: $light-gray;
 }
 
+#itemfiles.gallery-source {
+  height: 60vh;
+}
+
+#itemfiles.gallery-source .media.resource {
+  height: 0;
+  overflow: hidden;
+}
+
 // #. Advanced search
 // ------------------
 
