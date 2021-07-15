@@ -5,6 +5,30 @@ $this->htmlElement('body')->appendAttribute('class', 'item resource show');
 $embedMedia = $this->siteSetting('item_media_embed', false);
 $itemMedia = $item->media();
 $showLayout = $this->themeSetting('show_layout');
+$mediaDisplay = $this->themeSetting('media_display');
+$galleryDisplay = (isset($mediaDisplay)) ? strpos($mediaDisplay, 'gallery') : false;
+
+if ($galleryDisplay) {
+    $this->headLink()->appendStylesheet($this->assetUrl('vendor/lightgallery/css/lightgallery-bundle.min.css'));
+    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/lightgallery.min.js'));
+    $this->headScript()->appendFile($this->assetUrl('js/show.js'));
+    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/thumbnail/lg-thumbnail.min.js'));
+    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/video/lg-video.min.js'));
+    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/pager/lg-pager.min.js'));
+
+    $lightMedia = [];
+    $otherMedia = [];
+    $whitelist = ['image/bmp', 'image/gif', 'image/jpeg', 'image/png', 'image/svg+xml'];
+    foreach ($itemMedia as $media) {
+        $mediaType = $media->mediaType();
+        $mediaRenderer = $media->renderer();
+        if (in_array($mediaType, $whitelist) || (strpos($mediaRenderer, 'youtube') !== false)) {
+            $lightMedia[] = $media;
+        } else {
+            $otherMedia[] = $media;
+        }
+    }
+}
 ?>
 
 <div class="resource-title">
@@ -14,6 +38,23 @@ $showLayout = $this->themeSetting('show_layout');
 
 <div class="grid-x">
 
+<?php if ($galleryDisplay): ?>
+
+<?php if (count($lightMedia) > 0): ?>
+<div id="itemfiles" class="gallery-source">
+    <?php foreach ($lightMedia as $media): ?>
+        <?php $source = ($media->originalUrl()) ? $media->originalUrl() : $media->source(); ?>
+        <div data-src="<?php echo $source; ?>" data-thumb="<?php echo $escape($media->thumbnailUrl('square')); ?>"  data-download-url="<?php echo $source; ?>" class="media resource">
+            <?php echo $media->render(); ?>
+        </div>
+    <?php endforeach; ?>
+</div>
+<div id="inline-gallery-container" class="inline-gallery-container">
+</div>
+<?php endif; ?>
+
+<?php else: ?>
+
 <?php if ($embedMedia && $itemMedia): ?>
 <div class="media-embeds">
 <?php foreach ($itemMedia as $media):
@@ -22,12 +63,15 @@ endforeach;
 ?>
 </div>
 <?php endif; ?>
+
 <?php if (!$embedMedia && $itemMedia): ?>
 <div class="media-list">
     <?php foreach ($itemMedia as $media): ?>
         <?php echo $media->linkPretty(); ?>
     <?php endforeach; ?>
 </div>
+<?php endif; ?>
+
 <?php endif; ?>
 
 <div id="resource-values" class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
