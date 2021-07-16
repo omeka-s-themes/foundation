@@ -693,14 +693,20 @@ body.vertical-menu footer {
   background-color: $light-gray;
 }
 
-#itemfiles.gallery-source {
+#itemfiles.topgallery {
   height: 60vh;
+  width: 100%;
+  margin-bottom: $global-margin;
 }
 
-#itemfiles.gallery-source .media.resource {
+#itemfiles.topgallery .media.resource {
   height: 0;
   overflow: hidden;
 }
+
+#itemfiles .lg-img-wrap {
+  padding-bottom: 3 * $global-padding;
+} 
 
 // #. Advanced search
 // ------------------
