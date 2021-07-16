@@ -41,10 +41,11 @@ if ($galleryDisplay) {
 <?php if ($galleryDisplay): ?>
 
 <?php if (count($lightMedia) > 0): ?>
-<div id="itemfiles" class="gallery-source">
+<div id="itemfiles" class="<?php echo $mediaDisplay; ?>">
     <?php foreach ($lightMedia as $media): ?>
         <?php $source = ($media->originalUrl()) ? $media->originalUrl() : $media->source(); ?>
-        <div data-src="<?php echo $source; ?>" data-thumb="<?php echo $escape($media->thumbnailUrl('square')); ?>"  data-download-url="<?php echo $source; ?>" class="media resource">
+        <?php $subHtml = "<div class='lg-caption'>" . $media->displayTitle() . "</div>"; ?>
+        <div data-src="<?php echo $source; ?>" data-thumb="<?php echo $escape($media->thumbnailUrl('square')); ?>"  data-download-url="<?php echo $source; ?>" class="media resource" data-sub-html="<?php echo $subHtml; ?>">
             <?php echo $media->render(); ?>
         </div>
     <?php endforeach; ?>

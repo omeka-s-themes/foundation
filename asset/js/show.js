@@ -10,7 +10,9 @@
             closable: false,
             showMaximizeIcon: true,
             appendSubHtmlTo: '.lg-item',
-            slideDelay: 400
+            captions: true,
+            slideDelay: 400,
+            allowMediaOverlap: false
         });  
 
         inlineGallery.openGallery();
