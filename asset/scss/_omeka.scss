@@ -708,6 +708,16 @@ body.vertical-menu footer {
   padding-bottom: 3 * $global-padding;
 } 
 
+#itemfiles.leftgallery {
+  width: 70%;
+  align-self: flex-start;
+}
+
+#itemfiles.leftgallery ~ #resource-values {
+  padding-left: $global-padding;
+  margin: 0;
+  width: 30%;
+}
 // #. Advanced search
 // ------------------
 
