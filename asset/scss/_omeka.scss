@@ -693,20 +693,32 @@ body.vertical-menu footer {
   background-color: $light-gray;
 }
 
-#itemfiles.topgallery {
+#itemfiles.topgallery,
+#itemfiles.leftgallery {
   height: 60vh;
   width: 100%;
   margin-bottom: $global-margin;
 }
 
-#itemfiles.topgallery .media.resource {
+#itemfiles.topgallery .media.resource,
+#itemfiles.leftgallery .media.resource {
   height: 0;
   overflow: hidden;
 }
 
-#itemfiles .lg-img-wrap {
+#itemfiles .img-responsive {
+  opacity: 0;
+}
+
+#itemfiles .lg-img-wrap,
+#itemfiles .lg-video-object,
+#itemfiles .lg-video-poster {
   padding-bottom: 3 * $global-padding;
-} 
+}
+
+ #itemfiles .lg-outer .lg-video-cont .lg-object {
+   width: auto !important;
+ }
 
 #itemfiles.leftgallery {
   width: 70%;
