@@ -15,7 +15,8 @@ if ($galleryDisplay) {
     $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/thumbnail/lg-thumbnail.min.js'));
     $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/video/lg-video.min.js'));
     $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/pager/lg-pager.min.js'));
-
+    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/zoom/lg-zoom/lg-zoom.min.js'));
+    
     $lightMedia = [];
     $otherMedia = [];
     $whitelist = ['image/bmp', 'image/gif', 'image/jpeg', 'image/png', 'image/svg+xml'];
