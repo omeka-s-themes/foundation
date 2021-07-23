@@ -8,7 +8,7 @@ class DetectTracks extends AbstractHelper
     public function __invoke($files = null) 
     {
         foreach ($files as $file) {
-            if ($file->getExtension() == "vtt") {
+            if ($file->extension() == "vtt") {
                 return true;
             }
         }

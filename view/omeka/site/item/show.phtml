@@ -7,6 +7,7 @@ $itemMedia = $item->media();
 $showLayout = $this->themeSetting('show_layout');
 $mediaDisplay = $this->themeSetting('media_display');
 $galleryDisplay = (isset($mediaDisplay)) ? strpos($mediaDisplay, 'gallery') : false;
+$tracksPresent = $this->DetectTracks($itemMedia);
 
 if ($galleryDisplay) {
     $this->headLink()->appendStylesheet($this->assetUrl('vendor/lightgallery/css/lightgallery-bundle.min.css'));
@@ -41,6 +42,7 @@ if ($galleryDisplay) {
 
 <?php if ($galleryDisplay): ?>
 
+    <?php echo $this->siteSetting('locale'); ?>
     <?php if (count($lightMedia) > 0): ?>
     <div id="itemfiles" class="<?php echo $mediaDisplay; ?>">
         <?php foreach ($lightMedia as $media): ?>
@@ -65,13 +67,23 @@ if ($galleryDisplay) {
                     />
                 </a>
             <?php else: ?>
+            <?php $trackHtml = ''; ?>
+            <?php if ($tracksPresent): ?>
+                <?php $originalFilename = pathinfo($media->source(), PATHINFO_FILENAME); ?>
+                <?php $trackHtml .=  '"tracks": ['; ?>
+                <?php foreach ($otherMedia as $key => $media): ?>
+                <?php $trackHtml .= $this->OutputTrack($media, $originalFilename); ?>
+                <?php unset($otherMedia[$key]); ?>
+                <?php endforeach; ?>
+                <?php $trackHtml = rtrim($trackHtml, ','); ?>
+                <?php $trackHtml .= '],'; ?>
+            <?php endif; ?>
             <a
-                data-lg-size="1280-720"
-                data-video='{"source": [{"src":"<?php echo $source; ?>", "type":"<?php echo $mediaType; ?>"}], "attributes": {"preload": false, "controls": true}}'
+                data-video='{"source": [{"src":"<?php echo $source; ?>", "type":"<?php echo $mediaType; ?>"}], <?php echo $trackHtml; ?> "attributes": {"preload": false, "controls": true}}'
                 data-download-url="<?php echo $source; ?>" 
                 data-poster="<?php echo $media->thumbnailDisplayUrl('square'); ?>"
                 data-sub-html="<?php echo $subHtml; ?>"
-            >
+            >  
                 <img
                     class="img-responsive"
                     src="<?php echo $media->thumbnailDisplayUrl('square'); ?>"
@@ -124,6 +136,7 @@ if ($galleryDisplay) {
         <div class="media-list">
         <?php foreach ($otherMedia as $media): ?>
             <?php echo $media->linkPretty(); ?>
+            <?php echo pathinfo($media->source(), PATHINFO_FILENAME); ?>
         <?php endforeach; ?>
     </div>
     <?php endif; ?>
