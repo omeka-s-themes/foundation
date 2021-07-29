@@ -716,9 +716,14 @@ body.vertical-menu footer {
   padding-bottom: 3 * $global-padding;
 }
 
- #itemfiles .lg-outer .lg-video-cont .lg-object {
-   width: auto !important;
- }
+#itemfiles .lg-outer .lg-video-cont .lg-object {
+  width: auto !important;
+}
+
+.lg-outer[data-lg-slide-type="video"] .lg-download {
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
 
 #itemfiles.leftgallery {
   width: 70%;
