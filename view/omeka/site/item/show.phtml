@@ -51,11 +51,12 @@ if ($galleryDisplay) {
             ?>
             
             <?php if (strpos($mediaType, 'image') !== false): ?>
-                <div data-src="<?php echo $source; ?>" data-thumb="<?php echo $escape($media->thumbnailUrl('square')); ?>"  data-download-url="<?php echo $source; ?>" class="media resource" data-sub-html="<?php echo $subHtml; ?>">
+                <div data-src="<?php echo $source; ?>" data-thumb="<?php echo $escape($media->thumbnailUrl('square')); ?>" class="media resource" data-sub-html="<?php echo $subHtml; ?>">
                     <?php echo $media->render(); ?>
                 </div>
             <?php elseif (strpos($mediaRenderer, 'youtube') !== false): ?>
                 <a
+                    class="media resource"
                     data-src="<?php echo $source; ?>"
                     data-poster="<?php echo $media->thumbnailDisplayUrl('square'); ?>"
                     data-sub-html="<?php echo $subHtml; ?>"
@@ -76,6 +77,7 @@ if ($galleryDisplay) {
                     }
                 ?>    
                 <a
+                    class="media resource"
                     data-video='{"source": [{"src":"<?php echo $source; ?>", "type":"<?php echo $mediaType; ?>"}], <?php echo $trackHtml; ?> "attributes": {"preload": false, "controls": true}}'
                     data-download-url="<?php echo $source; ?>" 
                     data-poster="<?php echo $media->thumbnailDisplayUrl('square'); ?>"
