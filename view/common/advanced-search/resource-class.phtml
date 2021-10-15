@@ -24,7 +24,9 @@ if (!$ids) {
                     'aria-labelledby' =>  'by-resource-class-label'
                 ],
             ]); ?>
-            <button type="button" class="o-icon-delete remove-value button" aria-label="<?php echo $translate('Remove value'); ?>" title="<?php echo $translate('Remove value'); ?>"></button>
+            <div class="input-group-button">
+                <button type="button" class="o-icon-delete remove-value button" aria-label="<?php echo $translate('Remove value'); ?>" title="<?php echo $translate('Remove value'); ?>"></button>
+            </div>
         </div>
         <?php endforeach; ?>
     </div>
