@@ -27,10 +27,12 @@ if (!$ids) {
                         'disable_group_by_owner' => $this->status()->isSiteRequest(),
                     ],
                 ]); ?>
+            <div class="input-group-button">
                 <button type="button" class="o-icon-delete remove-value button" aria-label="<?php echo $translate('Remove value'); ?>"></button>
+            </div>
             </div>
             <?php endforeach; ?>
         </div>
-        <button class="add-value button"><?php echo $translate('Add new item set'); ?></button>
+            <button class="add-value button"><?php echo $translate('Add new item set'); ?></button>
     </fieldset>
 </div>
