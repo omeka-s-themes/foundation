@@ -15,6 +15,21 @@ $thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
 @import 'foundation-core';
 @import 'omeka';
 
-header a {
+header a:not(.is-active) {
   color: $white;
+}
+
+header .submenu a {
+  color: get-color(primary);
+}
+
+#responsive-menu > .dropdown.menu > li.is-active > a,
+#responsive-menu > .dropdown.menu > li > a:hover {
+  text-decoration: underline;
+  color: get-color(secondary);
+}
+
+.dropdown .is-dropdown-submenu a:hover {
+  background-color: get-color(primary);
+  color: get-color(secondary);
 }
