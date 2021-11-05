@@ -216,6 +216,21 @@ header .top-bar {
   }
 }
 
+.banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    &.contained {
+      @include xy-grid-container;
+    }
+}
+
+.banner img {
+    width: 100%;
+}
+
 body.vertical-menu header {
   background-color: $primary-color;
   width: 100%;

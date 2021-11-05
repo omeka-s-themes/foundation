@@ -24,6 +24,11 @@ if ($userBar) {
   $this->htmlElement('body')->appendAttribute('class', 'user-bar');
 }
 
+$banner = $this->themeSettingAssetUrl('banner');
+$bannerWidth = ($this->themeSetting('banner_width')) ? $this->themeSetting('banner_width') : '';
+$bannerHeight = $this->themeSetting('banner_height');
+$bannerHeightMobile = $this->themeSetting('banner_height_mobile');
+$bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-', $this->themeSetting('banner_position')) : 'center';
 $logo = $this->themeSettingAssetUrl('logo');
 if ($logo):
     $title = '<img src="' . $this->escapeHtml($logo) . '">';
@@ -37,6 +42,19 @@ endif;
         <?php echo $this->headLink(); ?>
         <?php echo $this->headStyle(); ?>
         <?php echo $this->headScript(); ?>
+        <style>
+            .banner {
+                height: <?php echo ($bannerHeight !== '') ? $bannerHeight: 'auto'  ?>;
+                align-items: <?php echo $bannerPosition; ?>;
+            }
+        <?php if ($bannerHeightMobile !== ''): ?>
+            @media screen and (max-width:640px) {
+                .banner {
+                    height: <?php echo $bannerHeightMobile; ?>;
+                }
+            }
+        <?php endif; ?>
+        </style>
     </head>
 
     <?php echo $this->htmlElement('body'); ?>
@@ -55,6 +73,11 @@ endif;
                 <?php echo $this->partial('common/header-vertical'); ?>
                 <?php else: ?>
                 <?php echo $this->partial('common/header-dropdown'); ?>
+                <?php endif; ?>
+                <?php if ($banner): ?>
+                <div class="banner <?php echo $bannerWidth; ?>">
+                    <img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner">
+                </div>
                 <?php endif; ?>
             </header>
             <div id="content" role="main">
