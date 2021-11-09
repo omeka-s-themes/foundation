@@ -1,6 +1,6 @@
 {
   "name": "foundation-s-theme",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Omeka S theme using the ZURB Foundation toolkit.",
   "main": "gulpfile.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "email": "outreach@omeka.org"
   },
   "dependencies": {
-    "foundation-sites": "^6.6.3",
+    "foundation-sites": "^6.7.4",
     "gulp-cli": "^2.3.0",
     "jquery": "^3.5.1",
     "motion-ui": "~2.0.0",
@@ -26,7 +26,7 @@
     "gulp": "^4.0.2",
     "gulp-load-plugins": "^2.0.4",
     "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.0.0",
     "minimist": "^1.2.3"
   },
   "browserslist": [
