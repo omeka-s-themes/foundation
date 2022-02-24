@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
-    "build": "gulp sass"
+    "build": "gulp css"
   },
   "author": "Omeka Team <outreach@omeka.org>",
   "license": "MIT",
@@ -18,13 +18,12 @@
     "gulp-cli": "^2.3.0",
     "jquery": "^3.5.1",
     "motion-ui": "~2.0.0",
+    "sass": "^1.49.8",
     "what-input": "^5.2.10"
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
-    "browser-sync": "^2.26.14",
     "gulp": "^4.0.2",
-    "gulp-load-plugins": "^2.0.4",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^5.0.0",
     "minimist": "^1.2.3"
