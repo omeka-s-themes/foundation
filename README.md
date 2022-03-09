@@ -38,7 +38,8 @@ For advanced CSS and Sass users, Foundation S uses ZURB Foundation Site's toolki
 Run these commands within the theme's root directory.
 
 * **npm start**: While this task runs, it watches for changes to sass files and recompiles the CSS.
-* **gulp sass**: This is the one-off task for compiling the current Sass/CSS.
+* **gulp css**: This is the one-off task for compiling the current Sass/CSS.
+* * **gulp css:watch**: This task watches for changes in the Sass, then compiles the CSS.
 
 ### Sass File Structure
 
