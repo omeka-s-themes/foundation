@@ -15,6 +15,7 @@ $this->headScript()->prependFile($this->assetUrl('vendor/foundation/foundation.m
 $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
 $this->trigger('view.layout');
+$this->jsTranslate();
 $title = $this->pageTitle($site->title());
 $userBar = $this->userBar();
 
