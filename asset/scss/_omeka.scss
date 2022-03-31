@@ -708,15 +708,24 @@ body.vertical-menu footer {
   background-color: $light-gray;
 }
 
-#itemfiles.topgallery,
-#itemfiles.leftgallery {
+#itemfiles {
+  list-style: none;
+  margin-left: 0;
+}
+
+.topgallery {
+  width: 100%;
+}
+
+.topgallery #itemfiles,
+.leftgallery #itemfiles {
   height: 60vh;
   width: 100%;
   margin-bottom: $global-margin;
 }
 
-#itemfiles.topgallery .media.resource,
-#itemfiles.leftgallery .media.resource {
+.topgallery #itemfiles .media.resource,
+.leftgallery #itemfiles .media.resource {
   height: 0;
   overflow: hidden;
 }
@@ -731,21 +740,17 @@ body.vertical-menu footer {
   padding-bottom: 3 * $global-padding;
 }
 
-#itemfiles .lg-outer .lg-video-cont .lg-object {
-  width: auto !important;
-}
-
 .lg-outer[data-lg-slide-type="video"] .lg-download {
   opacity: 1 !important;
   pointer-events: all !important;
 }
 
-#itemfiles.leftgallery {
+.leftgallery {
   width: 70%;
   align-self: flex-start;
 }
 
-#itemfiles.leftgallery ~ #resource-values {
+.resource.show .leftgallery ~ #resource-values {
   padding-left: $global-padding;
   margin: 0;
   width: 30%;

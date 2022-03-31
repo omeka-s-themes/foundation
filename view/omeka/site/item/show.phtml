@@ -7,29 +7,13 @@ $itemMedia = $item->media();
 $showLayout = $this->themeSetting('show_layout');
 $mediaDisplay = $this->themeSetting('media_display');
 $galleryDisplay = (isset($mediaDisplay)) ? strpos($mediaDisplay, 'gallery') : false;
-$tracksPresent = $this->DetectTracks($itemMedia);
 
 if ($galleryDisplay) {
-    $this->headLink()->appendStylesheet($this->assetUrl('vendor/lightgallery/css/lightgallery-bundle.min.css'));
-    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/lightgallery.min.js'));
-    $this->headScript()->appendFile($this->assetUrl('js/show.js'));
-    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/thumbnail/lg-thumbnail.min.js'));
-    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/video/lg-video.min.js'));
-    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/pager/lg-pager.min.js'));
-    $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/plugins/zoom/lg-zoom.min.js'));
-    
-    $lightMedia = [];
-    $otherMedia = [];
-    $whitelist = ['image/bmp', 'image/gif', 'image/jpeg', 'image/png', 'image/svg+xml'];
-    foreach ($itemMedia as $media) {
-        $mediaType = $media->mediaType();
-        $mediaRenderer = $media->renderer();
-        if (in_array($mediaType, $whitelist) || (strpos($mediaType, 'video') !== false) || (strpos($mediaRenderer, 'youtube') !== false)) {
-            $lightMedia[] = $media;
-        } else {
-            $otherMedia[] = $media;
-        }
-    }
+    $sortedMedia = $this->SortMedia($itemMedia);
+    $lightMedia = (isset($sortedMedia['lightMedia'])) ? $sortedMedia['lightMedia'] : null;
+    $otherMedia = (isset($sortedMedia['otherMedia'])) ? $sortedMedia['otherMedia'] : null;
+} else {
+    $otherMedia = $itemMedia;
 }
 ?>
 
@@ -39,69 +23,16 @@ if ($galleryDisplay) {
 </div>
 
 <div class="grid-x">
-<?php if ($galleryDisplay): ?>
-    <?php if (count($lightMedia) > 0): ?>
-    <div id="itemfiles" class="<?php echo $mediaDisplay; ?>">
-        <?php foreach ($lightMedia as $media): ?>
-            <?php 
-                $mediaType = $media->mediaType();
-                $mediaRenderer = $media->renderer();
-                $source = ($media->originalUrl()) ? $media->originalUrl() : $media->source();
-                $subHtml = "<div class='lg-caption'>" . $media->displayTitle() . "</div>"; 
-            ?>
-            
-            <?php if (strpos($mediaType, 'image') !== false): ?>
-                <div data-src="<?php echo $source; ?>" data-thumb="<?php echo $escape($media->thumbnailUrl('square')); ?>" class="media resource" data-sub-html="<?php echo $subHtml; ?>">
-                    <?php echo $media->render(); ?>
-                </div>
-            <?php elseif (strpos($mediaRenderer, 'youtube') !== false): ?>
-                <a
-                    class="media resource"
-                    data-src="<?php echo $source; ?>"
-                    data-poster="<?php echo $media->thumbnailDisplayUrl('square'); ?>"
-                    data-sub-html="<?php echo $subHtml; ?>"
-                >
-                </a>
-            <?php else: ?>
-                <?php
-                    $trackHtml = '';
-                    if ($tracksPresent) {
-                        $originalFilename = pathinfo($media->source(), PATHINFO_FILENAME);
-                        $trackHtml .=  '"tracks": [';
-                        foreach ($otherMedia as $key => $media) {
-                            $trackHtml .= $this->OutputTrack($media, $originalFilename);
-                            unset($otherMedia[$key]);
-                        }
-                        $trackHtml = rtrim($trackHtml, ',');
-                        $trackHtml .= '],'; 
-                    }
-                ?>    
-                <a
-                    class="media resource"
-                    data-video='{"source": [{"src":"<?php echo $source; ?>", "type":"<?php echo $mediaType; ?>"}], <?php echo $trackHtml; ?> "attributes": {"preload": false, "controls": true}}'
-                    data-download-url="<?php echo $source; ?>" 
-                    data-poster="<?php echo $media->thumbnailDisplayUrl('square'); ?>"
-                    data-sub-html="<?php echo $subHtml; ?>"
-                >  
-                    <img
-                        class="img-responsive"
-                        src="<?php echo $media->thumbnailDisplayUrl('square'); ?>"
-                    />
-                </a>
-            <?php endif; ?>
-        <?php endforeach; ?>
+<?php if ($galleryDisplay && isset($lightMedia)): ?>
+    <div class="<?php echo $mediaDisplay; ?>">
+    <?php echo $this->LightGalleryOutput($lightMedia); ?>
     </div>
-    <?php endif; ?>
-<?php else: ?>
-    <?php if (count($itemMedia) > 0): ?>
+<?php elseif((count($itemMedia) > 0) && strpos($mediaDisplay,'double')): ?>
     <div class="<?php echo ($embedMedia) ? 'media-embeds' : 'media-list' ?>">
     <?php foreach ($itemMedia as $media): ?>
         <?php echo ($embedMedia) ? $media->render() : $media->linkPretty(); ?>
     <?php endforeach; ?>
     </div>
-<?php endif; ?>
-
-
 <?php endif; ?>
 
 <div id="resource-values" class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
@@ -129,10 +60,9 @@ if ($galleryDisplay) {
             <div class="property">
                 <dt><?php echo $translate('Media'); ?></dt>
                 <div class="values">
-                <?php foreach ($mediaList as $media): ?>
-                    <dd class="value"><?php echo $media->linkPretty(); ?></dd>
-                <?php endforeach; ?>
-                </div>
+                    <?php foreach ($mediaList as $media): ?>
+                        <dd class="value"><?php echo ($embedMedia) ? $media->render() : $media->linkPretty(); ?></dd>
+                    <?php endforeach; ?>
             </div>
         </dl>
     <?php endif; ?>

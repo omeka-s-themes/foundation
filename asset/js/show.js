@@ -1,21 +1,26 @@
 (function($) {
     $(document).ready(function() {        
-        const lgContainer = document.getElementById('itemfiles');
+        var galleryState = ($('#itemfiles li').length > 1) ? true : false;
 
-        const inlineGallery = lightGallery(lgContainer, {
-            selector: '.media.resource',
-            plugins: [lgThumbnail, lgVideo, lgZoom],
-            thumbnail: true,
+        var lgContainer = document.getElementById('itemfiles');
+        var inlineGallery = lightGallery(lgContainer, {
             container: lgContainer,
-            hash: false,
+            dynamic: false,
+            hash: true,
             closable: false,
+            thumbnail: true,
+            selector: '.media.resource',
+            exThumbImage: 'data-thumb',
             showMaximizeIcon: true,
-            appendSubHtmlTo: '.lg-item',
-            captions: true,
-            slideDelay: 400,
-            allowMediaOverlap: false
-        });  
+            autoplayFirstVideo: false,
+            flipVertical: false,
+            flipHorizontal: false,
+            plugins: [
+                lgThumbnail,lgZoom,lgVideo,lgHash,lgRotate
+            ],
+        });
 
         inlineGallery.openGallery();
     });
-  })(jQuery)
+})(jQuery)
+

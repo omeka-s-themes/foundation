@@ -1,5 +1,8 @@
 <?php
 $translate = $this->plugin('translate');
+$mediaCaption = $this->themeSetting('media_caption');
+$mediaType = $media->mediaType();
+$enableLightGallery = strpos($mediaType, 'image') !== false;
 ?>
 <?php $this->htmlElement('body')->appendAttribute('class', 'media resource show'); ?>
 
@@ -8,6 +11,35 @@ $translate = $this->plugin('translate');
 <h3 class="label"><?php echo $translate('Media'); ?></h3>
 </div>
 <?php $this->trigger('view.show.before'); ?>
-<?php echo $media->render(); ?>
+<?php if ($enableLightGallery): ?>
+    <?php echo $this->LightGalleryOutput([['media' => $media]]); ?>
+<?php else: ?>
+    <?php if (strpos($mediaType, 'video') !== false): ?>
+        <?php 
+            $mediaItem = $media->item();
+            $itemAttachments = $this->SortMedia($mediaItem->media());
+        ?>
+        <?php foreach ($itemAttachments['lightMedia'] as $itemAttachment): ?>
+            <?php if ($itemAttachment['media']->source() == $media->source()): ?>
+                <div class="media-render video">
+                    <div class="lg-toolbar">
+                        <a target="_blank" rel="noopener" aria-label="<?php echo $this->translate('Download'); ?>" title="<?php echo $this->translate('Download'); ?>" class="lg-download lg-icon" href="<?php echo $media->originalUrl(); ?>"></a>
+                    </div>
+                    <video controls>
+                        <source src="<?php echo $media->originalUrl(); ?>" type="<?php echo $mediaType; ?>">
+                        <p><?php $this->translate('Your browser does not support HTML5 video.'); ?></p>
+                        <?php if ($tracks = $itemAttachment['tracks']): ?>
+                            <?php foreach ($tracks as $track): ?>
+                                <track label="<?php echo $track->displayTitle(); ?>" kind="<?php echo $track->value('dcterms:type'); ?>" srclang="<?php echo $track->value('dcterms:language'); ?>" src="<?php echo $track->originalUrl(); ?>">
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </video>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+    <?php echo $media->render(); ?>
+    <?php endif; ?>
+<?php endif; ?>
 <?php echo $media->displayValues(); ?>
 <?php $this->trigger('view.show.after'); ?>
