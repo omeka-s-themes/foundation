@@ -583,6 +583,32 @@ body.vertical-menu footer {
 // #. Resource Show
 // ------------------
 
+.expand:after,
+.collapse:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.expand:after {
+    content: "\f0da";
+}
+
+.collapse:after {
+    content: "\f0d7"
+}
+
+.collapsible {
+    display: none;
+}
+
+.collapse + .collapsible {
+    display: block;
+    border-left: 3px solid $light-gray;
+    padding: (.25 * $global-padding) $global-padding;
+    margin: (.5 * $global-margin) 0;
+    width: 100%;
+}
+
 .resource-title {
   display: flex;
   flex-wrap: wrap;
@@ -636,11 +662,10 @@ body.vertical-menu footer {
   height: ($paragraph-lineheight * 2rem);
   width: auto;
   min-width: 1px;
-  margin: 0 $global-margin 0 0;
+  margin: 0 (.5 * $global-margin) 0 0;
 }
 
 .resource.show .resource-link {
-  margin-bottom: $global-margin;
   display: flex;
   align-items: center;
 }
@@ -706,6 +731,25 @@ body.vertical-menu footer {
 .value .language {
   @include label;
   background-color: $light-gray;
+  margin-right: .5 * $global-margin;
+}
+
+.value {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &:not(:last-child) {
+        margin-bottom: .5 * $global-margin;
+    }
+}
+
+.value.resource {
+    margin-bottom: $global-margin;
+}
+
+.value-content:not(:only-child) {
+    margin-right: .25 * $global-margin;
 }
 
 #itemfiles.topgallery,

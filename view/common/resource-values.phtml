@@ -2,7 +2,6 @@
 $translate = $this->plugin('translate');
 $escape = $this->plugin('escapeHtml');
 $labelInfo = $this->setting('property_label_information');
-
 if ($this->status()->isSiteRequest()) {
     $showLocale = (bool) $this->siteSetting('show_locale_label', true);
     $filterLocale = $this->siteSetting('filter_locale_values');
@@ -37,6 +36,7 @@ if ($this->status()->isSiteRequest()) {
             $valueLang = $value->lang();
             $valueAnnotation = $value->valueAnnotation();
             $class = ['value'];
+            $valueAnnotation = $value->valueAnnotation();
             if ('resource' == $valueType || strpos($valueType, 'resource') !== false) {
                 $class[] = 'resource';
                 $class[] = $escape($value->valueResource()->resourceName());
@@ -52,7 +52,18 @@ if ($this->status()->isSiteRequest()) {
                 <?php if ($showLocale && $valueLang): ?>
                 <span class="language"><?php echo $valueLang; ?></span>
                 <?php endif; ?>
-                <?php echo $value->asHtml(); ?>
+                <span class="value-content"><?php echo $filterLocale ? $value->asHtml($lang) : $value->asHtml(); ?></span>
+                <?php if(!$value->isPublic()): ?>
+                    <span class="o-icon-private" aria-role="tooltip" title="<?php echo $this->escapeHtml($translate('Private')); ?>" aria-label="<?php echo $this->escapeHtml($translate('Private')); ?>"></span>
+                <?php endif; ?>
+                <?php if ($valueAnnotation && $showValueAnnotations): ?>
+                    <a href="#" class="expand" aria-label="<?php echo $this->escapeHtml($translate('Expand')); ?>">
+                        <span class="has-annotation o-icon-annotation" aria-role="tooltip" title="<?php echo $this->escapeHtml($translate('Has annotation')); ?>" aria-label="<?php echo $this->escapeHtml($translate('Has annotation')); ?>"></span>
+                    </a>
+                    <div class="collapsible annotation">
+                        <?php echo $valueAnnotation->displayValues(); ?>
+                    </div>
+                <?php endif; ?>
             </dl>
             <?php endif; ?>
         <?php endforeach; ?>
