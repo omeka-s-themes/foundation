@@ -36,7 +36,6 @@ if ($this->status()->isSiteRequest()) {
             $valueLang = $value->lang();
             $valueAnnotation = $value->valueAnnotation();
             $class = ['value'];
-            $valueAnnotation = $value->valueAnnotation();
             if ('resource' == $valueType || strpos($valueType, 'resource') !== false) {
                 $class[] = 'resource';
                 $class[] = $escape($value->valueResource()->resourceName());
