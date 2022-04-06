@@ -1,6 +1,6 @@
 {
   "name": "foundation-s-theme",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Omeka S theme using the ZURB Foundation toolkit.",
   "main": "gulpfile.js",
   "scripts": {
