@@ -10,6 +10,9 @@ $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
 $bodyTruncate = $this->themeSetting('truncate_body_property');
 
+$filterLocale = (bool) $this->siteSetting('filter_locale_values');
+$lang = $this->lang();
+
 $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse');
 ?>
 
@@ -35,8 +38,8 @@ $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse')
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 foreach ($itemSets as $itemSet):
-    $heading = $headingTerm ? $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]) : $itemSet->displayTitle();
-    $body = $bodyTerm ? $itemSet->value($bodyTerm) : $itemSet->displayDescription();
+$heading = $headingTerm ? $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]) : $itemSet->displayTitle(null, ($filterLocale ? [$lang, ''] : null));
+$body = $bodyTerm ? $itemSet->value($bodyTerm) : $itemSet->displayDescription(null, ($filterLocale ? [$lang, ''] : null));
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($thumbnail = $this->thumbnail($itemSet, 'medium')): ?>
