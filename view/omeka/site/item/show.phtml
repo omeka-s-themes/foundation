@@ -9,6 +9,9 @@ $mediaDisplay = $this->themeSetting('media_display');
 $galleryDisplay = (isset($mediaDisplay)) ? strpos($mediaDisplay, 'gallery') : false;
 $tracksPresent = $this->DetectTracks($itemMedia);
 
+$filterLocale = (bool) $this->siteSetting('filter_locale_values');
+$lang = $this->lang();
+
 if ($galleryDisplay) {
     $this->headLink()->appendStylesheet($this->assetUrl('vendor/lightgallery/css/lightgallery-bundle.min.css'));
     $this->headScript()->appendFile($this->assetUrl('vendor/lightgallery/lightgallery.min.js'));
@@ -34,7 +37,7 @@ if ($galleryDisplay) {
 ?>
 
 <div class="resource-title">
-<?php echo $this->pageTitle($item->displayTitle(), 2); ?>
+<?php echo $this->pageTitle($item->displayTitle(null, ($filterLocale ? $lang : null)), 2); ?>
 <h3 class="label"><?php echo $translate('Item'); ?></h3>
 </div>
 
@@ -114,7 +117,7 @@ if ($galleryDisplay) {
                 <dt><?php echo $translate('Item sets'); ?></dt>
                 <div class="values">
                     <?php foreach ($itemSets as $itemSet): ?>
-                        <dd class="value"><a href="<?php echo $escape($itemSet->url()); ?>"><?php echo $itemSet->displayTitle(); ?></a></dd>
+                        <dd class="value"><a href="<?php echo $escape($itemSet->url()); ?>"><?php echo $itemSet->displayTitle(null, ($filterLocale ? $lang : null)); ?></a></dd>
                    <?php endforeach; ?>
                 </div>
             </div>
