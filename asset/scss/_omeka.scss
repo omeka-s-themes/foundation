@@ -624,15 +624,8 @@ body.vertical-menu footer {
   padding: (2 * $global-padding) 0;
 }
 
-.resource.show #resource-values {
-  order: 1;
-  @include xy-cell(8);
-  margin-left: 0;
-  
-  @include breakpoint(medium down) {
-    width: 100%;
-    margin-right: 0;
-  }
+.full-width-main {
+  width: 100%;
 }
 
 .resource.show .media-embeds,
@@ -752,8 +745,13 @@ body.vertical-menu footer {
     margin-right: .25 * $global-margin;
 }
 
-#itemfiles.topgallery,
-#itemfiles.leftgallery {
+#itemfiles {
+  margin: 0;
+  list-style: none;
+  width: 100%;
+}
+
+#itemfiles {
   height: 60vh;
   width: 100%;
   margin-bottom: $global-margin;
@@ -958,8 +956,6 @@ body.vertical-menu footer {
   margin: (2 * $global-margin) 0;
   
   .media-list {
-    order: 1;
-    @include xy-cell(3);
     text-align: right;
     
     .media {
