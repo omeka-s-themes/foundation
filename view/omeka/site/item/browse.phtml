@@ -114,7 +114,7 @@ foreach ($items as $item):
     $body = $bodyTerm ? $item->value($bodyTerm) : $item->displayDescription();
 ?>
     <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($thumbnail = $this->thumbnail($itemSet, 'medium')): ?>
+        <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
         <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
             <?php echo $item->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
         </div>
