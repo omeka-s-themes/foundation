@@ -31,7 +31,15 @@ $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
 
     <?php if ($mainWithSidebarHasBlocks || $leftSidebarHasBlocks || $rightSidebarHasBlocks): ?>
 
-    <?php $sidebarWidth = ($leftSidebarHasBlocks && $rightSidebarHasBlocks) ? '2' : '4'; ?>
+    <?php 
+    if ($leftSidebarHasBlocks && $rightSidebarHasBlocks) {
+        $sidebarWidth = '3';
+        $mainWidth = '6';
+    } else {
+        $sidebarWidth = '4';
+        $mainWidth = '8';
+    }
+    ?>
     
     <div class="grid-x grid-margin-x">
         <?php if ($leftSidebarHasBlocks): ?>
@@ -41,7 +49,7 @@ $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
         <?php endif; ?>
 
         <?php if ($mainWithSidebarHasBlocks): ?>
-        <div class="main-with-sidebar cell medium-8">
+        <div class="main-with-sidebar cell medium-<?php echo $mainWidth; ?>">
             <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
         </div>
         <?php endif; ?>
