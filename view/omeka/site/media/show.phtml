@@ -1,6 +1,7 @@
 <?php
 $translate = $this->plugin('translate');
 $showLayout = $this->themeSetting('show_layout');
+$this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
 $fullWidthMainBlockContent = $this->resourcePageBlocks($media, 'full_width_main');
 $fullWidthMainHasBlocks = $fullWidthMainBlockContent->hasBlocks();
 $mainWithSidebarBlockContent = $this->resourcePageBlocks($media);

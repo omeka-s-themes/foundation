@@ -7,6 +7,7 @@ $this->htmlElement('body')->appendAttribute('class', 'item resource browse');
 $query = $this->params()->fromQuery();
 $itemSetShow = isset($itemSet);
 if ($itemSetShow) {
+    $this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
     $showLayout = $this->themeSetting('show_layout');
     $fullWidthMainBlockContent = $this->resourcePageBlocks($itemSet, 'full_width_main');
     $fullWidthMainHasBlocks = $fullWidthMainBlockContent->hasBlocks();
