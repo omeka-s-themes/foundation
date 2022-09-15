@@ -115,13 +115,8 @@ foreach ($items as $item):
     $body = $bodyTerm ? $item->value($bodyTerm) : $item->displayDescription();
 ?>
     <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
-        <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php echo $item->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
-        </div>
-        <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h4><?php echo $item->link($heading); ?></h4>
+            <?php echo $item->linkPretty('medium', $heading); ?>
             <?php if ($body): ?>
             <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
             <?php endif; ?>

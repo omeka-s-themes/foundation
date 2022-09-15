@@ -134,6 +134,10 @@ body.vertical-menu #user-bar ~ #content {
   margin-bottom: 0;
 }
 
+.search-form {
+  display: flex;
+}
+
 .site-title img {
   max-height: 2rem;
   width: auto;
@@ -453,6 +457,15 @@ body.vertical-menu footer {
 
 .resource-list .resource-meta {
   @include xy-cell(12);
+}
+
+.resource .resource-name {
+  @extend h4;
+  display: block;
+}
+
+.resource .resource-link img {
+  @extend .thumbnail;
 }
 
 .resource-list .media-object-section:last-child:not(:nth-child(2)) {
