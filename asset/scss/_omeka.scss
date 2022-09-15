@@ -143,22 +143,25 @@ body.vertical-menu #user-bar ~ #content {
   width: auto;
 }
 
-.site-title h1 {
+h1.site-title {
   @extend h4;
 }
 
-.site-title h1 {
-  margin-bottom: 0;
-}
+h1.site-title {
+  margin: 0;
 
-.site-title h1 {
   @include breakpoint(small down) {
     font-weight: bold;
   }
 }
 
 .site-title img {
-  margin: $global-margin 0;
+  margin: 0;
+  vertical-align: top;
+}
+
+.site-title a {
+  display: block;
 }
 
 .dropdown.menu > li.is-dropdown-submenu-parent.active > a:after {
@@ -256,7 +259,7 @@ body.vertical-menu header {
     color: $white;
   }
   
-  .site-title h1 {
+  h1.site-title {
     font-size: 1.125 * $global-font-size;
     font-weight: bold;  
   }
