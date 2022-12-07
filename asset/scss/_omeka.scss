@@ -462,7 +462,7 @@ body.vertical-menu footer {
   @include xy-cell(12);
 }
 
-.resource .resource-name {
+.resource > .resource-name {
   @extend h4;
   display: block;
 }
@@ -653,7 +653,7 @@ body.vertical-menu footer {
   max-width: 100%;
 }
 
-.resource.show .values .resource-link img,
+.resource.show .resource-link img,
 #linked-resources img {
   @include thumbnail;
   height: ($paragraph-lineheight * 2rem);
@@ -963,19 +963,12 @@ body.vertical-menu footer {
 
 .item-with-metadata .resource.show {
   display: flex;
+  flex-wrap: wrap;
   margin: (2 * $global-margin) 0;
   
-  .media-list {
-    text-align: right;
-    
-    .media {
-      width: 100%;
-      display: block;
-    }
-    
-    img {
-      height: auto;
-    }
+  .media-list .media {
+    width: 100%;
+    display: block;
   }
   
   dl:not(:only-child) {
