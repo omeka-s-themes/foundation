@@ -33,3 +33,11 @@ header .submenu a {
   background-color: get-color(primary);
   color: get-color(secondary);
 }
+
+.title-bar button {
+  color: $white;
+}
+
+.search-form button {
+  background-color: darken($primary-color, 10%);
+}

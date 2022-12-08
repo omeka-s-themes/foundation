@@ -474,10 +474,6 @@ body.vertical-menu footer {
 
 .resource-list .resource-meta {
   @include xy-cell(12);
-
-  .resource-name {
-    display: block;
-  }
 }
 
 .resource > .resource-name {
@@ -529,6 +525,10 @@ body.vertical-menu footer {
   
   @include breakpoint(medium down) {
     width: 50%;
+  }
+
+  .resource-name {
+    display: block;
   }
 }
 
