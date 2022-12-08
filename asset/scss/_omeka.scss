@@ -435,8 +435,8 @@ body.vertical-menu footer {
 }
 
 .filter {
-  display: flex;
-  margin-bottom: $global-margin;
+  display: inline-flex;
+  margin: 0 $global-margin $global-margin 0;
 }
 
 .filter-label {
@@ -474,6 +474,10 @@ body.vertical-menu footer {
 
 .resource-list .resource-meta {
   @include xy-cell(12);
+
+  .resource-name {
+    display: block;
+  }
 }
 
 .resource > .resource-name {
