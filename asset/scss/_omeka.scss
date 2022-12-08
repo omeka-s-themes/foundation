@@ -694,6 +694,23 @@ body.vertical-menu footer {
   margin: (.5 * $global-margin) 0;
 }
 
+#linked-filter label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: $global-font-size;
+  line-height: $paragraph-lineheight;
+  margin-bottom: $global-margin;
+
+  select {
+    margin-left: .5 * $global-margin;
+  }
+}
+
+.linked-resource-property {
+  text-align: left;
+}
+
 @include breakpoint(medium up) {
   .linked-header {
     display:  flex;
