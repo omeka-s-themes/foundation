@@ -25,8 +25,9 @@ header {
   border-top: $global-padding solid $primary-color;
 }
 
-header a {
+header .menu a {
   color: $black;
+  text-decoration: underline;
 }
 
 
@@ -42,7 +43,13 @@ header .input-group-field {
 
 a,
 .breadcrumbs a {
-  color: $black;
+  color: darken($primary-color, 30%);
+  text-decoration: underline;
+
+  &:hover {
+    color: darken($primary-color, 30%);
+    background-color: lighten($primary-color, 40%);
+  }
 }
 
 body.vertical-menu header a {
