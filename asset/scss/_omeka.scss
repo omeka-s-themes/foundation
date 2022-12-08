@@ -225,18 +225,32 @@ header .top-bar {
 
 .banner {
     position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-
-    &.contained {
-      @include xy-grid-container;
-    }
-}
-
-.banner img {
     width: 100%;
+    margin-bottom: $global-margin;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 200px;
 }
+
+body.vertical-menu .banner.fullbleed {
+  width: calc(100% + #{2 * $global-margin});
+  margin: (-2 * $global-margin) (-1 * $global-margin) $global-margin;
+  
+  @include breakpoint (small down) {
+    margin: (-1 * $global-margin) (-1 * $global-margin) $global-margin;
+  }
+}
+
+body.dropdown-menu .banner.contained {
+  margin: $global-margin auto;
+  max-width: calc(#{$grid-container-max} - #{2 * $global-padding});
+
+  @include breakpoint(large down) {
+    max-width: calc(100% - #{2 * $global-padding});
+  }
+}
+
 
 body.vertical-menu header {
   background-color: $primary-color;

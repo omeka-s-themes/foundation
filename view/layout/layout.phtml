@@ -46,7 +46,8 @@ endif;
         <style>
             .banner {
                 height: <?php echo ($bannerHeight !== '') ? $bannerHeight: 'auto'  ?>;
-                align-items: <?php echo $bannerPosition; ?>;
+                background-image: url(<?php echo $this->themeSettingAssetUrl('banner'); ?>);
+                background-position: $bannerPosition;
             }
         <?php if ($bannerHeightMobile !== ''): ?>
             @media screen and (max-width:640px) {
@@ -76,12 +77,15 @@ endif;
                 <?php echo $this->partial('common/header-dropdown'); ?>
                 <?php endif; ?>
                 <?php if ($banner): ?>
-                <div class="banner <?php echo $bannerWidth; ?>">
-                    <img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner">
-                </div>
                 <?php endif; ?>
             </header>
+            <?php if ($navLayout == 'dropdown'): ?>
+            <div class="banner <?php echo $bannerWidth; ?>" role="presentation" aria-hidden="true"></div>
+            <?php endif; ?>
             <div id="content" role="main">
+                <?php if ($navLayout == 'vertical'): ?>
+                <div class="banner <?php echo $bannerWidth; ?>"></div>
+                <?php endif; ?>
                 <?php echo $this->content; ?>
             </div>
             <footer>
