@@ -76,14 +76,12 @@ endif;
                 <?php else: ?>
                 <?php echo $this->partial('common/header-dropdown'); ?>
                 <?php endif; ?>
-                <?php if ($banner): ?>
-                <?php endif; ?>
             </header>
-            <?php if ($navLayout == 'dropdown'): ?>
+            <?php if ($banner && ($navLayout == 'dropdown')): ?>
             <div class="banner <?php echo $bannerWidth; ?>" role="presentation" aria-hidden="true"></div>
             <?php endif; ?>
             <div id="content" role="main">
-                <?php if ($navLayout == 'vertical'): ?>
+                <?php if ($banner && ($navLayout == 'vertical')): ?>
                 <div class="banner <?php echo $bannerWidth; ?>"></div>
                 <?php endif; ?>
                 <?php echo $this->content; ?>
