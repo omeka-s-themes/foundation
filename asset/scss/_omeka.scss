@@ -231,6 +231,10 @@ header .top-bar {
     background-size: cover;
     background-position: center;
     height: 200px;
+
+    img {
+      visibility: hidden;
+    }
 }
 
 body.vertical-menu .banner.fullbleed {

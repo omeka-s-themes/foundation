@@ -78,11 +78,11 @@ endif;
                 <?php endif; ?>
             </header>
             <?php if ($banner && ($navLayout == 'dropdown')): ?>
-            <div class="banner <?php echo $bannerWidth; ?>" role="presentation" aria-hidden="true"></div>
+            <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
             <?php endif; ?>
             <div id="content" role="main">
                 <?php if ($banner && ($navLayout == 'vertical')): ?>
-                <div class="banner <?php echo $bannerWidth; ?>"></div>
+                <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
                 <?php endif; ?>
                 <?php echo $this->content; ?>
             </div>
