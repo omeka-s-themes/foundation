@@ -164,6 +164,10 @@ h1.site-title {
   display: block;
 }
 
+.is-dropdown-submenu {
+  z-index: 2;
+}
+
 .dropdown.menu > li.is-dropdown-submenu-parent.active > a:after {
   border-color: #fff transparent transparent;
   margin-right: .5 * $global-margin;
