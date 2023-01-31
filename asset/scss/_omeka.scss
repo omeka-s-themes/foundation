@@ -90,10 +90,10 @@ body.vertical-menu .off-canvas-content {
 
 body.vertical-menu #content {
   width: 100%;
+  background-color: $white;
 
-  @include breakpoint(medium up) {
-    background-color: $white;
-    @include xy-cell(auto, $gutters: 0);
+  @include breakpoint(large up) {
+    @include xy-cell(10, $gutters: 0);
     max-width: none;
     min-height: 90vh;    
     margin: 0;
