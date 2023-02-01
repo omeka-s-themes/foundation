@@ -25,7 +25,11 @@ body {
 
 body:not(.vertical-menu) header {
   border-top: ($global-padding) solid $primary-color;
-}  
+}
+
+.vertical-menu .search-form button {
+  background-color: darken($primary-color, 10%);
+}
 
 .fieldset {
   border-color: $gold;

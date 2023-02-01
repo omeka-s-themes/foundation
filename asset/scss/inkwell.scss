@@ -23,10 +23,15 @@ body {
 
 header {
   border-top: $global-padding solid $primary-color;
+
+  @include breakpoint(medium down) {
+    border-top: 0;
+  }
 }
 
-header a {
+header .menu a {
   color: $black;
+  text-decoration: underline;
 }
 
 
@@ -42,7 +47,18 @@ header .input-group-field {
 
 a,
 .breadcrumbs a {
-  color: $black;
+  color: #000;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    color: #000;
+    background-color: lighten($primary-color, 40%);
+  }
+}
+
+a.resource-link:hover .resource-name {
+    background-color: lighten($primary-color, 40%);
 }
 
 body.vertical-menu header a {
@@ -53,4 +69,20 @@ body.vertical-menu header a {
 label,
 .label {
   color: $black;
+}
+
+.media-list .lg-thumb-item img,
+.media-list img.lg-image {
+  border: 0;
+  margin-right: 0;
+}
+
+@include breakpoint(medium down) {
+  header .menu-toggle[type="button"] {
+    border: 0;
+  }
+
+  body.vertical-menu header .title-bar button.menu-toggle {
+    color: #000;
+  }
 }

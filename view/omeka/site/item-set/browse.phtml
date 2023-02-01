@@ -42,13 +42,8 @@ $heading = $headingTerm ? $itemSet->value($headingTerm, ['default' => $translate
 $body = $bodyTerm ? $itemSet->value($bodyTerm) : $itemSet->displayDescription(null, ($filterLocale ? [$lang, ''] : null));
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($thumbnail = $this->thumbnail($itemSet, 'medium')): ?>
-        <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php echo $itemSet->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
-        </div>
-        <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h4><?php echo $itemSet->link($heading); ?></h4>
+            <?php echo $itemSet->linkPretty('medium', $heading); ?>
             <?php if ($body): ?>
             <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
             <?php endif; ?>

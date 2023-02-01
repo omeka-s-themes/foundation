@@ -1,14 +1,10 @@
-<?php if ($this->themeSetting('logo')): ?>
-    <?php $titleLink = '<a href="' . $site->url() . '" class="site-title"><img src="' . $this->themeSettingAssetUrl('logo') . '" title="Logo"></a>'; ?>
-<?php else: ?>
-    <?php $titleLink = '<a href="' . $site->url() . '" class="site-title">' . $this->pageTitle($site->title()) . '</a>'; ?>
-<?php endif; ?>
+<?php $siteLogo = ($this->themeSetting('logo')) ? '<img src="' . $this->themeSettingAssetUrl('logo') . '" title="Logo" alt="">' : ''; ?>
 <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
     <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
-    <?php echo $titleLink; ?>
+    <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $site->title(); ?></span></a></h1> 
 </div>
 <div class="desktop">
-  <?php echo $titleLink; ?>
+  <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $site->title(); ?></span></a></h1> 
   <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'vertical']); ?>
   <div class="search">
       <?php echo $this->partial('common/search-form'); ?>

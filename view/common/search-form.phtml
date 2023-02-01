@@ -12,7 +12,7 @@ switch ($searchType) {
 $searchValue = $this->escapeHtml($this->params()->fromQuery('fulltext_search', ''));
 ?>
 
-<form action="<?php echo $this->escapeHtml($searchAction); ?>" id="search-form" class="input-group">
+<form action="<?php echo $this->escapeHtml($searchAction); ?>" class="search-form" class="input-group">
     <input type="text" name="fulltext_search" value="<?php echo $searchValue; ?>"
         placeholder="<?php echo $translate('Search'); ?>"
         aria-label="<?php echo $translate('Search'); ?>" class="input-group-field">

@@ -90,10 +90,10 @@ body.vertical-menu .off-canvas-content {
 
 body.vertical-menu #content {
   width: 100%;
+  background-color: $white;
 
-  @include breakpoint(medium up) {
-    background-color: $white;
-    @include xy-cell(auto, $gutters: 0);
+  @include breakpoint(large up) {
+    @include xy-cell(10, $gutters: 0);
     max-width: none;
     min-height: 90vh;    
     margin: 0;
@@ -134,27 +134,38 @@ body.vertical-menu #user-bar ~ #content {
   margin-bottom: 0;
 }
 
+.search-form {
+  display: flex;
+}
+
 .site-title img {
   max-height: 2rem;
   width: auto;
 }
 
-.site-title h1 {
+h1.site-title {
   @extend h4;
 }
 
-.site-title h1 {
-  margin-bottom: 0;
-}
+h1.site-title {
+  margin: 0;
 
-.site-title h1 {
   @include breakpoint(small down) {
     font-weight: bold;
   }
 }
 
 .site-title img {
-  margin: $global-margin 0;
+  margin: 0;
+  vertical-align: top;
+}
+
+.site-title a {
+  display: block;
+}
+
+.is-dropdown-submenu {
+  z-index: 2;
 }
 
 .dropdown.menu > li.is-dropdown-submenu-parent.active > a:after {
@@ -218,18 +229,36 @@ header .top-bar {
 
 .banner {
     position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
+    width: 100%;
+    margin-bottom: $global-margin;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 200px;
 
-    &.contained {
-      @include xy-grid-container;
+    img {
+      visibility: hidden;
     }
 }
 
-.banner img {
-    width: 100%;
+body.vertical-menu .banner.fullbleed {
+  width: calc(100% + #{2 * $global-margin});
+  margin: (-2 * $global-margin) (-1 * $global-margin) $global-margin;
+  
+  @include breakpoint (small down) {
+    margin: (-1 * $global-margin) (-1 * $global-margin) $global-margin;
+  }
 }
+
+body.dropdown-menu .banner.contained {
+  margin: $global-margin auto;
+  max-width: calc(#{$grid-container-max} - #{2 * $global-padding});
+
+  @include breakpoint(large down) {
+    max-width: calc(100% - #{2 * $global-padding});
+  }
+}
+
 
 body.vertical-menu header {
   background-color: $primary-color;
@@ -252,7 +281,7 @@ body.vertical-menu header {
     color: $white;
   }
   
-  .site-title h1 {
+  h1.site-title {
     font-size: 1.125 * $global-font-size;
     font-weight: bold;  
   }
@@ -414,8 +443,8 @@ body.vertical-menu footer {
 }
 
 .filter {
-  display: flex;
-  margin-bottom: $global-margin;
+  display: inline-flex;
+  margin: 0 $global-margin $global-margin 0;
 }
 
 .filter-label {
@@ -453,6 +482,15 @@ body.vertical-menu footer {
 
 .resource-list .resource-meta {
   @include xy-cell(12);
+}
+
+.resource > .resource-name {
+  @extend h4;
+  display: block;
+}
+
+.resource .resource-link img {
+  @extend .thumbnail;
 }
 
 .resource-list .media-object-section:last-child:not(:nth-child(2)) {
@@ -495,6 +533,10 @@ body.vertical-menu footer {
   
   @include breakpoint(medium down) {
     width: 50%;
+  }
+
+  .resource-name {
+    display: block;
   }
 }
 
@@ -624,27 +666,8 @@ body.vertical-menu footer {
   padding: (2 * $global-padding) 0;
 }
 
-.resource.show #resource-values {
-  order: 1;
-  @include xy-cell(8);
-  margin-left: 0;
-  
-  @include breakpoint(medium down) {
-    width: 100%;
-    margin-right: 0;
-  }
-}
-
-.resource.show .media-embeds,
-.resource.show .media-list {
-  order: 2;
-  @include xy-cell(4);
-  margin-right: 0;
-  
-  @include breakpoint(medium down) {
-    width: 100%;
-    margin-left: 0;
-  }
+.full-width-main {
+  width: 100%;
 }
 
 .resource.show .media-render > a:only-child {
@@ -656,7 +679,7 @@ body.vertical-menu footer {
   max-width: 100%;
 }
 
-.resource.show .values .resource-link img,
+.resource.show .resource-link img,
 #linked-resources img {
   @include thumbnail;
   height: ($paragraph-lineheight * 2rem);
@@ -677,6 +700,23 @@ body.vertical-menu footer {
 .linked-header .omeka-pagination,
 .linked-footer .omeka-pagination {
   margin: (.5 * $global-margin) 0;
+}
+
+#linked-filter label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: $global-font-size;
+  line-height: $paragraph-lineheight;
+  margin-bottom: $global-margin;
+
+  select {
+    margin-left: .5 * $global-margin;
+  }
+}
+
+.linked-resource-property {
+  text-align: left;
 }
 
 @include breakpoint(medium up) {
@@ -705,14 +745,21 @@ body.vertical-menu footer {
   }
 }
 
+.resource.show .resource-link img,
 .media-list img {
   @extend .thumbnail;
 }
 
+.resource.show .resource-link img,
 .media-list img {
   margin: 0 $global-margin 0 0;
   height: 5 * $global-padding;
   width: auto;
+  max-width: none;
+}
+
+.property {
+  margin-bottom: $global-margin;
 }
 
 .inline .property {
@@ -752,11 +799,15 @@ body.vertical-menu footer {
     margin-right: .25 * $global-margin;
 }
 
-#itemfiles.topgallery,
-#itemfiles.leftgallery {
-  height: 60vh;
+#itemfiles {
+  margin: 0 0 $global-margin;
+  list-style: none;
   width: 100%;
-  margin-bottom: $global-margin;
+  height: 60vh;
+}
+
+#itemfiles .media.resource {
+  display: none;
 }
 
 #itemfiles.topgallery .media.resource,
@@ -955,21 +1006,12 @@ body.vertical-menu footer {
 
 .item-with-metadata .resource.show {
   display: flex;
+  flex-wrap: wrap;
   margin: (2 * $global-margin) 0;
   
-  .media-list {
-    order: 1;
-    @include xy-cell(3);
-    text-align: right;
-    
-    .media {
-      width: 100%;
-      display: block;
-    }
-    
-    img {
-      height: auto;
-    }
+  .media-list .media {
+    width: 100%;
+    display: block;
   }
   
   dl:not(:only-child) {

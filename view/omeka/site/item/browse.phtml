@@ -9,10 +9,20 @@ $lang = $this->lang();
 
 $query = $this->params()->fromQuery();
 $itemSetShow = isset($itemSet);
-if ($itemSetShow):
+if ($itemSetShow) {
+    $this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
+    $showLayout = $this->themeSetting('show_layout');
+    $fullWidthMainBlockContent = $this->resourcePageBlocks($itemSet, 'full_width_main');
+    $fullWidthMainHasBlocks = $fullWidthMainBlockContent->hasBlocks();
+    $mainWithSidebarBlockContent = $this->resourcePageBlocks($itemSet);
+    $mainWithSidebarHasBlocks= $mainWithSidebarBlockContent->hasBlocks();
+    $leftSidebarBlockContent = $this->resourcePageBlocks($itemSet, 'left');
+    $leftSidebarHasBlocks = $leftSidebarBlockContent->hasBlocks();
+    $rightSidebarBlockContent = $this->resourcePageBlocks($itemSet, 'right');
+    $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
     $this->htmlElement('body')->appendAttribute('class', 'item-set');
     $query['item_set_id'] = $itemSet->id();
-endif;
+}
 
 $layoutSetting = $this->themeSetting('browse_layout');
 $gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
@@ -45,9 +55,39 @@ $sortHeadings = [
 <?php if ($itemSetShow): ?>
     <?php echo $this->pageTitle($itemSet->displayTitle(null, ($filterLocale ? $lang : null)), 2); ?>
     <h3><?php echo $translate('Item set'); ?></h3>
-    <div class="metadata">
-        <?php echo $itemSet->displayValues(); ?>
+    <div class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
+        <?php if ($fullWidthMainHasBlocks): ?>
+        <div class="full-width-main">
+            <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
+        </div>
+        <?php endif; ?>
+
+        <?php if ($mainWithSidebarHasBlocks || $leftSidebarHasBlocks || $rightSidebarHasBlocks): ?>
+
+        <?php $sidebarWidth = ($leftSidebarHasBlocks && $rightSidebarHasBlocks) ? '2' : '4'; ?>
+        
+        <div class="grid-x grid-margin-x">
+            <?php if ($leftSidebarHasBlocks): ?>
+            <div class="left-sidebar cell medium-<?php echo $sidebarWidth; ?>">
+                <?php echo $leftSidebarBlockContent->getBlocks(); ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($mainWithSidebarHasBlocks): ?>
+            <div class="main-with-sidebar cell medium-8">
+                <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($rightSidebarHasBlocks): ?>
+            <div class="right-sidebar cell medium-<?php echo $sidebarWidth; ?>">
+                <?php echo $rightSidebarBlockContent->getBlocks(); ?>
+            </div>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
     </div>
+
     <div class="item-set-items">
     <?php echo '<h3>' . $escape($translate('Items')) . '</h3>'; ?>
 <?php else: ?>
@@ -67,7 +107,7 @@ $sortHeadings = [
     </div>
     <?php endif; ?>
     <?php echo $this->hyperlink($translate('Advanced search'), $this->url('site/resource', ['controller' => 'item', 'action' => 'search'], ['query' => $query], true), ['class' => 'advanced-search']); ?>
-    <?php echo $this->sortSelector($sortHeadings); ?>
+    <?php echo $this->browse()->renderSortSelector('items'); ?>
 </div>
 
 <?php $this->trigger('view.browse.before'); ?>
@@ -78,13 +118,8 @@ $heading = $headingTerm ? $item->value($headingTerm, ['default' => $translate('[
 $body = $bodyTerm ? $item->value($bodyTerm, ['lang' => ($filterLocale ? [$lang, ''] : null)]) : $item->displayDescription(null, ($filterLocale ? [$lang, ''] : null));
 ?>
     <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
-        <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php echo $item->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
-        </div>
-        <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h4><?php echo $item->link($heading); ?></h4>
+            <?php echo $item->linkPretty('medium', $heading); ?>
             <?php if ($body): ?>
             <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
             <?php endif; ?>
