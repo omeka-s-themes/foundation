@@ -20,7 +20,7 @@ $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
 ?>
 
 <div class="resource-title">
-<?php echo $this->pageTitle($item->displayTitle(), 2); ?>
+<?php echo $this->pageTitle($item->displayTitle(null, ($filterLocale ? $lang : null)), 2); ?>
 <h3 class="label"><?php echo $translate('Item'); ?></h3>
 </div>
 
@@ -33,7 +33,7 @@ $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
     <?php endif; ?>
 
     <?php if ($mainWithSidebarHasBlocks || $leftSidebarHasBlocks || $rightSidebarHasBlocks): ?>
-
+    
     <?php 
     if ($leftSidebarHasBlocks && $rightSidebarHasBlocks) {
         $sidebarWidth = '3';
