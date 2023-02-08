@@ -756,6 +756,7 @@ body.vertical-menu footer {
   height: 5 * $global-padding;
   width: auto;
   max-width: none;
+  flex-shrink: 0;
 }
 
 .property {
