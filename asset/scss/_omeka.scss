@@ -680,14 +680,17 @@ body.vertical-menu footer {
 }
 
 .resource.show .resource-link img,
-#linked-resources img {
+#linked-resources img,
+.results .resource-link img {
   @include thumbnail;
   height: ($paragraph-lineheight * 2rem);
   width: auto;
   min-width: 1px;
   margin: 0 (.5 * $global-margin) 0 0;
+  flex-shrink: 0;
 }
 
+.results .resource-link,
 .resource.show .resource-link {
   display: flex;
   align-items: center;
@@ -1118,7 +1121,9 @@ body.vertical-menu footer {
 }
 
 .results > ul > li {
-  margin-bottom: $global-padding;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   
   @include breakpoint(medium up) {
     width: 50%;	
