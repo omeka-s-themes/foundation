@@ -833,7 +833,7 @@ body.vertical-menu footer {
   padding-bottom: 3 * $global-padding;
 }
 
-#itemfiles .lg-outer .lg-video-cont .lg-object {
+#itemfiles .lg-outer .lg-video-cont .lg-object:not(iframe) {
   width: auto !important;
 }
 
