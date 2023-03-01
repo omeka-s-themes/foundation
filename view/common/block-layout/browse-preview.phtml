@@ -40,22 +40,28 @@ $lang = $this->lang();
 
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
+$showThumbnail = in_array('thumbnail', $this->components);
+$showHeading = in_array('resource-heading', $this->components);
+$showBody = in_array('resource-body', $this->components);
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
 foreach ($this->resources as $resource):
+	$thumbnail = $this->thumbnail($resource, 'medium');
     $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]')]) : $resource->displayTitle(null, ($filterLocale ? $lang : null));
     $body = $bodyTerm ? $resource->value($bodyTerm) : $resource->displayDescription(null, ($filterLocale ? $lang : null));
     
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($thumbnail = $this->thumbnail($resource, 'medium')): ?>
+        <?php if ($showThumbnail && $thumbnail): ?>
         <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
             <?php echo $resource->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
         </div>
         <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
+            <?php if ($showHeading): ?>
             <h4><?php echo $resource->link($heading); ?></h4>
-            <?php if ($body): ?>
+            <?php endif;?>
+            <?php if ($showBody && $body): ?>
             <div class="description"><?php echo $escape($body); ?></div>
             <?php endif; ?>
         </div>
