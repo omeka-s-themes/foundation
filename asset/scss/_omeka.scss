@@ -478,15 +478,19 @@ body.vertical-menu footer {
   margin: $global-margin 0;
   border-bottom: 1px solid $light-gray;
   padding-bottom: $global-padding;
+
+  img {
+    float: right;
+    margin-left: $global-margin;
+  }
 }
 
 .resource-list .resource-meta {
   @include xy-cell(12);
 }
 
-.resource > .resource-name {
+.resource-meta .resource-link .resource-name {
   @extend h4;
-  display: block;
 }
 
 .resource .resource-link img {
