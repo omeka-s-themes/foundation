@@ -47,7 +47,7 @@ endif;
             .banner {
                 height: <?php echo ($bannerHeight !== '') ? $bannerHeight: 'auto'  ?>;
                 background-image: url(<?php echo $this->themeSettingAssetUrl('banner'); ?>);
-                background-position: $bannerPosition;
+                background-position: <?php echo $bannerPosition; ?>;
             }
         <?php if ($bannerHeightMobile !== ''): ?>
             @media screen and (max-width:640px) {
