@@ -799,6 +799,7 @@ body.vertical-menu footer {
   dl > dt:not(:first-of-type) {
     margin-top: $global-margin;
   }
+
 }
 
 .inline .property {
@@ -810,11 +811,17 @@ body.vertical-menu footer {
   dl {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   dt {
     @include xy-cell(4);
     text-align: right;
+    break-before: always;
+  }
+
+  dl > dt:not(:first-of-type) + dd {
+    margin-top: $global-margin;
   }
 
   .values,
