@@ -756,6 +756,11 @@ body.vertical-menu footer {
   }
 }
 
+.resource.show .property dd {
+  clear: both;
+  overflow: hidden;
+}
+
 .resource.show .value.resource > .value-content {
   float: left;
   max-width: 80%;
@@ -774,7 +779,7 @@ body.vertical-menu footer {
 
 .resource.show .resource-link img,
 .media-list img {
-  margin: 0 $global-margin 0 0;
+  margin: 1px $global-margin 1px 1px;
   height: 5 * $global-padding;
   width: auto;
   max-width: none;
@@ -783,6 +788,8 @@ body.vertical-menu footer {
 
 .property {
   margin-bottom: $global-margin;
+  overflow: hidden;
+  clear: both;
 
   .property:last-child,
   .property:only-child {
