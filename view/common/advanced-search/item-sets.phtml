@@ -11,28 +11,31 @@ if (!$ids) {
 }
 ?>
 <div id="item-sets" class="field removable multi-value" role="group">
-    <fieldset class="fieldset">
-        <legend><?php echo $translate('Search by item set'); ?></legend>
-        <div class="help-text"><?php echo $translate('Searches for items that are assigned to any of these item sets.'); ?></div>
-        <div class="inputs">
-            <?php foreach ($ids as $id): ?>
-            <div class="value">
-                <?php echo $this->itemSetSelect([
-                    'name' => 'item_set_id[]',
-                    'attributes' => [
-                        'value' => $id,
-                        'aria-labelledby' =>  'by-item-set-label'
-                    ],
-                    'options' => [
-                        'disable_group_by_owner' => $this->status()->isSiteRequest(),
-                    ],
-                ]); ?>
-            <div class="input-group-button">
-                <button type="button" class="o-icon-delete remove-value button" aria-label="<?php echo $translate('Remove value'); ?>"></button>
-            </div>
-            </div>
-            <?php endforeach; ?>
+    <div class="field-meta">
+        <label><?php echo $translate('Search by item set'); ?></label>
+        <a class="expand" title="<?php echo $translate('Expand'); ?>" href="#" aria-label="<?php echo $translate('Expand'); ?>"></a>
+        <div class="collapsible">
+            <div class="field-description"><?php echo $translate('Searches for items that are assigned to any of these item sets.'); ?></div>
         </div>
-            <button class="add-value button"><?php echo $translate('Add new item set'); ?></button>
-    </fieldset>
+    </div>
+    <div class="inputs">
+        <?php foreach ($ids as $id): ?>
+        <div class="value">
+            <?php echo $this->itemSetSelect([
+                'name' => 'item_set_id[]',
+                'attributes' => [
+                    'value' => $id,
+                    'aria-labelledby' =>  'by-item-set-label'
+                ],
+                'options' => [
+                    'disable_group_by_owner' => $this->status()->isSiteRequest(),
+                ],
+            ]); ?>
+        <div class="input-group-button">
+            <button type="button" class="o-icon-delete remove-value button" aria-label="<?php echo $translate('Remove value'); ?>"></button>
+        </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <button class="add-value button"><?php echo $translate('Add new item set'); ?></button>
 </div>

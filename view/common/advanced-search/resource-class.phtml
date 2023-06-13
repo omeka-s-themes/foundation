@@ -11,9 +11,13 @@ if (!$ids) {
 }
 ?>
 <div id="resource-class" class="field removable multi-value" role="group">
-    <fieldset class="fieldset">
-        <legend id="by-resource-class-label"><?php echo $translate('Search by class'); ?></legend>
-        <div class="help-text"><?php echo $translate('Searches for items that are any of these classes.'); ?></div>
+    <div class="field-meta">
+        <label id="by-resource-class-label"><?php echo $translate('Search by class'); ?></label>
+        <a class="expand" title="<?php echo $translate('Expand'); ?>" href="#" aria-label="<?php echo $translate('Expand'); ?>"></a>
+        <div class="collapsible">
+            <div class="field-description"><?php echo $translate('Searches for items that are any of these classes.'); ?></div>
+        </div>
+    </div>
     <div class="inputs">
         <?php foreach ($ids as $id): ?>
         <div class="value">
@@ -31,5 +35,4 @@ if (!$ids) {
         <?php endforeach; ?>
     </div>
     <a href="#" class="add-value button"><?php echo $translate('Add new class'); ?></a>
-    </fieldset>
 </div>

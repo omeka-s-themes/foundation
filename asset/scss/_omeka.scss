@@ -947,12 +947,16 @@ body.vertical-menu footer {
   margin-right: .25 * $global-margin;
 }
 
-#advanced-search [class="field"] {
+#advanced-search .field {
   @extend .fieldset;
 }
 
-#advanced-search .help-text {
-  margin-bottom: $global-margin;
+#advanced-search .field-description {
+  margin: $global-margin 0;
+}
+
+#advanced-search .field-description {
+  @extend .help-text;
 }
 
 #advanced-search .remove-value {
@@ -973,8 +977,12 @@ body.vertical-menu footer {
   margin-left: 0;
 }
 
-.field-meta {
-  @extend legend;
+.field-meta label {
+  @extend .label;
+}
+
+.field-meta label {
+  @extend .secondary;
 }
 
 #property-queries select {
