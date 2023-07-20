@@ -1,10 +1,12 @@
 <?php
 $escape = $this->plugin('escapeHtml');
+$siteTitle = $site->title();
 $stylesheet = $this->themeSetting('stylesheet');
 $this->htmlElement('html')->setAttribute('lang', $this->lang());
 $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
-$this->headTitle($this->setting('installation_title', 'Omeka S'))->setSeparator(' · ');
+$this->headTitle($siteTitle)->setSeparator(' · ');
+$this->headTitle()->append($this->setting('installation_title', 'Omeka S'));
 if (isset($stylesheet)) {
     $this->headLink()->prependStylesheet($this->assetUrl("css/$stylesheet.css"));    
 } else {
@@ -16,7 +18,6 @@ $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
 $this->trigger('view.layout');
 $this->jsTranslate();
-$title = $this->pageTitle($site->title());
 $userBar = $this->userBar();
 
 $navLayout = ($this->themeSetting('nav_layout')) ? $this->themeSetting('nav_layout') : 'dropdown';
@@ -30,10 +31,6 @@ $bannerWidth = ($this->themeSetting('banner_width')) ? $this->themeSetting('bann
 $bannerHeight = $this->themeSetting('banner_height');
 $bannerHeightMobile = $this->themeSetting('banner_height_mobile');
 $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-', $this->themeSetting('banner_position')) : 'center';
-$logo = $this->themeSettingAssetUrl('logo');
-if ($logo):
-    $title = '<img src="' . $this->escapeHtml($logo) . '">';
-endif;
 ?>
 <?php echo $this->doctype(); ?>
 <?php echo $this->htmlElement('html'); ?>
