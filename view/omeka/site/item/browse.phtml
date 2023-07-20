@@ -27,7 +27,7 @@ if ($itemSetShow) {
 $layoutSetting = $this->themeSetting('browse_layout', 'grid');
 $gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
 $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
-$isGrid = (!isset($layoutSetting) || strpos($layoutSetting, 'grid') !== false) ? true : false;
+$isGrid = (strpos($layoutSetting, 'grid') !== false) ? true : false;
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
 $bodyTruncate = $this->themeSetting('truncate_body_property');
