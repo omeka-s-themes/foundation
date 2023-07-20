@@ -2,7 +2,7 @@
 $this->headScript()->appendFile($this->assetUrl('js/browse.js'));
 $translate = $this->plugin('translate');
 $escape = $this->plugin('escapeHtml');
-$layoutSetting = $this->themeSetting('browse_layout');
+$layoutSetting = $this->themeSetting('browse_layout', 'grid');
 $gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
 $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $currentLayout = (!isset($layoutSetting) || strpos($layoutSetting, 'grid') !== false) ? 'grid' : 'list';

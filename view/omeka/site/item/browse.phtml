@@ -24,7 +24,7 @@ if ($itemSetShow) {
     $query['item_set_id'] = $itemSet->id();
 }
 
-$layoutSetting = ($this->themeSetting('browse_layout')) ? $this->themeSetting('browse_layout') : 'list';
+$layoutSetting = $this->themeSetting('browse_layout', 'grid');
 $gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
 $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $isGrid = (!isset($layoutSetting) || strpos($layoutSetting, 'grid') !== false) ? true : false;
