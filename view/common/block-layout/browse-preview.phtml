@@ -13,7 +13,7 @@ $queryUrl = $this->url(
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
-
+$valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 <div class="preview-block">
 
@@ -46,10 +46,9 @@ $showBody = in_array('resource-body', $this->components);
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
 foreach ($this->resources as $resource):
-	$thumbnail = $this->thumbnail($resource, 'medium');
-    $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]')]) : $resource->displayTitle(null, ($filterLocale ? $lang : null));
-    $body = $bodyTerm ? $resource->value($bodyTerm) : $resource->displayDescription(null, ($filterLocale ? $lang : null));
-    
+    $thumbnail = $this->thumbnail($resource, 'medium');
+    $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]'), 'lang' => $valueLang]) : $resource->displayTitle(null, $valueLang);
+    $body = $bodyTerm ? $resource->value($bodyTerm, ['lang' => $valueLang]) : $resource->displayDescription(null, $valueLang);
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($showThumbnail && $thumbnail): ?>

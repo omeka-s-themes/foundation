@@ -20,10 +20,11 @@ $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
+$valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 
 <div class="resource-title">
-<?php echo $this->pageTitle($item->displayTitle(null, ($filterLocale ? $lang : null)), 2); ?>
+<?php echo $this->pageTitle($item->displayTitle(null, $valueLang), 2); ?>
 <h3 class="label"><?php echo $translate('Item'); ?></h3>
 </div>
 
