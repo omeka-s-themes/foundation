@@ -1,0 +1,54 @@
+<?php
+$translate = $this->plugin('translate');
+$showLayout = $this->themeSetting('show_layout');
+?>
+<div class="item-with-metadata <?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
+    <?php foreach($attachments as $attachment): ?>
+        <?php 
+            $item = $attachment->item();
+            $itemMedia = $item->media();
+        ?>
+        <?php if (empty($item)) continue; ?>
+        <div class="resource show">
+            <div class="grid-x grid-margin-x">
+                <?php if($itemMedia && ($layout == 'large-media-left')): ?>
+                    <div class="left-sidebar cell medium-4">
+                        <div class="media-embeds">
+                            <?php foreach ($item->media() as $media): ?>
+                            <?php echo $media->render(); ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="main-with-sidebar cell medium-8">
+                    <?php
+                    $options = [];
+                    if ($this->siteSetting('exclude_resources_not_in_site')) {
+                        $options['siteId'] = $this->currentSite()->id();
+                    }
+                    echo $item->displayValues($options);
+                    ?>
+                    <?php if($item->itemSets()): ?>
+                    <dl class="item-sets">
+                        <div class="property">
+                            <dt><?php echo $translate('Item sets'); ?></dt>
+                            <?php foreach ($item->itemSets() as $itemSet): ?>
+                            <dd class="value"><?php echo $itemSet->link($itemSet->displayTitle()); ?></dd>
+                            <?php endforeach; ?>
+                        </div>
+                    </dl>
+                    <?php endif; ?>
+                </div>
+                <?php if($itemMedia && ($layout == 'large-media-right')): ?>
+                    <div class="right-sidebar cell medium-4">
+                        <div class="media-embeds">
+                            <?php foreach ($item->media() as $media): ?>
+                            <?php echo $media->render(); ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>

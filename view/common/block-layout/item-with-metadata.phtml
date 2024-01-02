@@ -1,0 +1,39 @@
+<?php
+$translate = $this->plugin('translate');
+$showLayout = $this->themeSetting('show_layout');
+?>
+<div class="item-with-metadata <?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
+<?php foreach($attachments as $attachment): ?>
+    <?php $item = $attachment->item(); ?>
+    <?php if (empty($item)) continue; ?>
+    <div class="resource show">
+    <?php
+    $options = [];
+    if ($this->siteSetting('exclude_resources_not_in_site')) {
+        $options['siteId'] = $this->currentSite()->id();
+    }
+    echo $item->displayValues($options);
+    ?>
+    <?php if($item->itemSets()): ?>
+        <dl class="item-sets">
+            <div class="property">
+                <dt><?php echo $translate('Item sets'); ?></dt>
+                <?php foreach ($item->itemSets() as $itemSet): ?>
+                <dd class="value"><?php echo $itemSet->link($itemSet->displayTitle()); ?></dd>
+                <?php endforeach; ?>
+            </div>
+        </dl>
+    <?php endif; ?>
+    <?php if($item->media()): ?>
+        <dl class="media-list">
+            <div class="property">
+                <dt><?php echo $translate('Media'); ?></dt>
+                <?php foreach ($item->media() as $media): ?>
+                <dd class="value"><?php echo $media->linkPretty('square', $media->displayTitle(), ['class' => 'media resource']); ?></dd>
+                <?php endforeach; ?>
+            </div>
+        </dl>
+    <?php endif; ?>
+    </div>
+<?php endforeach; ?>
+</div>
