@@ -1,0 +1,75 @@
+<?php
+$this->headScript()->appendFile($this->assetUrl('js/browse.js'));
+$translate = $this->plugin('translate');
+$escape = $this->plugin('escapeHtml');
+$gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
+$listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
+$currentLayout = (strpos($layoutSetting, 'grid') !== false) ? 'grid' : 'list';
+$isGrid = ($currentLayout == 'grid') ? true : false;
+$queryUrl = $this->url(
+    'site/resource', ['controller' => $controller, 'action' => 'browse'], ['query' => $this->query], true
+);
+
+$filterLocale = (bool) $this->siteSetting('filter_locale_values');
+$lang = $this->lang();
+$valueLang = $filterLocale ? [$lang, ''] : null;
+?>
+<div class="preview-block">
+
+<?php if ($this->heading): ?>
+<div class="preview-header">
+    <h3><?php echo $this->hyperlink($this->heading, $queryUrl); ?></h3>
+    <?php
+    if ($this->linkText):
+        echo $this->hyperlink($this->linkText, $queryUrl);
+    endif;
+    ?>
+</div>
+<?php endif; ?>
+
+<?php if (strpos($layoutSetting, 'toggle') !== false): ?>
+<div class="browse-controls">
+    <div class="layout-toggle">
+        <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid o-icon-grid" <?php echo $gridState; ?>></button>
+        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>        
+    </div>
+</div>
+<?php endif; ?>
+
+
+<ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
+<?php
+$headingTerm = $this->siteSetting('browse_heading_property_term');
+$bodyTerm = $this->siteSetting('browse_body_property_term');
+foreach ($resources as $resource):
+    $thumbnail = $this->thumbnail($resource, 'medium');
+    $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]'), 'lang' => $valueLang]) : $resource->displayTitle(null, $valueLang);
+    $body = $bodyTerm ? $resource->value($bodyTerm, ['lang' => $valueLang]) : $resource->displayDescription(null, $valueLang);
+?>
+    <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
+        <?php if ($showHeading || $showThumbnail || $showBody): ?>
+        <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
+            <?php
+                $thumbnailContent = ($showThumbnail && $thumbnail) ? $thumbnail : '';
+                $headingContent = ($showHeading) ? $escape($heading) : '';
+                $linkContent = sprintf('%s<span class="resource-name">%s</span>',
+                    $thumbnailContent,
+                    $headingContent);
+                echo $resource->linkRaw($linkContent, null, ['class' => 'resource-link']);
+            ?>
+            <?php if ($showBody && $body): ?>
+            <div class="description"><?php echo $escape($body); ?></div>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
+    </li>
+<?php endforeach; ?>
+</ul>
+
+<?php
+if ($this->linkText && !$this->heading):
+    echo $this->hyperlink($this->linkText, $queryUrl);
+endif;
+?>
+
+</div>
