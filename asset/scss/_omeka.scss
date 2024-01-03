@@ -1109,6 +1109,20 @@ body.vertical-menu footer {
   }
 }
 
+.list-of-pages.with-container {
+  background-color: $light-gray;
+  padding: $global-padding;
+
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+
+  li:not(:last-child) {
+    margin-bottom: $global-margin;
+  }
+}
+
 .toc-block {
   background-color: $light-gray;
   border-width: 1px 0;
