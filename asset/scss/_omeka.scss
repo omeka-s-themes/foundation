@@ -1065,13 +1065,34 @@ body.vertical-menu footer {
   }
 }
 
-.file img {
+.asset.media-object .media-object-section {
+  width: 100%;
+  padding: 0;
+}
+
+.asset.media-object img {
+  max-width: 10rem;
+  float: left;
+  margin-right: $global-margin;
+}
+
+.asset.media-object .link-title {
+  width: 100%;
+  display: block;
+}
+
+.asset.media-object.has-image .caption {
+  display: inline-block;
+  max-width: calc(100% - #{10rem + $global-margin});
+}
+
+.media-embed img {
   max-width: 100%;
   height: auto;
 }
 
 .attachments .media-render > h3,
-.file h3,
+.media-embed h3,
 .item-showcase h3 {
   font-size: rem-calc(map-deep-get($header-styles, small, h4, font-size));
   margin: $global-margin 0;
