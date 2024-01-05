@@ -1123,6 +1123,19 @@ body.vertical-menu footer {
   }
 }
 
+.site-list {
+  .site-thumbnail {
+    width: 5rem;
+    margin-right: $global-margin;
+    float: left;
+  }
+  .site {
+    clear: both;
+    margin-bottom: $global-margin;
+    overflow: hidden;
+  }
+}
+
 .toc-block {
   background-color: $light-gray;
   border-width: 1px 0;
