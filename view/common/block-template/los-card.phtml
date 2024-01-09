@@ -1,0 +1,28 @@
+<div class="list-of-sites">
+    <div class="site-list layout-card">
+        <?php foreach($sites as $site): ?>
+            <?php
+            $thumbnail = $thumbnails ? $site->thumbnail() : null;
+            $summary = $summaries ? $site->summary() : null;
+            ?>
+            <div class="site card">
+                <div class="card-divider">
+                    <?php echo $this->hyperlink($site->title(), $site->siteUrl(), ['class' => 'site-link']); ?>
+                </div>
+
+                <?php if ($thumbnail): ?>
+                    <div class="site-thumbnail"><?php echo $this->thumbnail($thumbnail, 'square', ['class' => 'site-thumbnail-image']); ?></div>
+                <?php endif; ?>
+
+                <?php if ($summary): ?>
+                <div class="site-summary card-section"><?php echo nl2br($this->escapeHtml($summary)); ?></div>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php
+    if ($pagination):
+        echo $this->pagination();
+    endif;
+    ?>
+</div>

@@ -1,0 +1,17 @@
+<?php
+$thumbnail = $showThumbnail ? $site->thumbnail() : null;
+$summary = $showSummary ? $site->summary() : null;
+?>
+<div class="site media-object">
+    <?php if ($thumbnail): ?>
+    <div class="media-object-section">
+        <div class="thumbnail"><?php echo $this->thumbnail($thumbnail, 'square', ['class' => 'site-thumbnail-image']); ?></div>
+    </div>
+    <?php endif; ?>
+    <div class="media-object-section">
+        <?php echo $this->hyperlink($site->title(), $site->siteUrl(), ['class' => 'site-link']); ?>
+        <?php if ($summary): ?>
+        <p class="site-summary"><?php echo nl2br($this->escapeHtml($summary)); ?></p>
+        <?php endif; ?>
+    </div>
+</div>
