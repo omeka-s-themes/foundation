@@ -8,9 +8,9 @@ $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1')
 $this->headTitle($siteTitle)->setSeparator(' · ');
 $this->headTitle()->append($this->setting('installation_title', 'Omeka S'));
 if (isset($stylesheet)) {
-    $this->headLink()->prependStylesheet($this->assetUrl("css/$stylesheet.css"));    
+    $this->headLink()->appendStylesheet($this->assetUrl("css/$stylesheet.css"));    
 } else {
-    $this->headLink()->prependStylesheet($this->assetUrl('css/default.css'));
+    $this->headLink()->appendStylesheet($this->assetUrl('css/default.css'));
 }
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/foundation/foundation.min.js'));
