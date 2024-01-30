@@ -16,7 +16,7 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 <div class="preview-block">
 
-<?php if ($previewTitle): ?>
+<?php if ($previewTitle || $linkText): ?>
 <div class="preview-header">
     <h3><?php echo $this->hyperlink($previewTitle, $queryUrl); ?></h3>
     <?php
