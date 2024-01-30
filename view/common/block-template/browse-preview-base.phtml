@@ -16,12 +16,12 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 <div class="preview-block">
 
-<?php if ($this->heading): ?>
+<?php if ($previewTitle): ?>
 <div class="preview-header">
-    <h3><?php echo $this->hyperlink($this->heading, $queryUrl); ?></h3>
+    <h3><?php echo $this->hyperlink($previewTitle, $queryUrl); ?></h3>
     <?php
     if ($this->linkText):
-        echo $this->hyperlink($this->linkText, $queryUrl);
+        echo $this->hyperlink($linkText, $queryUrl);
     endif;
     ?>
 </div>

@@ -5,6 +5,8 @@ echo $this->partial('common/block-template/browse-preview-base.phtml', [
         'showThumbnail' => in_array('thumbnail', $this->components),
         'showHeading' => in_array('resource-heading', $this->components),
         'showBody' => in_array('resource-body', $this->components),
-        'resources' => $this->resources
+        'resources' => $this->resources,
+        'previewTitle' => $this->heading,
+        'linkText' => $this->linkText
     ]);
 ?>
