@@ -1251,6 +1251,7 @@ body.vertical-menu footer {
   flex-wrap: wrap;
   border-bottom: 1px solid $light-gray;
   align-items: flex-end;
+  margin-bottom: (.5 * $global-margin);
   
   a {
     margin-bottom: (.5 * $global-margin);
@@ -1262,7 +1263,7 @@ body.vertical-menu footer {
 }
 
 .preview-block .browse-controls {
-  margin: 0;
+  margin: 0 0 (.5 * $global-margin);
   justify-content: flex-end;
 }
 
