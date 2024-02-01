@@ -1227,7 +1227,7 @@ body.vertical-menu footer {
   
 }
 
-.block-layout-alignment-left .toc-block {
+.block-layout-alignment-block-left .toc-block {
   position: sticky;
   @include xy-cell(3);
   float: left;
@@ -1269,6 +1269,30 @@ body.vertical-menu footer {
 
 .page-date-time .property {
   overflow: visible;
+}
+
+// Full-width template
+
+body.full-width:not(.browse) #content {
+  max-width: none;
+  padding: 0;
+}
+
+body.full-width .blocks {
+  margin: 0;
+  width: 100%;
+}
+
+body.full-width .blocks-inner.page-layout-normal > * {
+  padding: 0 $global-padding;
+}
+
+body.full-width .block-layout-alignment-block-left {
+  margin-left: $global-margin;
+}
+
+body.full-width .block-layout-alignment-block-right {
+  margin-right: $global-margin;
 }
 
 // -- Search
