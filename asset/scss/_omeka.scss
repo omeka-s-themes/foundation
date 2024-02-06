@@ -1264,6 +1264,10 @@ body.vertical-menu footer {
   a {
     margin-bottom: (.5 * $global-margin);
   }
+
+  & + .resource-list {
+    border-top: 0;
+  }
 }
 
 .preview-block .resource-list {
