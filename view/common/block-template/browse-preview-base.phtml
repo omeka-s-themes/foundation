@@ -67,8 +67,8 @@ foreach ($resources as $resource):
 </ul>
 
 <?php
-if ($this->linkText && !$this->heading):
-    echo $this->hyperlink($this->linkText, $queryUrl);
+if ($linkText && !$previewTitle):
+    echo $this->hyperlink($linkText, $queryUrl);
 endif;
 ?>
 
