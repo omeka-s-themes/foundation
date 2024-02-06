@@ -1036,8 +1036,16 @@ body.vertical-menu footer {
 }
 
 .accent {
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
+}
+
+.block-layout-alignment-text-center .accent {
+  margin: auto;
+}
+
+.block-layout-alignment-text-right .accent {
+  margin-left: auto;
 }
 
 .accent h2 {
@@ -1274,13 +1282,14 @@ body.vertical-menu footer {
 // Full-width template
 
 body.full-width:not(.browse) #content {
-  max-width: none;
-  padding: 0;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0;
 }
 
 body.full-width .blocks {
-  margin: 0;
-  width: 100%;
+  margin: 0 !important;
+  width: 100% !important;
 }
 
 body.full-width .blocks-inner.page-layout-normal > * {
