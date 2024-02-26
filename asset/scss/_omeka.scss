@@ -1172,8 +1172,13 @@ body.vertical-menu footer {
 
 .list-of-sites .site-list .media-object-section .site-thumbnail-image,
 .list-of-sites .site-list .card .site-thumbnail-image {
-  width: 100%;
   max-width: none;
+  margin-right: 0;
+}
+
+.list-of-sites .site-list .card .site-thumbnail-image {
+  width: 100%;
+  max-height: none;
 }
 
 .site-list {
@@ -1187,15 +1192,16 @@ body.vertical-menu footer {
     float: none;
   }
 
-  .thumbnail {
-    width: 10 * $global-padding;
-  }
-
   .site {
     clear: both;
     margin-bottom: $global-margin;
   }
+
+  .site-thumbnail-image {
+    margin-right: 0;
+  }
 }
+
 
 .toc-block {
   &.container {
