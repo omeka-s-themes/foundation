@@ -1500,3 +1500,24 @@ body.full-width .block-layout-alignment-block-right {
 .metadata-browse-link {
   margin: (.5 * $global-margin) 0;
 }
+
+    // -- Item Carousel
+
+    .carousel-block button.slick-arrow {
+      background-color: transparent;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+    }
+
+    .carousel-block .slick-prev .slick-prev-icon:before,
+    .carousel-block .slick-next .slick-next-icon:before {
+      font-size: 24px;
+    }
+
+    .carousel-block .slick-dots li button, 
+    .carousel-block .slick-dots li button .slick-dot-icon:before {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+    }
