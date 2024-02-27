@@ -1227,6 +1227,11 @@ body.vertical-menu footer {
     @extend .vertical;
   }
 
+  & > ul ul a {
+    display: inline-block;
+    padding: (.25 * $global-padding) (.5 * $global-padding);
+  }
+
   & > ul > li > a {
     font-weight: normal;
   }
