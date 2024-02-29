@@ -53,7 +53,7 @@ foreach ($this->resources as $resource):
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($showThumbnail && $thumbnail): ?>
         <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php echo $resource->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
+            <?php echo $resource->linkRaw($thumbnail, null, ['class' => 'resource-link']); ?>
         </div>
         <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
