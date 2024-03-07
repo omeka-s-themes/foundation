@@ -532,12 +532,24 @@ body.vertical-menu footer {
   margin: 0 (-1 * $global-margin);
 }
 
+.resource-grid.resource-count-3 .resource {
+  width: 33.33%;
+}
+
+.resource-grid.resource-count-2 .resource {
+  width: 50%;
+}
+
 .resource-grid .resource {
   width: 25%;
   padding: $global-padding;
   
   @include breakpoint(medium down) {
-    width: 50%;
+    width: 50% !important;
+  }
+
+  @include breakpoint(small down) {
+    width: 100% !important;
   }
 
   .resource-name {

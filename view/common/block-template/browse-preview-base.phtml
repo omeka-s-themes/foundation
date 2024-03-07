@@ -9,6 +9,7 @@ $isGrid = ($currentLayout == 'grid') ? true : false;
 $queryUrl = $this->url(
     'site/resource', ['controller' => $controller, 'action' => 'browse'], ['query' => $this->query], true
 );
+$resourcesCount = count($resources);
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
@@ -37,7 +38,7 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 <?php endif; ?>
 
 
-<ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
+<ul class="resources resource-count-<?php echo $resourcesCount; ?> <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
