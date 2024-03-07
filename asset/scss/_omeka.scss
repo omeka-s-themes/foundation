@@ -529,6 +529,7 @@ body.vertical-menu footer {
 .resource-grid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
   margin: 0 (-1 * $global-margin);
 }
 
