@@ -112,6 +112,17 @@ Omeka S 4.0 introduced configurable resource pages. Foundation supports block co
 * **Right sidebar**: This is a sidebar that sits to the right of "main with sidebar".
 * **Left sidebar**: This is a sidebar that sits to the left of "main with sidebar". 
 
+Some examples of how these regions can be used:
+
+![Full-width main, main with sidebar, and right sidebar](asset/img/full-main-right.jpg)
+Full-width main, main with sidebar, and right sidebar
+
+![Left sidebar,  main with sidebar, right sidebar](asset/img/left-main-right.jpg)
+Left sidebar,  main with sidebar, right sidebar
+
+![Main with sidebar, right sidebar](asset/img/main-right.jpg)
+Main with sidebar, right sidebar
+
 ## Copyright
 Foundation S is Copyright © 2020-present Corporation for Digital Scholarship, Vienna, Virginia, USA http://digitalscholar.org
 
