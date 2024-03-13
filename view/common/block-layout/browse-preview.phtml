@@ -12,6 +12,7 @@ $queryUrl = $this->url(
 );
 $resources = $this->resources;
 $resourcesCount = count($resources);
+$bodyTruncate = $this->themeSetting('truncate_body_property');
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
@@ -63,7 +64,7 @@ foreach ($resources as $resource):
             <h4><?php echo $resource->link($heading); ?></h4>
             <?php endif;?>
             <?php if ($showBody && $body): ?>
-            <div class="description"><?php echo $escape($body); ?></div>
+            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
             <?php endif; ?>
         </div>
     </li>

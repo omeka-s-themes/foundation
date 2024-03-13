@@ -10,6 +10,7 @@ $queryUrl = $this->url(
     'site/resource', ['controller' => $controller, 'action' => 'browse'], ['query' => $this->query], true
 );
 $resourcesCount = count($resources);
+$bodyTruncate = $this->themeSetting('truncate_body_property');
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
@@ -59,7 +60,7 @@ foreach ($resources as $resource):
                 echo $resource->linkRaw($linkContent, null, ['class' => 'resource-link']);
             ?>
             <?php if ($showBody && $body): ?>
-            <div class="description"><?php echo $escape($body); ?></div>
+            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
             <?php endif; ?>
         </div>
         <?php endif; ?>
