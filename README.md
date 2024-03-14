@@ -16,16 +16,23 @@ For more advanced use, such as customizing the theme with Sass, you'll need to i
   * **Sea Foam** offers a clean, friendly look with a teal palette.
   * **Inkwell** features a high contrast serif family for its typography, as well as sunny yellow accents.
 * **Navigation layouts**: Global navigation can display as a **horizontal top bar with optional dropdown menus** or a **left vertical column**.
-* **Show Top Navigation Child Pages**: Toggle display of child pages within the main navigation.
-* **Top Navigation Depth**: If the main navigation is set to display child pages, this setting controls how many navigation levels to display. Setting this to '0' shows all levels.
+* **Show top navigation child pages**: Toggle display of child pages within the main navigation.
+* **Top navigation depth**: If the main navigation is set to display child pages, this setting controls how many navigation levels to display. Setting this to '0' shows all levels.
 * **Logo**: Upload an image asset to use as a logo in place of a text site title.
-* **Footer Content**: Control what appears in the footer. This field takes HTML markup.
-* **Layout for Browse Pages**: Select how to display items within their "browse" views.
+* **Banner**: Upload an image asset to use a banner that sits above the main content area of every view.
+* **Banner width**: The maximum banner image width in pixels.
+* **Banner height**: The maximum banner image height in pixels.
+* **Banner height for mobile devices**: The maximum banner image height in pixels at narrower viewport widths..
+* **Banner position**: Where to anchor the banner image within its container: centered, stuck to the top, or stuck to the bottom.
+* **Footer content**: Control what appears in the footer. This field takes HTML markup.
+* **Layout for browse pages**: Select how to display items within their "browse" views.
   * **Grid**: Items are organized into rows and columns. This is recommended for items that prominently feature images.
   * **List**: Items are stacked into a single column.
   * **Toggle (default: grid)**: Site visitors can choose to display the browse views as grids or lists, and grids are the default.
   * **Toggle (default: list)**: Site visitors can choose to display the browse views as grids or lists, and lists are the default.
-* **Layout for Show Pages**: Resource metadata can show display as **stacked** with properties as headings above their values, or **inline** with properties as headings inline with their values.
+* **Metadata layout for show pages**: Resource metadata can show display as **stacked** with properties as headings above their values, or **inline** with properties as headings inline with their values.
+* **Media display for show pages**: Options for presenting media on item and media show views. 'Within metadata' shows media in the same column as the metadata. 'Next to metadata' gives media their own column alongside the metadata. 'Full-width media viewer above metadata' enables a gallery view with zoom and pan abilities. This ignores the 'Embed media' site setting.
+* **Truncate body property**: Controls the size of the body property of resources in a browseable list. It can be set to show the full value, truncate after 4 lines and fade out, or truncate after 4 lines and clip with an ellipsis.
 
 ## Customizing the Theme
 
