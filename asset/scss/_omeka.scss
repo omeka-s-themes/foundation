@@ -610,7 +610,7 @@ body.vertical-menu footer {
 }
 
 .omeka-pagination input {
-  margin: 0 $global-margin 0 0;
+  margin: 0 (.5 * $global-margin) 0 0;
 }
 
 .omeka-pagination .button,
@@ -1175,6 +1175,7 @@ body.vertical-menu footer {
   }
 }
 
+
 .list-of-pages.with-container {
   background-color: $light-gray;
   padding: $global-padding;
@@ -1189,17 +1190,17 @@ body.vertical-menu footer {
   }
 }
 
-.list-of-sites .site-list .site.media-object {
+.site-list .site.media-object {
   overflow: visible;
 }
 
-.list-of-sites .site-list .media-object-section .site-thumbnail-image,
-.list-of-sites .site-list .card .site-thumbnail-image {
+.site-list .media-object-section .site-thumbnail-image,
+.site-list .card .site-thumbnail-image {
   max-width: none;
   margin-right: 0;
 }
 
-.list-of-sites .site-list .card .site-thumbnail-image {
+.site-list .card .site-thumbnail-image {
   width: 100%;
   max-height: none;
 }
@@ -1225,6 +1226,19 @@ body.vertical-menu footer {
   }
 }
 
+.block-listOfSites .omeka-pagination {
+    width: auto;
+    flex-wrap: wrap;
+    margin: 0;
+
+    & > * {
+        margin-bottom: .25 * $global-margin;
+    }
+
+    .button-group .button {
+        padding: $input-padding;
+    }
+}
 
 .toc-block {
   &.container {
