@@ -533,6 +533,7 @@ body.vertical-menu footer {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin: 0 (-1 * $global-margin);
+  container-type: inline-size;
 }
 
 .resource-grid.resource-count-3 .resource {
@@ -561,6 +562,18 @@ body.vertical-menu footer {
 
   .resource-name {
     display: block;
+  }
+}
+
+@container (max-width: 700px) {
+  .resource-grid .resource {
+    width: 50% !important;
+  }
+}
+
+@container (max-width: 400px) {
+  .resource-grid .resource {
+    width: 100% !important;
   }
 }
 
