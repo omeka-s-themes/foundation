@@ -746,6 +746,10 @@ body.vertical-menu footer {
   margin: (.5 * $global-margin) 0;
 }
 
+#linked-filter {
+  width: 100%;
+}
+
 #linked-filter label {
   display: flex;
   flex-wrap: wrap;
@@ -753,9 +757,9 @@ body.vertical-menu footer {
   font-size: $global-font-size;
   line-height: $paragraph-lineheight;
   margin-bottom: $global-margin;
-
+  
   select {
-    margin-left: .5 * $global-margin;
+    margin-left: .25 * $global-margin;
   }
 }
 
@@ -763,30 +767,40 @@ body.vertical-menu footer {
   text-align: left;
 }
 
-@include breakpoint(medium up) {
-  .linked-header {
-    display:  flex;
-    align-items: flex-end;
-    justify-content: space-between;
+.linked-header {
+  display:  flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  container-type: inline-size;
+}
+
+.linked-header .omeka-pagination {
+  width: 100%;
+  margin: 0;
+}  
+
+@container (min-width: 640px) {
+  #linked-filter {
+    width: auto;
   }
-  
+
   .linked-header .omeka-pagination {
-    width: 50%;
-    justify-content: flex-end;
-    margin: 0;
-  }  
-
-  .linked-footer {
-	display:  flex;
-	align-items: flex-start;
-	justify-content: space-between;
+    width: auto;
+    margin: 0 0 $global-margin auto;
   }
+}
 
-  .linked-footer .omeka-pagination {
-	  width: 100%;
-    justify-content: flex-start;
-    margin: 0;
-  }
+.linked-footer {
+display:  flex;
+align-items: flex-start;
+justify-content: space-between;
+}
+
+.linked-footer .omeka-pagination {
+  width: 100%;
+  justify-content: flex-start;
+  margin: 0;
 }
 
 .resource.show .property dd {
