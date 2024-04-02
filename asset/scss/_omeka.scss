@@ -438,10 +438,6 @@ body.vertical-menu footer {
     .advanced-search {
       margin-bottom: $global-margin;
     }
-    
-    .advanced-search {
-      order: 3;
-    }
   }
 }
 
@@ -998,6 +994,11 @@ justify-content: space-between;
   @extend .fieldset;
 }
 
+#advanced-search .field-meta {
+  padding-right: 3 * $global-padding;
+  position: relative;
+}
+
 #advanced-search .field-description {
   margin: $global-margin 0;
 }
@@ -1006,13 +1007,11 @@ justify-content: space-between;
   @extend .help-text;
 }
 
-#advanced-search .remove-value {
-  padding-top: 0;
-  padding-bottom: 0;
-  
-  @include breakpoint(small down) {
-    margin-bottom: 0;
-  }
+#advanced-search .add-value {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: $label-padding;
 }
 
 #advanced-search .value > * {
@@ -1024,12 +1023,19 @@ justify-content: space-between;
   margin-left: 0;
 }
 
-.field-meta label {
+.field-meta label,
+.field-meta .label {
   @extend .label;
 }
 
-.field-meta label {
+.field-meta label,
+.field-meta .label {
   @extend .secondary;
+}
+
+.field-meta label,
+.field-meta .label {
+  font-size: $global-font-size;
 }
 
 #property-queries select {
@@ -1262,8 +1268,10 @@ justify-content: space-between;
         margin-bottom: .25 * $global-margin;
     }
 
+    input[type=text],
     .button-group .button {
         padding: $input-padding;
+        line-height: $paragraph-lineheight;
     }
 }
 
