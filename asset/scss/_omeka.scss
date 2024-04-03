@@ -974,6 +974,10 @@ justify-content: space-between;
   }
 }
 
+#advanced-search input[type="text"] {
+  padding: (.25 * $global-padding) $global-padding (.25 * $global-padding) (.25 * $global-padding) !important;
+}
+
 #advanced-search .input-group.value {
   margin-bottom: $global-margin !important;
 }
@@ -1548,10 +1552,20 @@ body.full-width .block-layout-alignment-block-right {
 [id*="numeric-"] .inputs {
   display: flex;
   flex-wrap: nowrap;
+  align-items: center;
   
   @include breakpoint(small down) {
     flex-wrap: wrap;
   }
+}
+
+[id^="numeric-"] .inputs input,
+[id*="numeric-"] .inputs input {
+  margin: 0;
+}
+
+[id*="numeric-"] .inputs input[type="number"] {
+  padding: (.25 * $global-padding);
 }
 
 [class^="numeric-"] [type="checkbox"],
@@ -1565,10 +1579,15 @@ body.full-width .block-layout-alignment-block-right {
   @extend .button;
 }
 
+[id^="numeric-"] .chosen-container:nth-child(2) {
+  margin-right: .25 * $global-margin;
+}
+
 .inputs label.numeric-toggle-time.button {
   border: 0;
   display: inline-flex;
   padding: $label-padding;
+  margin-bottom: 0;
   
   @include breakpoint(small down) {
     margin: (.25 * $global-margin) 0 0;
