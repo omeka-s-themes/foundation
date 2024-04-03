@@ -1014,6 +1014,11 @@ justify-content: space-between;
   padding: $label-padding;
 }
 
+#advanced-search .inputs .remove-value.button {
+  padding: 3px;
+  min-width: auto;
+}
+
 #advanced-search .value > * {
   margin-bottom: 0;
 }
@@ -1035,6 +1040,23 @@ justify-content: space-between;
 
 .field-meta label,
 .field-meta .label {
+  font-size: $global-font-size;
+}
+
+#advanced-search .field-meta .expand,
+#advanced-search .field-meta .collapse {
+  @extend .button;
+  text-decoration: none;
+}
+
+#advanced-search .field-meta .expand,
+#advanced-search .field-meta .collapse {
+  padding: $label-padding;
+  margin-bottom: 0;
+  vertical-align: top;
+}
+
+#advanced-search .chosen-container {
   font-size: $global-font-size;
 }
 
@@ -1525,6 +1547,7 @@ body.full-width .block-layout-alignment-block-right {
 [id^="numeric-"] .inputs,
 [id*="numeric-"] .inputs {
   display: flex;
+  flex-wrap: nowrap;
   
   @include breakpoint(small down) {
     flex-wrap: wrap;
@@ -1545,6 +1568,7 @@ body.full-width .block-layout-alignment-block-right {
 .inputs label.numeric-toggle-time.button {
   border: 0;
   display: inline-flex;
+  padding: $label-padding;
   
   @include breakpoint(small down) {
     margin: (.25 * $global-margin) 0 0;
