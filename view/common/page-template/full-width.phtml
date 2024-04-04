@@ -1,37 +1,34 @@
 <?php
-$this->headLink()->appendStylesheet($this->assetUrl('css/page-blocks.css', 'Omeka'));
-$this->htmlElement('body')->appendAttribute('class', $pageBodyClass);
+$this->headLink()->prependStylesheet($this->assetUrl('css/page-blocks.css', 'Omeka'));
+$this->htmlElement('body')->appendAttribute('class', 'page ' . $page->slug());
 $this->htmlElement('body')->appendAttribute('class', 'full-width');
 $this->pageTitle($page->title(), 2);
-$nav = $site->publicNav();
-$activePage = $nav->findActive($nav->getContainer());
-switch ($this->siteSetting('subnav_display')) {
-    case 'show';
-        $displaySubnav = $this->displayNavigation;
-        break;
-    case 'hide':
-        $displaySubnav = false;
-        break;
-    default:
-        $displaySubnav = $this->displayNavigation && $activePage && $activePage['page']->hasPages();
-}
 $showPagePagination = $this->siteSetting('show_page_pagination', true);
 ?>
 
-<?php if ($activePage): ?>
-<?php if ($activePage['depth'] !== 0): ?>
-<nav class="breadcrumbs"><?php echo $nav->breadcrumbs(); ?></nav>
-<?php endif; ?>
+<?php
+$nav = $site->publicNav();
+$container = $nav->getContainer();
+$activePage = $nav->findActive($container);
+if ($activePage):
+?>
+    <?php if ($activePage['depth'] !== 0): ?>
+    <nav class="breadcrumbs"><?php echo $nav->breadcrumbs()->setPartial('common/foundation-breadcrumbs'); ?></nav>
+    <?php endif; ?>
 <?php endif; ?>
 
 <?php if ($activePage): ?>
-<?php if ($displaySubnav): ?>
-<nav class="sub-menu"><?php echo $nav->menu()->renderSubMenu(); ?></nav>
-<?php endif; ?>
+    <?php if ($this->displayNavigation && $activePage['page']->hasPages()): ?>
+    <nav class="sub-menu top-bar" data-sticky-container>
+        <div class="sticky" data-sticky data-margin-top="0" data-anchor="blocks">
+            <?php echo $nav->menu()->setUlClass('horizontal menu')->renderSubMenu(); ?>
+        </div>
+    </nav>
+    <?php endif; ?>
 <?php endif; ?>
 
 <?php $this->trigger('view.show.before'); ?>
-<div class="blocks">
+<div id="blocks" class="blocks">
     <?php echo $this->content; ?>
 </div>
 <?php $this->trigger('view.show.after'); ?>

@@ -1418,6 +1418,15 @@ body.full-width .block-layout-alignment-block-right {
   margin-right: $global-margin;
 }
 
+body.full-width .top-bar.sub-menu {
+  width: 100%;
+
+  .is-at-top {
+    background-color: #fff;
+    width: 100%;
+  }
+}
+
 // -- Search
 
 .results {
