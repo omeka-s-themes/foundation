@@ -1009,6 +1009,7 @@ justify-content: space-between;
 
 #advanced-search .field-description {
   @extend .help-text;
+  font-size: $global-font-size;
 }
 
 #advanced-search .add-value {
@@ -1559,13 +1560,16 @@ body.full-width .block-layout-alignment-block-right {
   }
 }
 
-[id^="numeric-"] .inputs input,
-[id*="numeric-"] .inputs input {
-  margin: 0;
+#advanced-search [id^="numeric-"] .inputs input,
+#advanced-search [id*="numeric-"] .inputs input,
+#advanced-search [id*="numeric-"] .inputs select {
+  margin: 0 .25rem 0 0;
+
 }
 
-[id*="numeric-"] .inputs input[type="number"] {
-  padding: (.25 * $global-padding);
+[id*="numeric-"] .inputs input[type="number"],
+.inputs label.numeric-toggle-time.button {
+  padding: (.25 * $global-padding) !important;
 }
 
 [class^="numeric-"] [type="checkbox"],
@@ -1580,18 +1584,24 @@ body.full-width .block-layout-alignment-block-right {
 }
 
 [id^="numeric-"] .chosen-container:nth-child(2) {
-  margin-right: .25 * $global-margin;
+  margin: (.5 * $global-margin) (.25 * $global-margin) 0 0;
+  align-self: flex-start;
 }
 
 .inputs label.numeric-toggle-time.button {
   border: 0;
   display: inline-flex;
-  padding: $label-padding;
+  padding: .25 * $global-padding;
+  line-height: 1.5;
   margin-bottom: 0;
   
   @include breakpoint(small down) {
     margin: (.25 * $global-margin) 0 0;
   }
+}
+
+.numeric-integer-inputs {
+  margin-top: .25 * $global-margin;
 }
 
 @include breakpoint(medium up) {
