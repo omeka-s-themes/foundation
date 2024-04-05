@@ -38,6 +38,10 @@ header .submenu a {
   color: $white;
 }
 
+.top-bar .sticky ul {
+  background-color: transparent;
+}
+
 .search-form button {
   background-color: darken($primary-color, 10%);
 }

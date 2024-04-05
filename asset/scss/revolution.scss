@@ -19,7 +19,8 @@ $thumbnail-shadow-hover: 0 0 6px 1px rgba($gold, 0.5);
 @import 'omeka';
 
 body {
-  background: url('../img/revolution-bg.jpg') repeat;
+  --main-bg-image: url('../img/revolution-bg.jpg');
+  background: var(--main-bg-image) repeat;
   background-size: auto;
 }
 
@@ -54,6 +55,10 @@ body:not(.vertical-menu) header {
   
   body.vertical-menu #content,
   body.vertical-menu footer {
-      background: transparent url('../img/revolution-bg.jpg') repeat;
+      background: transparent var(--main-bg-image) repeat;
   }
+}
+
+body.full-width .top-bar.sub-menu .is-at-top {
+  background: var(--main-bg-image);
 }

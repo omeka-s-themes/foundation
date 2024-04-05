@@ -1410,6 +1410,10 @@ body.full-width .blocks-inner.page-layout-normal > * {
   padding: 0 $global-padding;
 }
 
+body.full-width .breadcrumbs {
+  padding: 0 (.5 * $global-padding);
+}
+
 body.full-width .block-layout-alignment-block-left {
   margin-left: $global-margin;
 }
@@ -1420,6 +1424,7 @@ body.full-width .block-layout-alignment-block-right {
 
 body.full-width .top-bar.sub-menu {
   width: 100%;
+  padding: 0;
 
   .is-at-top {
     background-color: #fff;
