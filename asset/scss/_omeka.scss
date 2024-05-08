@@ -1015,7 +1015,7 @@ justify-content: space-between;
 
 #advanced-search .type-radio {
   display: inline-block;
-  margin-right: .25 * $global-margin;
+  margin-right: $global-margin;
 }
 
 #advanced-search .item-set-select-type + .chosen-container,
