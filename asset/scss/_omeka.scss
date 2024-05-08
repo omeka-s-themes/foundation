@@ -961,33 +961,95 @@ justify-content: space-between;
 // #. Advanced search
 // ------------------
 
+.advanced-search-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, fit-content(50%));
+  grid-column-gap: $global-margin;
+  grid-row-gap: $global-margin;
+  margin-bottom: $global-margin;
+
+  @include breakpoint(medium down) {
+    grid-template-columns: auto;
+  }
+}
+
 #advanced-search .input-group {
   @include breakpoint(small down) {
     flex-wrap: wrap;
   }
 }
 
-#advanced-search select {
+#advanced-search .value,
+#advanced-search #datetime-queries .value {
+  align-items: flex-start;
+
+  &:not(:last-child) {
+    margin-bottom: $global-margin !important;
+  }
+}
+
+#advanced-search .inputs .button,
+#advanced-search .inputs button {
+  margin: 0;
+  list-style: none;
+  line-height: 1.5 * $global-padding;
+}
+
+#advanced-search .inputs select {
+  margin-top: 0;
   @include breakpoint(small down) {
     width: 100%;
     margin-bottom: 0;
   }
 }
 
-#advanced-search input[type="text"] {
-  padding: (.25 * $global-padding) $global-padding (.25 * $global-padding) (.25 * $global-padding) !important;
+#advanced-search .chosen-choices {
+  min-height: 2.25 * $global-padding;
+  line-height: 2.25 * $global-padding;
+
+  li.search-choice {
+    margin: 7px 5px 7px 0;
+  }
 }
 
-#advanced-search .input-group.value {
-  margin-bottom: $global-margin !important;
+#advanced-search .type-radio {
+  display: inline-block;
+  margin-right: .25 * $global-margin;
+}
+
+#advanced-search .item-set-select-type + .chosen-container,
+#advanced-search .item-set-select +.chosen-container {
+  margin-top: 0;
+}
+
+#advanced-search .chosen-container-single {
+    max-width: fit-content;
+
+    .chosen-single {
+      height: 2.25 * $global-padding;
+      line-height: 2.25 * $global-padding;
+    }
+
+    .chosen-single div b {
+      background-position: 0 8px;
+    }
+}
+
+#advanced-search .item-set-select-type + .chosen-container-single {
+  max-width: fit-content;
+}
+
+#advanced-search input[type="number"],
+#advanced-search input[type="text"] {
+  padding: (.25 * $global-padding) $global-padding (.25 * $global-padding) (.25 * $global-padding) !important;
+  height: 2.25 * $global-padding;
+  font-size: $global-font-size;
+  margin: 0;
 }
 
 #advanced-search .multi-value .value:only-child .remove-value {
   display: none;
-}
-
-#advanced-search .value {
-  margin-bottom: $global-margin !important;
 }
 
 #advanced-search .query-text {
@@ -996,6 +1058,10 @@ justify-content: space-between;
 
 #advanced-search .field {
   @extend .fieldset;
+}
+
+#advanced-search .field {
+  margin: 0;
 }
 
 #advanced-search .field-meta {
@@ -1019,9 +1085,12 @@ justify-content: space-between;
   padding: $label-padding;
 }
 
-#advanced-search .inputs .remove-value.button {
+#advanced-search .remove-value {
   padding: 3px;
   min-width: auto;
+  overflow: hidden;
+  width: 36px;
+  height: 36px;
 }
 
 #advanced-search .value > * {
@@ -1566,12 +1635,16 @@ body.full-width .top-bar.sub-menu {
 [id^="numeric-"] .inputs,
 [id*="numeric-"] .inputs {
   display: flex;
-  flex-wrap: nowrap;
   align-items: center;
   
   @include breakpoint(small down) {
     flex-wrap: wrap;
   }
+}
+
+.inputs div[class*="numeric"] {
+  display: inline-flex;
+  width: auto;
 }
 
 #advanced-search [id^="numeric-"] .inputs input,
@@ -1598,7 +1671,7 @@ body.full-width .top-bar.sub-menu {
 }
 
 [id^="numeric-"] .chosen-container:nth-child(2) {
-  margin: (.5 * $global-margin) (.25 * $global-margin) 0 0;
+  margin: (.25 * $global-margin) (.25 * $global-margin) 0 0;
   align-self: flex-start;
 }
 
