@@ -500,13 +500,11 @@ body.vertical-menu footer {
  padding-left:0;
 }
 
-.resource-list .resource-image {
-  order: 2;
-  text-align: center;
+.resource-list .resource-link img {
   width: 25%;
   
   @include breakpoint(medium down) {
-    margin: 0;
+    margin: 0 0 0 $global-margin;
     width: 50%;
   }
 }
