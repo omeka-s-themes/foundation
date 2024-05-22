@@ -4,3 +4,8 @@
 @import 'settings';
 @import 'foundation-core';
 @import 'omeka';
+
+.field-meta label,
+.field-meta .label {
+    color: $label-color;
+}

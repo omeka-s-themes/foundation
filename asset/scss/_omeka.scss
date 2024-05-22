@@ -13,7 +13,8 @@
 
 [type="submit"], 
 [type="button"] {
-  @extend .button;
+  @include button();
+  display: inline-block;
 }
 
 .input-group .input-group,
@@ -447,11 +448,11 @@ body.vertical-menu footer {
 }
 
 .filter-label {
-  @extend .label;
+  @include label;
 }
 
 .filter-value {
-  @extend .label;
+  @include label;
 }
 
 .filter-value {
@@ -493,7 +494,7 @@ body.vertical-menu footer {
 }
 
 .resource .resource-link img {
-  @extend .thumbnail;
+  @include thumbnail;
 }
 
 .resource-list .media-object-section:last-child:not(:nth-child(2)) {
@@ -815,7 +816,7 @@ justify-content: space-between;
 
 .resource.show .resource-link img,
 .media-list img {
-  @extend .thumbnail;
+  @include thumbnail;
 }
 
 .resource.show .resource-link img,
@@ -1102,22 +1103,15 @@ justify-content: space-between;
 
 .field-meta label,
 .field-meta .label {
-  @extend .label;
-}
-
-.field-meta label,
-.field-meta .label {
-  @extend .secondary;
-}
-
-.field-meta label,
-.field-meta .label {
+  @include label;
   font-size: $global-font-size;
+  background-color: $secondary-color;
+  color: $label-color-alt;
 }
 
 #advanced-search .field-meta .expand,
 #advanced-search .field-meta .collapse {
-  @extend .button;
+  @include button-style();
   text-decoration: none;
 }
 
@@ -1126,6 +1120,8 @@ justify-content: space-between;
   padding: $label-padding;
   margin-bottom: 0;
   vertical-align: top;
+  display: inline-block;
+  line-height: 1;
 }
 
 #advanced-search .chosen-container {
@@ -1279,7 +1275,8 @@ justify-content: space-between;
 }
 
 .site-page-pagination > a {
-  @extend .button;
+  @include button-style();
+  display: inline-block;
 }
 
 .site-page-pagination > a {
@@ -1665,7 +1662,7 @@ body.full-width .top-bar.sub-menu {
 
 [class^="numeric-"] label.numeric-toggle-time.button,
 [class*="numeric-"] label.numeric-toggle-time.button {
-  @extend .button;
+  @include button-style();
 }
 
 [id^="numeric-"] .chosen-container:nth-child(2) {
