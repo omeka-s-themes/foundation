@@ -14,7 +14,7 @@
     "email": "outreach@omeka.org"
   },
   "dependencies": {
-    "foundation-sites": "^6.7.4",
+    "foundation-sites": "^6.8.1",
     "gulp-cli": "^2.3.0",
     "jquery": "^3.5.1",
     "motion-ui": "~2.0.0",
