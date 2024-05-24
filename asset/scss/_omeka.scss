@@ -963,7 +963,7 @@ justify-content: space-between;
 .advanced-search-content {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, fit-content(50%));
+  grid-template-columns: 50% 50%;
   grid-column-gap: $global-margin;
   grid-row-gap: $global-margin;
   margin-bottom: $global-margin;
@@ -1275,7 +1275,7 @@ justify-content: space-between;
 }
 
 .site-page-pagination > a {
-  @include button-style();
+  @include button();
   display: inline-block;
 }
 
@@ -1699,6 +1699,10 @@ body.full-width .top-bar.sub-menu {
     width: 100%;
     margin: (.25 * $global-margin) 0;  
   }
+}
+
+#mapping-map + #advanced-search {
+  margin-top: $global-margin;
 }
 
 .mapping-block {
