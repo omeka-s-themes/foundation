@@ -1701,8 +1701,10 @@ body.full-width .top-bar.sub-menu {
   }
 }
 
-#mapping-map + #advanced-search {
-  margin-top: $global-margin;
+#mapping-map + .omeka-pagination {
+  margin: $global-margin 0;
+  width: 100%;
+  justify-content: center;
 }
 
 .mapping-block {
