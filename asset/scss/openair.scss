@@ -1,0 +1,51 @@
+@charset 'utf-8';
+
+@import 'globals-default';
+@import 'globals-openair';
+@import 'settings';
+@import url('https://rsms.me/inter/inter.css');
+
+:root { 
+    font-family: 'Inter', sans-serif; 
+}
+
+@supports (font-variation-settings: normal) {
+    :root { 
+        font-family: 'Inter var', sans-serif; 
+    }
+}
+
+$header-font-family: 'Inter', sans-serif;
+$header-font-weight: 900;
+$topbar-background: transparent;
+$dropdownmenu-submenu-background: #fff;
+
+@import 'foundation-core';
+@import 'omeka';
+
+.resource-list {
+    border-top: 2px solid #000;
+    margin: $global-margin 0;
+}
+
+.resource-list .resource {
+    border-bottom: 2px solid #000;
+}
+
+.resource .resource-link img {
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+.preview-block .preview-header {
+    border-bottom: 2px solid #000;
+}
+
+.faceted-browse-page .resource-list .resource {
+    margin: $global-margin 0;
+}
+
+#categories li {
+    border-bottom: 0;
+}

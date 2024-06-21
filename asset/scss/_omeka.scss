@@ -199,6 +199,16 @@ header .top-bar-left {
   align-items: center;
 }
 
+.top-bar .top-bar-right {
+  max-width: 70%;
+}
+
+@include breakpoint(small down) {
+  .top-bar .top-bar-right {
+    max-width: none;
+  }
+} 
+
 .menu a.dropdown-toggle {
   display: flex;
   justify-content: space-between;
