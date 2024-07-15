@@ -967,6 +967,12 @@ justify-content: space-between;
   margin: 0;
   width: 30%;
 }
+
+#custom-callout,
+#custom-callout-frame {
+  margin: 0 0 $global-margin;
+}
+
 // #. Advanced search
 // ------------------
 
