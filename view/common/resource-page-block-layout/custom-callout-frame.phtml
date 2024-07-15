@@ -1,0 +1,11 @@
+<?php 
+$site = $this->currentSite(); 
+$calloutText = $this->themeSetting('custom_callout')
+?>
+<div id="custom-callout-frame" class="callout secondary">
+<?php if ($calloutText == ''): ?>
+    <a href="<?php echo $site->adminUrl('theme-settings'); ?>"><?php echo $this->translate('Configure text in theme settings.'); ?></a>
+<?php else: ?>
+        <?php echo $calloutText; ?>
+<?php endif; ?>
+</div>
