@@ -46,6 +46,19 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
         $sidebarWidth = '4';
         $mainWidth = '8';
     }
+    if ($leftSidebarHasBlocks) {
+        $sidebarBlocksArray = $leftSidebarBlockContent->getBlocksArray();
+        if ($rightSidebarHasBlocks) {
+            array_push($sidebarBlocksArray, $rightBlockContent->getBlocksArray());
+        }
+        $tabsConfigured = false;
+        foreach ($sidebarBlocksArray as $sidebarBlockName => $sidebarBlockRender) {
+            if ($sidebarBlockName == 'tab_navigation') {
+                $tabsConfigured = true;
+                break;
+            }
+        }
+    }
     ?>
     
     <div class="grid-x grid-margin-x">
@@ -57,7 +70,23 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 
         <?php if ($mainWithSidebarHasBlocks): ?>
         <div class="main-with-sidebar cell medium-<?php echo $mainWidth; ?>">
-            <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
+            <?php if ($tabsConfigured): ?>
+                <?php 
+                    $mainWithSidebarBlockArray = $mainWithSidebarBlockContent->getBlocksArray();
+                    $defaultTab = array_key_first($mainWithSidebarBlockArray); 
+                ?>
+                <div class="tabs-content vertical" data-tabs-content="tab-navigation">
+                <?php foreach ($mainWithSidebarBlockArray as $resourcePageBlockName => $resourcePageBlockRender): ?>
+                    <?php if ($resourcePageBlockRender !== ''): ?>
+                    <div class="tabs-panel <?php echo ($resourcePageBlockName == $defaultTab) ? 'is-active' : ''; ?>" id="tab-<?php echo $resourcePageBlockName; ?>">
+                        <?php echo $resourcePageBlockRender; ?>
+                    </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
 
