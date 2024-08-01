@@ -7,6 +7,8 @@ $embedMedia = $this->siteSetting('item_media_embed', false);
 $itemMedia = $item->media();
 $showLayout = $this->themeSetting('show_layout');
 $mediaDisplay = $this->themeSetting('media_display');
+$tabLayout = ($this->themeSetting('tab_navigation_layout')) ? $this->themeSetting('tab_navigation_layout') : 'vertical';
+$tabContent = ($this->themeSetting('tab_navigation_content')) ? $this->themeSetting('tab_navigation_content') : 'main';
 $this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
 
 $fullWidthMainBlockContent = $this->resourcePageBlocks($item, 'full_width_main');
@@ -17,6 +19,14 @@ $leftSidebarBlockContent = $this->resourcePageBlocks($item, 'left');
 $leftSidebarHasBlocks = $leftSidebarBlockContent->hasBlocks();
 $rightSidebarBlockContent = $this->resourcePageBlocks($item, 'right');
 $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
+
+$tabsConfigured = false;
+if ($rightSidebarHasBlocks) {
+    $rightSidebarBlockArray = $rightSidebarBlockContent->getBlocksArray();
+    if (array_key_exists('tab_navigation', $rightSidebarBlockArray)) {
+        $tabsConfigured = true;
+    }
+}
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
@@ -32,7 +42,17 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
     <?php $this->trigger('view.show.before'); ?>
     <?php if ($fullWidthMainHasBlocks): ?>
     <div class="full-width-main">
-        <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
+        <?php $fullWidthBlockArray = $fullWidthMainBlockContent->getBlocksArray(); ?>
+        <?php if (array_key_exists('tab_navigation', $fullWidthBlockArray)): ?>
+            <?php $tabsConfigured = true; ?>
+            <?php echo $this->TabNavigation($resource, $tabContent); ?>
+        <?php endif; ?>
+
+        <?php if ($tabContent == 'full_width_main'): ?>
+            <?php echo $this->TabPanels($resource, $tabContent, $tabLayout); ?>
+        <?php else: ?>
+            <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
+        <?php endif; ?>
     </div>
     <?php endif; ?>
 
@@ -46,44 +66,36 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
         $sidebarWidth = '4';
         $mainWidth = '8';
     }
-    if ($leftSidebarHasBlocks) {
-        $sidebarBlocksArray = $leftSidebarBlockContent->getBlocksArray();
-        if ($rightSidebarHasBlocks) {
-            array_push($sidebarBlocksArray, $rightBlockContent->getBlocksArray());
-        }
-        $tabsConfigured = false;
-        foreach ($sidebarBlocksArray as $sidebarBlockName => $sidebarBlockRender) {
-            if ($sidebarBlockName == 'tab_navigation') {
-                $tabsConfigured = true;
-                break;
-            }
-        }
-    }
     ?>
     
     <div class="grid-x grid-margin-x">
         <?php if ($leftSidebarHasBlocks): ?>
         <div class="left-sidebar cell medium-<?php echo $sidebarWidth; ?>">
-            <?php echo $leftSidebarBlockContent->getBlocks(); ?>
+            <?php $leftSidebarBlockArray = $leftSidebarBlockContent->getBlocksArray(); ?>
+            <?php if (array_key_exists('tab_navigation', $leftSidebarBlockArray)): ?>
+                <?php $tabsConfigured = true; ?>
+                <?php $leftSidebarBlockArray['tab_navigation'] = $this->TabNavigation($resource); ?>
+                <?php foreach ($leftSidebarBlockArray as $leftSidebarBlockName => $leftSidebarBlockRender): ?>
+                    <?php echo $leftSidebarBlockRender; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <?php echo $leftSidebarBlockContent->getBlocks(); ?>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
 
         <?php if ($mainWithSidebarHasBlocks): ?>
         <div class="main-with-sidebar cell medium-<?php echo $mainWidth; ?>">
-            <?php if ($tabsConfigured): ?>
-                <?php 
-                    $mainWithSidebarBlockArray = $mainWithSidebarBlockContent->getBlocksArray();
-                    $defaultTab = array_key_first($mainWithSidebarBlockArray); 
-                ?>
-                <div class="tabs-content vertical" data-tabs-content="tab-navigation">
-                <?php foreach ($mainWithSidebarBlockArray as $resourcePageBlockName => $resourcePageBlockRender): ?>
-                    <?php if ($resourcePageBlockRender !== ''): ?>
-                    <div class="tabs-panel <?php echo ($resourcePageBlockName == $defaultTab) ? 'is-active' : ''; ?>" id="tab-<?php echo $resourcePageBlockName; ?>">
-                        <?php echo $resourcePageBlockRender; ?>
-                    </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-                </div>
+            <?php 
+                $mainWithSidebarBlockArray = $mainWithSidebarBlockContent->getBlocksArray();
+                $tabIndex = 0;
+                if (array_key_exists('tab_navigation', $mainWithSidebarBlockArray)) {
+                    $tabsConfigured = true;
+                    echo $this->TabNavigation($resource);
+                }
+            ?>
+            <?php if ($tabsConfigured && ($tabContent == 'main')): ?>
+                <?php echo $this->TabPanels($resource, $tabContent, $tabLayout); ?>
             <?php else: ?>
                 <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
             <?php endif; ?>
@@ -92,7 +104,14 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 
         <?php if ($rightSidebarHasBlocks): ?>
         <div class="right-sidebar cell medium-<?php echo $sidebarWidth; ?>">
-            <?php echo $rightSidebarBlockContent->getBlocks(); ?>
+            <?php if (array_key_exists('tab_navigation', $rightSidebarBlockArray)): ?>
+                <?php $rightSidebarBlockArray['tab_navigation'] = $this->TabNavigation($resource); ?>
+                <?php foreach ($rightSidebarBlockArray as $rightSidebarBlockName => $rightSidebarBlockRender): ?>
+                    <?php echo $rightSidebarBlockRender; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <?php echo $rightSidebarBlockContent->getBlocks(); ?>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
     </div>

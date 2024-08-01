@@ -1,0 +1,12 @@
+<?php $tabLayout = ($this->themeSetting('tab_navigation_layout')) ? $this->themeSetting('tab_navigation_layout') : 'vertical'; ?>
+<ul id="tab-navigation" class="<?php echo $tabLayout; ?> tabs" data-tabs>
+<?php $defaultTab = array_key_first($resourcePageBlocksArray); ?>
+<?php $tabIndex = 0; ?>
+<?php foreach($resourcePageBlocksArray as $resourcePageBlockName => $resourcePageBlockRender): ?>
+    <?php if ($resourcePageBlockRender !== ''): ?>
+        <?php $prettyName = ucwords(implode(' ',preg_split('/(?=[A-Z])/', $resourcePageBlockName))); ?>
+        <li class="tabs-title <?php echo ($tabIndex == 0) ? 'is-active' : ''; ?>"><a href="#tab-<?php echo $resourcePageBlockName; ?>" aria-selected="true"><?php echo ucwords($prettyName); ?></a></li>
+        <?php $tabIndex++; ?>
+    <?php endif; ?>
+<?php endforeach; ?>
+</ul>

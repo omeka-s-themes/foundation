@@ -963,6 +963,11 @@ justify-content: space-between;
   margin: 0 0 $global-margin;
 }
 
+.tabs-content {
+  border: 0;
+  box-shadow: 0 0 0 1px #e6e6e6;
+}
+
 // #. Advanced search
 // ------------------
 
