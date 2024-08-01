@@ -1,0 +1,11 @@
+<?php $tabIndex = 0; ?>
+<div class="tabs-content <?php echo $tabLayout; ?>" data-tabs-content="tab-navigation">
+<?php foreach ($resourcePageBlockArray as $resourcePageBlockName => $resourcePageBlockRender): ?>
+    <?php if ($resourcePageBlockRender !== ''): ?>
+    <div class="tabs-panel <?php echo ($tabIndex == 0) ? 'is-active' : ''; ?>" id="tab-<?php echo $resourcePageBlockName; ?>">
+        <?php echo $resourcePageBlockRender; ?>
+        <?php $tabIndex++; ?>
+    </div>
+    <?php endif; ?>
+<?php endforeach; ?>
+</div>
