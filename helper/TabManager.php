@@ -31,17 +31,18 @@ class TabManager extends AbstractHelper
         return $tabNavigationRegion;
     }
 
-    public function renderPanels($resource, $contentRegion = 'main')
+    public function renderPanels($resource, $contentRegion = 'main', $layout = 'vertical')
     {
         $view = $this->getView();
         $tabContentBlocksArray = $view->resourcePageBlocks($resource, $contentRegion)->getBlocksArray();
         return $view->partial('common/tab-panels.phtml', [
             'resource' => $resource,
-            'resourcePageBlockArray' => $tabContentBlocksArray
+            'resourcePageBlockArray' => $tabContentBlocksArray,
+            'tabLayout' => $layout
         ]);
     }
 
-    public function renderTabsOnly($resource, $contentRegion = 'main', $layout = 'vertical')
+    public function renderTabsOnly($resource, $contentRegion = 'main', $layout = 'vertical') 
     {
         $view = $this->getView();
         $tabContentBlocksArray = $view->resourcePageBlocks($resource, $contentRegion)->getBlocksArray();
