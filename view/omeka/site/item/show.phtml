@@ -20,13 +20,8 @@ $leftSidebarHasBlocks = $leftSidebarBlockContent->hasBlocks();
 $rightSidebarBlockContent = $this->resourcePageBlocks($item, 'right');
 $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
 
-$tabsConfigured = false;
-if ($rightSidebarHasBlocks) {
-    $rightSidebarBlockArray = $rightSidebarBlockContent->getBlocksArray();
-    if (array_key_exists('tab_navigation', $rightSidebarBlockArray)) {
-        $tabsConfigured = true;
-    }
-}
+$tabManager = $this->TabManager();
+$tabNavigationRegion = $tabManager->getTabNavigationRegion($item);
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
@@ -43,13 +38,12 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
     <?php if ($fullWidthMainHasBlocks): ?>
     <div class="full-width-main">
         <?php $fullWidthBlockArray = $fullWidthMainBlockContent->getBlocksArray(); ?>
-        <?php if (array_key_exists('tab_navigation', $fullWidthBlockArray)): ?>
-            <?php $tabsConfigured = true; ?>
-            <?php echo $this->TabNavigation($resource, $tabContent); ?>
+        <?php if ($tabNavigationRegion == 'full_width_main'): ?>
+            <?php echo $tabManager->renderTabsOnly($resource, $tabContent); ?>
         <?php endif; ?>
 
         <?php if ($tabContent == 'full_width_main'): ?>
-            <?php echo $this->TabPanels($resource, $tabContent, $tabLayout); ?>
+            <?php echo $tabManager->renderPanels($resource, $tabContent, $tabLayout); ?>
         <?php else: ?>
             <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
         <?php endif; ?>
@@ -71,13 +65,8 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
     <div class="grid-x grid-margin-x">
         <?php if ($leftSidebarHasBlocks): ?>
         <div class="left-sidebar cell medium-<?php echo $sidebarWidth; ?>">
-            <?php $leftSidebarBlockArray = $leftSidebarBlockContent->getBlocksArray(); ?>
-            <?php if (array_key_exists('tab_navigation', $leftSidebarBlockArray)): ?>
-                <?php $tabsConfigured = true; ?>
-                <?php $leftSidebarBlockArray['tab_navigation'] = $this->TabNavigation($resource); ?>
-                <?php foreach ($leftSidebarBlockArray as $leftSidebarBlockName => $leftSidebarBlockRender): ?>
-                    <?php echo $leftSidebarBlockRender; ?>
-                <?php endforeach; ?>
+            <?php if ($tabNavigationRegion == 'left'): ?>
+                <?php echo $tabManager->renderTabsRegion($item, 'left'); ?>
             <?php else: ?>
                 <?php echo $leftSidebarBlockContent->getBlocks(); ?>
             <?php endif; ?>
@@ -86,16 +75,11 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 
         <?php if ($mainWithSidebarHasBlocks): ?>
         <div class="main-with-sidebar cell medium-<?php echo $mainWidth; ?>">
-            <?php 
-                $mainWithSidebarBlockArray = $mainWithSidebarBlockContent->getBlocksArray();
-                $tabIndex = 0;
-                if (array_key_exists('tab_navigation', $mainWithSidebarBlockArray)) {
-                    $tabsConfigured = true;
-                    echo $this->TabNavigation($resource);
-                }
-            ?>
-            <?php if ($tabsConfigured && ($tabContent == 'main')): ?>
-                <?php echo $this->TabPanels($resource, $tabContent, $tabLayout); ?>
+            <?php if ($tabNavigationRegion == 'main'): ?>
+                <?php echo $tabManager->renderTabsOnly($resource, $tabContent, $tabLayout); ?>
+            <?php endif; ?>
+            <?php if ($tabNavigationRegion && ($tabContent == 'main')): ?>
+                <?php echo $tabManager->renderPanels($resource, $tabContent, $tabLayout); ?>
             <?php else: ?>
                 <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
             <?php endif; ?>
@@ -104,11 +88,8 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 
         <?php if ($rightSidebarHasBlocks): ?>
         <div class="right-sidebar cell medium-<?php echo $sidebarWidth; ?>">
-            <?php if (array_key_exists('tab_navigation', $rightSidebarBlockArray)): ?>
-                <?php $rightSidebarBlockArray['tab_navigation'] = $this->TabNavigation($resource); ?>
-                <?php foreach ($rightSidebarBlockArray as $rightSidebarBlockName => $rightSidebarBlockRender): ?>
-                    <?php echo $rightSidebarBlockRender; ?>
-                <?php endforeach; ?>
+            <?php if ($tabNavigationRegion == 'right'): ?>
+                <?php echo $tabManager->renderTabsRegion($item, 'right', $tabContent, $tabLayout); ?>
             <?php else: ?>
                 <?php echo $rightSidebarBlockContent->getBlocks(); ?>
             <?php endif; ?>
