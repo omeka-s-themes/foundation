@@ -918,6 +918,13 @@ justify-content: space-between;
   z-index: 0;
 }
 
+.left-sidebar #itemfiles,
+.right-sidebar #itemfiles {
+  height: auto;
+  min-height: 0;
+  padding-bottom: 100%;
+}
+
 #itemfiles .media.resource {
   display: none;
 }
