@@ -14,6 +14,8 @@ $itemSetShow = isset($itemSet);
 if ($itemSetShow) {
     $this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
     $showLayout = $this->themeSetting('show_layout');
+    $tabLayout = ($this->themeSetting('tab_navigation_layout')) ? $this->themeSetting('tab_navigation_layout') : 'vertical';
+    $tabContent = ($this->themeSetting('tab_navigation_content')) ? $this->themeSetting('tab_navigation_content') : 'main';
     $fullWidthMainBlockContent = $this->resourcePageBlocks($itemSet, 'full_width_main');
     $fullWidthMainHasBlocks = $fullWidthMainBlockContent->hasBlocks();
     $mainWithSidebarBlockContent = $this->resourcePageBlocks($itemSet);
@@ -22,6 +24,10 @@ if ($itemSetShow) {
     $leftSidebarHasBlocks = $leftSidebarBlockContent->hasBlocks();
     $rightSidebarBlockContent = $this->resourcePageBlocks($itemSet, 'right');
     $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
+
+    $tabManager = $this->TabManager();
+    $tabNavigationRegion = $tabManager->getTabNavigationRegion($itemSet);
+
     $this->htmlElement('body')->appendAttribute('class', 'item-set');
     $query['item_set_id'] = $itemSet->id();
 }
@@ -60,30 +66,62 @@ $sortHeadings = [
     <div class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
         <?php if ($fullWidthMainHasBlocks): ?>
         <div class="full-width-main">
-            <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
-        </div>
+            <?php $fullWidthBlockArray = $fullWidthMainBlockContent->getBlocksArray(); ?>
+            <?php if ($tabNavigationRegion == 'full_width_main'): ?>
+                <?php echo $tabManager->renderTabsOnly($itemSet, $tabContent); ?>
+            <?php endif; ?>
+
+            <?php if ($tabContent == 'full_width_main'): ?>
+                <?php echo $tabManager->renderPanels($resource, $tabContent, $tabLayout); ?>
+            <?php else: ?>
+                <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
+            <?php endif; ?>
+            </div>
         <?php endif; ?>
 
         <?php if ($mainWithSidebarHasBlocks || $leftSidebarHasBlocks || $rightSidebarHasBlocks): ?>
 
-        <?php $sidebarWidth = ($leftSidebarHasBlocks && $rightSidebarHasBlocks) ? '2' : '4'; ?>
+        <?php 
+        if ($leftSidebarHasBlocks && $rightSidebarHasBlocks) {
+            $sidebarWidth = '3';
+            $mainWidth = '6';
+        } else {
+            $sidebarWidth = '4';
+            $mainWidth = '8';
+        }
+        ?>
         
         <div class="grid-x grid-margin-x">
             <?php if ($leftSidebarHasBlocks): ?>
             <div class="left-sidebar cell medium-<?php echo $sidebarWidth; ?>">
-                <?php echo $leftSidebarBlockContent->getBlocks(); ?>
+                <?php if ($tabNavigationRegion == 'left'): ?>
+                    <?php echo $tabManager->renderTabsRegion($itemSet, 'left'); ?>
+                <?php else: ?>
+                    <?php echo $leftSidebarBlockContent->getBlocks(); ?>
+                <?php endif; ?>
             </div>
             <?php endif; ?>
 
             <?php if ($mainWithSidebarHasBlocks): ?>
-            <div class="main-with-sidebar cell medium-8">
-                <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
+            <div class="main-with-sidebar cell medium-<?php echo $mainWidth; ?>">
+                <?php if ($tabNavigationRegion == 'main'): ?>
+                    <?php echo $tabManager->renderTabsOnly($resource, $tabContent, $tabLayout); ?>
+                <?php endif; ?>
+                <?php if ($tabNavigationRegion && ($tabContent == 'main')): ?>
+                    <?php echo $tabManager->renderPanels($itemSet, $tabContent, $tabLayout); ?>
+                <?php else: ?>
+                    <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
+                <?php endif; ?>
             </div>
             <?php endif; ?>
 
             <?php if ($rightSidebarHasBlocks): ?>
             <div class="right-sidebar cell medium-<?php echo $sidebarWidth; ?>">
-                <?php echo $rightSidebarBlockContent->getBlocks(); ?>
+                <?php if ($tabNavigationRegion == 'right'): ?>
+                    <?php echo $tabManager->renderTabsRegion($itemSet, 'right', $tabContent, $tabLayout); ?>
+                <?php else: ?>
+                    <?php echo $rightSidebarBlockContent->getBlocks(); ?>
+                <?php endif; ?>
             </div>
             <?php endif; ?>
         </div>
