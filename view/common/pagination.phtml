@@ -1,7 +1,7 @@
 <?php
 $translate = $this->plugin('translate');
 ?>
-<nav class="omeka-pagination" role="navigation">
+<div class="omeka-pagination">
 <?php if ($totalCount): ?>
     <form method="GET" action="">
             <?php echo $this->queryToHiddenInputs(['page']); ?>
@@ -31,4 +31,4 @@ $translate = $this->plugin('translate');
 <?php else: ?>
     <?php echo $translate('0 results'); ?>
 <?php endif; ?>
-</nav>
+</div>
