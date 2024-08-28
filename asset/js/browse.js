@@ -32,6 +32,7 @@
 
     $(document).ready(function() {
         var layoutSetting = findGetParameter('browse_layout');
+        var layoutHiddenInput = $('<input type="hidden" name="browse_layout">');
 
         if (layoutSetting) {
             $('.layout-toggle button').attr('disabled', false);
@@ -65,6 +66,17 @@
                 var newUrl = replaceUrlParam(currentUrl, 'browse_layout', newLayoutName);
                 paginationLink.attr('href', newUrl);
             });
+            if ($('.omeka-pagination [name="browse_layout"]').length > 0) {
+                $('.omeka-pagination [name="browse_layout"]').each(function() {
+                    $(this).val(newLayoutName);
+                });
+            } else {
+                $('.omeka-pagination form').each(function() {
+                    var newLayoutHiddenInput = layoutHiddenInput.clone();
+                    newLayoutHiddenInput.val(newLayoutName);
+                    $(this).prepend(newLayoutHiddenInput);
+                });
+            }
             $('.sorting [name="browse_layout"]').val(newLayoutName);
         });
         
