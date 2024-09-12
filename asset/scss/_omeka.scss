@@ -1141,15 +1141,16 @@ justify-content: space-between;
 #advanced-search .field-meta .collapse {
   @include button-style();
   text-decoration: none;
-}
-
-#advanced-search .field-meta .expand,
-#advanced-search .field-meta .collapse {
+  width: 1.5 * $global-padding;
   padding: $label-padding;
+  padding-left: 0;
+  padding-right: 0;
   margin-bottom: 0;
   vertical-align: top;
   display: inline-block;
   line-height: 1;
+  text-align: center;
+  border-radius: 2px;
 }
 
 #advanced-search .chosen-container {
