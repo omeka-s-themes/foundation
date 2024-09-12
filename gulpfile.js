@@ -6,6 +6,7 @@ gulp.task('css', function () {
     var sass = require('gulp-sass')(require('sass'));
     var postcss = require('gulp-postcss');
     var autoprefixer = require('autoprefixer');
+    var sourcemaps = require('gulp-sourcemaps');
 
     var sassPaths = [
       'node_modules/foundation-sites/scss',
@@ -13,6 +14,7 @@ gulp.task('css', function () {
     ];
 
     return gulp.src('./asset/scss/*.scss')
+        .pipe(sourcemaps.init())
         .pipe(sass.sync({
             outputStyle: 'compressed',
             includePaths: sassPaths
@@ -20,6 +22,7 @@ gulp.task('css', function () {
         .pipe(postcss([
             autoprefixer()
         ]))
+        .pipe(sourcemaps.write('./asset/maps'))
         .pipe(gulp.dest('./asset/css'));
 });
 
