@@ -27,7 +27,16 @@ $topbar-background: transparent;
 [type="submit"], 
 [type="button"],
 .button {
-    border-radius: 2px;
+    border-radius: 3px;
+}
+
+[disabled],
+.button.disabled, 
+.button[disabled],
+.button.disabled:hover, 
+.button[disabled]:hover {
+    opacity: 1;
+    background-color: $medium-gray !important;
 }
 
 header {
@@ -49,6 +58,10 @@ body.vertical-menu header {
 
 body.vertical-menu #content {
     box-shadow: 0 0 10px 10px rgba(0,0,0,.08);
+}
+
+body.vertical-menu li:not(.active) .submenu-toggle:after {
+    border-color: $primary-color rgba(0,0,0,0) rgba(0,0,0,0)
 }
 
 body.vertical-menu footer {
