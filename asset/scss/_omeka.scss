@@ -402,23 +402,33 @@ body.vertical-menu footer {
 }
 
 .browse-controls {
-  @include xy-grid;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 (-.5 * $global-margin);
-  font-size: .875 * $global-font-size;
+  display: inline-flex;
+  flex-flow: row wrap;
+  margin: 0;
   flex-wrap: wrap;
-  
-  input,
-  select,
+
   button,
   .button {
-    font-size: .875 * $global-font-size;
-    padding: (.5 * $global-padding);
+    font-size: map-get($map: $button-sizes, $key: 'small' );
   }
 
+  input[type="text"] {
+    padding: 0 (.5 * $global-padding);
+  }
+
+  input[type="text"],
   .sorting select {
-    margin-right: .5 * $global-margin;
+    height: auto;
+    margin-right: .5 * $global-margin;;
+  }
+
+  & > * {
+    margin: 0 (1.5 * $global-margin) (.5 * $global-margin) 0;
+  }
+
+  .advanced-search {
+    display: inline-flex;
+    align-items: center;
   }
 
   @include breakpoint(small down) {
@@ -463,7 +473,7 @@ body.vertical-menu footer {
 .resource-list,
 .resource-grid {
   list-style-type: none;
-  margin: (2 * $global-margin) 0;
+  margin: $global-margin 0;
   
   @include breakpoint(small down) {
     margin: 0;
@@ -478,6 +488,7 @@ body.vertical-menu footer {
   margin: $global-margin 0;
   border-bottom: 1px solid $light-gray;
   padding-bottom: $global-padding;
+  display: flow-root;
 
   img {
     float: right;
@@ -504,7 +515,7 @@ body.vertical-menu footer {
 .resource-list .resource-link img {
   width: 25%;
   
-  @include breakpoint(medium down) {
+  @include breakpoint(small down) {
     margin: 0 0 0 $global-margin;
     width: 50%;
   }
@@ -595,16 +606,10 @@ body.vertical-menu footer {
   }
 }
 
-.omeka-pagination {  
-  @include breakpoint(medium) {
-    @include xy-cell(4);
-  }
-}
-
 .omeka-pagination, 
 .omeka-pagination form {
   display: flex;
-  align-items: center;
+  align-items: stretch;
 }
 
 .omeka-pagination .button-group {
@@ -624,6 +629,11 @@ body.vertical-menu footer {
 .omeka-pagination .button,
 .omeka-pagination .button-group {
   margin-bottom: 0;
+}
+
+.omeka-pagination span {
+  display: inline-flex;
+  align-items: center;
 }
 
 .sorting {
@@ -985,6 +995,7 @@ justify-content: space-between;
   grid-column-gap: $global-margin;
   grid-row-gap: $global-margin;
   margin-bottom: $global-margin;
+  align-items: start;
 
   @include breakpoint(medium down) {
     grid-template-columns: auto;
@@ -999,10 +1010,10 @@ justify-content: space-between;
 
 #advanced-search .value,
 #advanced-search #datetime-queries .value {
-  align-items: flex-start;
+  align-items: stretch;
 
   &:not(:last-child) {
-    margin-bottom: $global-margin !important;
+    margin-bottom: (.5 * $global-margin) !important;
   }
 }
 
@@ -1043,11 +1054,6 @@ justify-content: space-between;
 #advanced-search .chosen-container-single {
     max-width: fit-content;
 
-    .chosen-single {
-      height: 2.25 * $global-padding;
-      line-height: 2.25 * $global-padding;
-    }
-
     .chosen-single div b {
       background-position: 0 8px;
     }
@@ -1060,7 +1066,6 @@ justify-content: space-between;
 #advanced-search input[type="number"],
 #advanced-search input[type="text"] {
   padding: (.25 * $global-padding) $global-padding (.25 * $global-padding) (.25 * $global-padding) !important;
-  height: 2.25 * $global-padding;
   font-size: $global-font-size;
   margin: 0;
 }
@@ -1087,7 +1092,7 @@ justify-content: space-between;
 }
 
 #advanced-search .field-description {
-  margin: $global-margin 0;
+  margin: (.5 * $global-margin) 0;
 }
 
 #advanced-search .field-description {
@@ -1102,16 +1107,14 @@ justify-content: space-between;
   padding: $label-padding;
 }
 
-#advanced-search .remove-value {
+#advanced-search button.remove-value {
   padding: 3px;
-  min-width: auto;
   overflow: hidden;
-  width: 36px;
-  height: 36px;
+  min-width: 36px;
 }
 
 #advanced-search .value > * {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 #advanced-search .value > *:not(:last-child) {
@@ -1698,10 +1701,6 @@ body.full-width .top-bar.sub-menu {
   @include breakpoint(small down) {
     margin: (.25 * $global-margin) 0 0;
   }
-}
-
-.numeric-integer-inputs {
-  margin-top: .25 * $global-margin;
 }
 
 @include breakpoint(medium up) {
