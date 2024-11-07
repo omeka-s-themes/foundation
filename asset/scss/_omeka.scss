@@ -402,10 +402,20 @@ body.vertical-menu footer {
 }
 
 .browse-controls {
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   flex-flow: row wrap;
   margin: 0;
   flex-wrap: wrap;
+
+  &.bottom {
+    display: inline-flex;
+    width: auto;
+  }
+
+  .sorting {
+    margin-left: auto;
+  }
 
   button,
   .button {

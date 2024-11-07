@@ -25,7 +25,7 @@ $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse')
 <div class="browse-control-mobile">
 <button type="button" class="browse-toggle closed"><?php echo $translate('Options'); ?></button>
 </div>
-<div class="browse-controls closed">
+<div class="browse-controls top closed">
     <?php echo $this->pagination(); ?>
     <?php if (strpos($layoutSetting, 'toggle') !== false): ?>
     <div class="layout-toggle">
@@ -59,6 +59,6 @@ foreach ($itemSets as $itemSet):
 <?php endforeach; ?>
 </ul>
 <?php $this->trigger('view.browse.after'); ?>
-<div class="browse-controls">
+<div class="browse-controls bottom">
 <?php echo $this->pagination(); ?>
 </div>
