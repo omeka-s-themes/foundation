@@ -59,4 +59,6 @@ foreach ($itemSets as $itemSet):
 <?php endforeach; ?>
 </ul>
 <?php $this->trigger('view.browse.after'); ?>
+<div class="browse-controls">
 <?php echo $this->pagination(); ?>
+</div>
