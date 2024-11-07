@@ -513,11 +513,11 @@ body.vertical-menu footer {
 }
 
 .resource-list .resource-link img {
-  width: 25%;
+  max-width: 25%;
   
   @include breakpoint(small down) {
     margin: 0 0 0 $global-margin;
-    width: 50%;
+    max-width: 50%;
   }
 }
 
