@@ -412,6 +412,12 @@ body.vertical-menu footer {
     font-size: map-get($map: $button-sizes, $key: 'small' );
   }
 
+  .sorting button {
+    font-size: map-get($map: $button-sizes, $key: 'default' );
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   input[type="text"] {
     padding: 0 (.5 * $global-padding);
   }
