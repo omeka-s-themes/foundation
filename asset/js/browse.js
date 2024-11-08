@@ -51,7 +51,7 @@
         $('.layout-toggle button').click(function() {
             const newLayoutName = $(this).attr('aria-label').toLowerCase();
             $('.layout-toggle button:disabled').removeAttr('disabled');
-            $(this).attr('disabled', true);
+            $(this).attr('disabled', 'disabled');
             $('.resources').toggleClass('resource-list').toggleClass('resource-grid');
             $('.resources .resource').toggleClass('media-object');
             $('.resource-meta, .resource-image').toggleClass('media-object-section');

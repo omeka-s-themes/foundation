@@ -29,8 +29,8 @@ $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse')
     <?php echo $this->pagination(); ?>
     <?php if (strpos($layoutSetting, 'toggle') !== false): ?>
     <div class="layout-toggle">
-        <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid o-icon-grid" <?php echo $gridState; ?>></button>
-        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>
+        <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid button o-icon-grid" <?php echo $gridState; ?>></button>
+        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list button o-icon-list" <?php echo $listState; ?>></button>
     </div>
     <?php endif; ?>
     <?php echo $this->hyperlink($translate('Advanced search'), $this->url(null, ['action' => 'search'], true), ['class' => 'advanced-search']); ?>
