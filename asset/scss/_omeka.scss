@@ -13,7 +13,6 @@
 
 [type="submit"], 
 [type="button"] {
-  @include button();
   display: inline-block;
 }
 
@@ -423,9 +422,11 @@ body.vertical-menu footer {
   }
 
   .sorting button {
+    @include button();
     font-size: map-get($map: $button-sizes, $key: 'default' );
     padding-top: 0;
     padding-bottom: 0;
+    margin-bottom: 0;
   }
 
   input[type="text"] {
@@ -1163,6 +1164,10 @@ justify-content: space-between;
 
 #advanced-search .chosen-container {
   font-size: $global-font-size;
+}
+
+#advanced-search [type="submit"] {
+  @include button();
 }
 
 #property-queries select {
