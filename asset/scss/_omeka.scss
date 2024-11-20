@@ -1008,7 +1008,7 @@ justify-content: space-between;
 .advanced-search-content {
   width: 100%;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
   grid-column-gap: $global-margin;
   grid-row-gap: $global-margin;
   margin-bottom: $global-margin;
@@ -1776,4 +1776,10 @@ body.full-width .top-bar.sub-menu {
       width: 24px;
       height: 24px;
       line-height: 24px;
+    }
+
+    // Output Formats
+
+    .output-formats-button {
+      @include button();
     }
