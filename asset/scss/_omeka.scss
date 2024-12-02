@@ -32,7 +32,7 @@ select {
   background: #fff url("../../../../application/asset/img/select-arrow.svg") no-repeat;
   background-position: right 6px center;
   background-size: 8px;
-  border: 1px solid $light-gray;
+  border: 1px solid $medium-gray;
   margin: 0;
   padding: (.25 * $global-padding) $global-padding (.25 * $global-padding) (.25 * $global-padding) !important;
   border-radius: 3px;
@@ -207,8 +207,21 @@ header .top-bar-left {
   width: 100%;
 }
 
+.vertical-menu .submenu-toggle {
+  height: 38px;
+}
+
 .submenu-toggle:after {
   border-color: #fff transparent transparent;
+    border-color: $primary-color transparent transparent;
+}
+
+.menu .active > .submenu-toggle {
+  background-color: $primary-color;
+
+  &:after {
+    border-color: $label-color transparent transparent;
+  }
 }
 
 header .top-bar {
@@ -220,12 +233,17 @@ header .top-bar {
 .title-bar {
   display: inline-block;
   background-color: transparent;
-  padding: 0;
   
   button {
     margin: 0 $global-margin 0 0;
     background-color: transparent;
     color: $dark-gray;
+  }
+}
+
+@include breakpoint(large up) {
+  .title-bar {
+    padding: 0;
   }
 }
 
@@ -557,6 +575,7 @@ body.vertical-menu footer {
   justify-content: flex-start;
   margin: 0 (-1 * $global-margin);
   container-type: inline-size;
+  max-width: 100%;
 }
 
 .resource-grid.resource-count-3 .resource {
@@ -1008,7 +1027,7 @@ justify-content: space-between;
 .advanced-search-content {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(min-content, 1fr));
   grid-column-gap: $global-margin;
   grid-row-gap: $global-margin;
   margin-bottom: $global-margin;
@@ -1028,21 +1047,25 @@ justify-content: space-between;
 #advanced-search .value,
 #advanced-search #datetime-queries .value {
   align-items: stretch;
+  flex-wrap: wrap;
 
   &:not(:last-child) {
     margin-bottom: (.5 * $global-margin) !important;
   }
 }
 
+#advanced-search .inputs label {
+  font-size: $global-font-size;
+}
+
 #advanced-search .inputs .button,
 #advanced-search .inputs button {
-  margin: 0;
   list-style: none;
-  line-height: 1.5 * $global-padding;
+  line-height: 1.5;
 }
 
 #advanced-search .inputs select {
-  margin-top: 0;
+
   @include breakpoint(small down) {
     width: 100%;
     margin-bottom: 0;
@@ -1082,9 +1105,12 @@ justify-content: space-between;
 
 #advanced-search input[type="number"],
 #advanced-search input[type="text"] {
-  padding: (.25 * $global-padding) $global-padding (.25 * $global-padding) (.25 * $global-padding) !important;
+  padding: (.25 * $global-padding);
   font-size: $global-font-size;
-  margin: 0;
+}
+
+#advanced-search input[type="number"] {
+  padding-right: $global-padding;
 }
 
 #advanced-search .multi-value .value:only-child .remove-value {
@@ -1106,6 +1132,8 @@ justify-content: space-between;
 #advanced-search .field-meta {
   padding-right: 3 * $global-padding;
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #advanced-search .field-description {
@@ -1130,10 +1158,6 @@ justify-content: space-between;
   min-width: 36px;
 }
 
-#advanced-search .value > * {
-  margin-bottom: 0 !important;
-}
-
 #advanced-search .value > *:not(:last-child) {
   margin-right: 5px;
   margin-left: 0;
@@ -1151,15 +1175,21 @@ justify-content: space-between;
 #advanced-search .field-meta .collapse {
   @include button-style();
   text-decoration: none;
-}
-
-#advanced-search .field-meta .expand,
-#advanced-search .field-meta .collapse {
+  align-self: stretch;
   padding: $label-padding;
   margin-bottom: 0;
   vertical-align: top;
-  display: inline-block;
+  display: inline-flex;
+  width: 1.75 * $global-padding;
   line-height: 1;
+
+  &:after {
+    margin: auto;
+  }
+}
+
+#advanced-search .item-set-select {
+  max-width: 60%;
 }
 
 #advanced-search .chosen-container {
@@ -1677,6 +1707,10 @@ body.full-width .top-bar.sub-menu {
   @include breakpoint(small down) {
     flex-wrap: wrap;
   }
+
+  label {
+    display: inline-flex;
+  }
 }
 
 .inputs div[class*="numeric"] {
@@ -1702,22 +1736,24 @@ body.full-width .top-bar.sub-menu {
   width: auto;
 }
 
-[class^="numeric-"] label.numeric-toggle-time.button,
-[class*="numeric-"] label.numeric-toggle-time.button {
-  @include button-style();
-}
-
 [id^="numeric-"] .chosen-container:nth-child(2) {
   margin: (.25 * $global-margin) (.25 * $global-margin) 0 0;
   align-self: flex-start;
 }
 
+.inputs div.numeric-timestamp {
+  width: 100%;
+}
+
 .inputs label.numeric-toggle-time.button {
+  @include button-style();
   border: 0;
   display: inline-flex;
   padding: .25 * $global-padding;
   line-height: 1.5;
-  margin-bottom: 0;
+  flex-wrap: nowrap;
+  margin: 0;
+  align-self: stretch;
   
   @include breakpoint(small down) {
     margin: (.25 * $global-margin) 0 0;

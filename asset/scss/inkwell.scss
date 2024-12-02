@@ -61,6 +61,10 @@ a.resource-link:hover .resource-name {
     background-color: lighten($primary-color, 40%);
 }
 
+select {
+  font-size: $global-font-size;
+}
+
 body.vertical-menu header a {
   color: #000;
   text-decoration: underline;
