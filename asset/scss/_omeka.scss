@@ -1817,5 +1817,16 @@ body.full-width .top-bar.sub-menu {
     // Output Formats
 
     .output-formats-button {
-      @include button();
+      @include button(); 
+    }
+
+    .output-formats-select {
+      height: auto;
+      margin-bottom: $global-margin;
+    }
+
+    .output-formats-selector .value {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
     }
