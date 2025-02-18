@@ -1,8 +1,6 @@
 <?php
 $translate = $this->plugin('translate');
 $showLayout = $this->themeSetting('show_layout');
-$tabLayout = ($this->themeSetting('tab_navigation_layout')) ? $this->themeSetting('tab_navigation_layout') : 'vertical';
-$tabContent = ($this->themeSetting('tab_navigation_content')) ? $this->themeSetting('tab_navigation_content') : 'main';
 $this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
 $fullWidthMainBlockContent = $this->resourcePageBlocks($media, 'full_width_main');
 $fullWidthMainHasBlocks = $fullWidthMainBlockContent->hasBlocks();
@@ -12,9 +10,6 @@ $leftSidebarBlockContent = $this->resourcePageBlocks($media, 'left');
 $leftSidebarHasBlocks = $leftSidebarBlockContent->hasBlocks();
 $rightSidebarBlockContent = $this->resourcePageBlocks($media, 'right');
 $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
-
-$tabManager = $this->TabManager();
-$tabNavigationRegion = $tabManager->getTabNavigationRegion($media);
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
@@ -26,69 +21,35 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 <?php echo $this->pageTitle($media->displayTitle(null, $valueLang), 2); ?>
 <h3 class="label"><?php echo $translate('Media'); ?></h3>
 </div>
-
-<div class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
-    <?php $this->trigger('view.show.before'); ?>
-    <?php if ($fullWidthMainHasBlocks): ?>
-    <div class="full-width-main">
-        <?php $fullWidthBlockArray = $fullWidthMainBlockContent->getBlocksArray(); ?>
-        <?php if ($tabNavigationRegion == 'full_width_main'): ?>
-            <?php echo $tabManager->renderTabsOnly($resource, $tabContent); ?>
-        <?php endif; ?>
-
-        <?php if ($tabContent == 'full_width_main'): ?>
-            <?php echo $tabManager->renderPanels($resource, $tabContent, $tabLayout); ?>
-        <?php else: ?>
-            <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
-        <?php endif; ?>
-    </div>
-    <?php endif; ?>
-
-    <?php if ($mainWithSidebarHasBlocks || $leftSidebarHasBlocks || $rightSidebarHasBlocks): ?>
-
-    <?php 
-    if ($leftSidebarHasBlocks && $rightSidebarHasBlocks) {
-        $sidebarWidth = '3';
-        $mainWidth = '6';
-    } else {
-        $sidebarWidth = '4';
-        $mainWidth = '8';
-    }
-    ?>
-    <div class="grid-x grid-margin-x">
-        <?php if ($leftSidebarHasBlocks): ?>
-        <div class="left-sidebar cell medium-<?php echo $sidebarWidth; ?>">
-            <?php if ($tabNavigationRegion == 'left'): ?>
-                <?php echo $tabManager->renderTabsRegion($media, 'left'); ?>
-            <?php else: ?>
-                <?php echo $leftSidebarBlockContent->getBlocks(); ?>
-            <?php endif; ?>
-        </div>
-        <?php endif; ?>
-
-        <?php if ($mainWithSidebarHasBlocks): ?>
-        <div class="main-with-sidebar cell medium-<?php echo $mainWidth; ?>">
-            <?php if ($tabNavigationRegion == 'main'): ?>
-                <?php echo $tabManager->renderTabsOnly($resource, $tabContent, $tabLayout); ?>
-            <?php endif; ?>
-            <?php if ($tabNavigationRegion && ($tabContent == 'main')): ?>
-                <?php echo $tabManager->renderPanels($resource, $tabContent, $tabLayout); ?>
-            <?php else: ?>
-                <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
-            <?php endif; ?>
-        </div>
-        <?php endif; ?>
-
-        <?php if ($rightSidebarHasBlocks): ?>
-        <div class="right-sidebar cell medium-<?php echo $sidebarWidth; ?>">
-            <?php if ($tabNavigationRegion == 'right'): ?>
-                <?php echo $tabManager->renderTabsRegion($media, 'right', $tabContent, $tabLayout); ?>
-            <?php else: ?>
-                <?php echo $rightSidebarBlockContent->getBlocks(); ?>
-            <?php endif; ?>
-        </div>
-        <?php endif; ?>
-    </div>
-    <?php endif; ?>
-    <?php $this->trigger('view.show.after'); ?>
+<?php $this->trigger('view.show.before'); ?>
+<?php if ($fullWidthMainHasBlocks): ?>
+<div class="full-width-main">
+    <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
 </div>
+<?php endif; ?>
+
+<?php if ($mainWithSidebarHasBlocks || $leftSidebarHasBlocks || $rightSidebarHasBlocks): ?>
+
+<?php $sidebarWidth = ($leftSidebarHasBlocks && $rightSidebarHasBlocks) ? '2' : '4'; ?>
+
+<div class="grid-x grid-margin-x">
+    <?php if ($leftSidebarHasBlocks): ?>
+    <div class="left-sidebar cell medium-<?php echo $sidebarWidth; ?>">
+        <?php echo $leftSidebarBlockContent->getBlocks(); ?>
+    </div>
+    <?php endif; ?>
+
+    <?php if ($mainWithSidebarHasBlocks): ?>
+    <div class="main-with-sidebar cell medium-8">
+        <?php echo $mainWithSidebarBlockContent->getBlocks(); ?>
+    </div>
+    <?php endif; ?>
+
+    <?php if ($rightSidebarHasBlocks): ?>
+    <div class="right-sidebar cell medium-<?php echo $sidebarWidth; ?>">
+        <?php echo $rightSidebarBlockContent->getBlocks(); ?>
+    </div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
+<?php $this->trigger('view.show.after'); ?>
