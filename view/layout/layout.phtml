@@ -19,18 +19,13 @@ $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 
 $this->trigger('view.layout');
 $this->jsTranslate();
 $userBar = $this->userBar();
-
+$banner = $this->themeSettingAssetUrl('banner');
+$bannerWidth = ($this->themeSetting('banner_width')) ? $this->themeSetting('banner_width') : '';
 $navLayout = ($this->themeSetting('nav_layout')) ? $this->themeSetting('nav_layout') : 'dropdown';
 $this->htmlElement('body')->appendAttribute('class', $navLayout . '-menu');
 if ($userBar) {
   $this->htmlElement('body')->appendAttribute('class', 'user-bar');
 }
-
-$banner = $this->themeSettingAssetUrl('banner');
-$bannerWidth = ($this->themeSetting('banner_width')) ? $this->themeSetting('banner_width') : '';
-$bannerHeight = $this->themeSetting('banner_height');
-$bannerHeightMobile = $this->themeSetting('banner_height_mobile');
-$bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-', $this->themeSetting('banner_position')) : 'center';
 ?>
 <?php echo $this->doctype(); ?>
 <?php echo $this->htmlElement('html'); ?>
@@ -40,20 +35,7 @@ $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-'
         <?php echo $this->headLink(); ?>
         <?php echo $this->headStyle(); ?>
         <?php echo $this->headScript(); ?>
-        <style>
-            .banner {
-                height: <?php echo ($bannerHeight !== '') ? $bannerHeight: 'auto'  ?>;
-                background-image: url(<?php echo $this->themeSettingAssetUrl('banner'); ?>);
-                background-position: <?php echo $bannerPosition; ?>;
-            }
-        <?php if ($bannerHeightMobile !== ''): ?>
-            @media screen and (max-width:640px) {
-                .banner {
-                    height: <?php echo $bannerHeightMobile; ?>;
-                }
-            }
-        <?php endif; ?>
-        </style>
+        <?php echo $this->partial('common/theme-config', ['banner' => $banner]); ?>
     </head>
 
     <?php echo $this->htmlElement('body'); ?>

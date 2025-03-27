@@ -1,0 +1,22 @@
+<?php
+$bannerWidth = ($this->themeSetting('banner_width')) ? $this->themeSetting('banner_width') : '';
+$bannerHeight = ($this->themeSetting('banner_height')) ? $this->themeSetting('banner_height') : 'auto';
+$bannerHeightMobile = $this->themeSetting('banner_height_mobile');
+$bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-', $this->themeSetting('banner_position')) : 'center';
+?>
+<style>
+    .banner {
+        height: <?php echo $bannerHeight; ?>;
+        <?php if (isset($banner)): ?>
+        background-image: url(<?php echo $banner; ?>);
+        <?php endif; ?>
+        background-position: <?php echo $bannerPosition; ?>;
+    }
+<?php if (isset($bannerHeightMobile) && $bannerHeightMobile !== ''): ?>
+    @media screen and (max-width:640px) {
+        .banner {
+            height: <?php echo $bannerHeightMobile; ?>;
+        }
+    }
+<?php endif; ?>
+</style>
