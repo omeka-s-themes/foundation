@@ -136,8 +136,19 @@ body.vertical-menu #user-bar ~ #content {
   margin-bottom: 0;
 }
 
-.search-form {
+#search-form {
   display: flex;
+}
+
+#fulltext-search {
+  margin: 0;
+  height: auto;
+  width: 100%;
+}
+
+#search-submit {
+  @include button();
+  margin-bottom: 0;
 }
 
 .site-title img {
