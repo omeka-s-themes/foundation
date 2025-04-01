@@ -140,6 +140,10 @@ body.vertical-menu #user-bar ~ #content {
   display: flex;
 }
 
+#offCanvas #search-form {
+  padding: $global-padding;
+}
+
 #fulltext-search {
   margin: 0;
   height: auto;
@@ -201,6 +205,10 @@ h1.site-title {
 
 #offCanvas .search {
   margin: $global-margin;
+}
+
+#dropdown-bar #main-nav {
+  margin-right: $global-margin;
 }
 
 header .top-bar-right,

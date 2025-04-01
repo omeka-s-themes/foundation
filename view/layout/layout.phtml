@@ -13,8 +13,9 @@ if (isset($stylesheet)) {
     $this->headLink()->appendStylesheet($this->assetUrl('css/default.css'));
 }
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
-$this->headScript()->prependFile($this->assetUrl('vendor/foundation/foundation.min.js'));
+$this->headScript()->prependFile($this->assetUrl('js/omeka-foundation.js'));
 $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
+$this->headScript()->prependFile($this->assetUrl('vendor/foundation/foundation.min.js'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
 $this->trigger('view.layout');
 $this->jsTranslate();
@@ -42,9 +43,6 @@ if ($userBar) {
     
         <div id="offCanvas" class="off-canvas position-left" data-off-canvas>
             <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'vertical']); ?>
-            <div class="search">
-                <?php echo $this->partial('common/search-form'); ?>
-            </div>
         </div>
         <div class="off-canvas-content" data-off-canvas-content>
             <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>

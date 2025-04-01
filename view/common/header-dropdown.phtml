@@ -1,15 +1,13 @@
-<div class="top-bar">
-    <nav class="top-bar-left" aria-label="<?php echo $this->translate('Mobile navigation'); ?>">
-        <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
+<div class="top-bar" id="dropdown-bar">
+    <div class="top-bar-left">
+        <nav class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large" aria-label="<?php echo $this->translate('Mobile navigation'); ?>">
             <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
-        </div>
+        </nav>
         <?php $siteLogo = ($this->themeSetting('logo')) ? '<img src="' . $this->themeSettingAssetUrl('logo') . '" title="Logo" alt="">' : ''; ?>
         <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $this->escapeHtml($site->title()); ?></span></a></h1>
-    </nav>
+    </div>
     <div class="top-bar-right" id="responsive-menu">
         <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'dropdown']); ?>
-        <div class="search">
-            <?php echo $this->partial('common/search-form'); ?>
-        </div>
+        <?php echo $this->partial('common/search-form'); ?>
     </div>
 </div>
