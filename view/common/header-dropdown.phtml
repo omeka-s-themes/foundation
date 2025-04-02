@@ -7,7 +7,7 @@
         <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $this->escapeHtml($site->title()); ?></span></a></h1>
     </div>
     <div class="top-bar-right" id="responsive-menu">
-        <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'dropdown']); ?>
+        <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'dropdown', 'navId' => 'main-nav']); ?>
         <?php echo $this->partial('common/search-form'); ?>
     </div>
 </div>

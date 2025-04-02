@@ -8,7 +8,7 @@ $layoutAttributes = [
   'vertical' => 'class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true"',
 ]
 ?>
-<nav id="main-nav" aria-label="<?php echo $this->translate('Main Navigation'); ?>">
+<nav id="<?php echo $navId; ?>" aria-label="<?php echo $this->translate('Main Navigation'); ?>">
 <ul <?php echo $layoutAttributes[$layout]; ?>>
     <?php foreach ($container as $page): ?>
         <?php if (!$this->navigation()->accept($page)) continue; ?>

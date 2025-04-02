@@ -8,7 +8,7 @@ $siteTitle = $this->escapeHtml($site->title());
 </div>
 <div class="desktop">
   <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $siteTitle; ?></span></a></h1>
-  <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'vertical']); ?>
+  <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'vertical', 'navId' => 'main-nav']); ?>
   <div class="search">
       <?php echo $this->partial('common/search-form'); ?>
   </div>
