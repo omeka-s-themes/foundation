@@ -48,7 +48,7 @@
             }
         }
 
-        $('.layout-toggle button').click(function() {
+        $('.layout-toggle').on('click', 'button', function() {
             const newLayoutName = $(this).attr('aria-label').toLowerCase();
             $('.layout-toggle button:disabled').removeAttr('disabled');
             $(this).attr('disabled', 'disabled');
@@ -80,7 +80,7 @@
             $('.sorting [name="browse_layout"]').val(newLayoutName);
         });
         
-        $('.browse-toggle').click(function() {
+        $('.browse-control-mobile').on('click', '.browse-toggle', function() {
             $('.browse-controls').toggleClass('open closed');
             $(this).toggleClass('open closed');
         });
