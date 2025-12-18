@@ -11,6 +11,11 @@
 // #. Global Styles
 // ------------------
 
+input::placeholder {
+  color: $dark-gray;
+  font-style: italic;
+}
+
 [type="submit"], 
 [type="button"] {
   display: inline-block;
