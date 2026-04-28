@@ -231,13 +231,17 @@ header .top-bar-left {
   align-items: center;
 }
 
-.menu a.dropdown-toggle {
-  display: flex;
-  justify-content: space-between;
-}
-
 .vertical-menu .dropdown-toggle {
   width: 100%;
+}
+
+.vertical-menu .submenu-toggle {
+  height: 24px;
+  width: 24px;
+
+  &:after {
+    border-color: $menu-item-color-active transparent transparent;
+  }
 }
 
 .vertical-menu .caret {
