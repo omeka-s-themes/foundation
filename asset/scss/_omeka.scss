@@ -244,22 +244,12 @@ header .top-bar-left {
   height: 38px;
 }
 
-.caret:after {
-  border-color: #fff transparent transparent;
-    border-color: $primary-color transparent transparent;
-}
-
-.menu .active > a > .caret {
-  background-color: $primary-color;
-
-  &:after {
-    border-color: $label-color transparent transparent;
-  }
-}
-
 header .top-bar {
+  padding: (.25 * $global-padding) (.5 * $global-padding);
+
   @include breakpoint(small down) {
-    padding: 0;    
+    padding: 0 (3 * $global-padding) 0 0;    
+    position: relative;
   }
 }
 
@@ -432,7 +422,7 @@ body.vertical-menu header .desktop {
   }
 }
 
-.top-bar #search-container.closed {
+#search-container.closed {
   display: none;
 }
 

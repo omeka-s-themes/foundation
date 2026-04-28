@@ -1,13 +1,15 @@
 (function($) {
     $(document).ready(function() {
-        var offCanvas = $('#offCanvas');
-        var responsiveMenu = $('#responsive-menu');
-        var responsiveMenuContents = $('#search-form');
-        $(document).on('opened.zf.offCanvas', function() {
-            offCanvas.append(responsiveMenuContents);
-        });
-        $(document).on('close.zf.offCanvas', function() {
-            responsiveMenu.append(responsiveMenuContents);
+
+        $('header').on('click', '.search-toggle', function() {
+            var toggleButton = $(this);
+            var searchContainer = $('#search-container');
+            searchContainer.toggleClass('closed');
+            if (searchContainer.hasClass('closed')) {
+                toggleButton.attr('aria-expanded', 'false');
+            } else {
+                toggleButton.attr('aria-expanded', 'true');
+            }
         });
     });
   })(jQuery)
