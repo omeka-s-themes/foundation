@@ -166,7 +166,7 @@ body.vertical-menu #user-bar ~ #content {
 }
 
 h1.site-title {
-  @extend h4;
+  font-size: $global-font-size;
 }
 
 h1.site-title {
@@ -190,16 +190,25 @@ h1.site-title {
   z-index: 2;
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent.active > a:after {
-  border-color: #fff transparent transparent;
-  margin-right: .5 * $global-margin;
+.dropdown.menu > li.is-active > a {
+  background-color: darken($primary-color, 10%);
+  color: $menu-item-color-active;
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent.active > a {
+.dropdown.menu > li.is-dropdown-submenu-parent.active > a:after,
+.dropdown.menu > li.is-dropdown-submenu-parent.is-active > a:after {
+  border-color: $menu-item-color-active transparent transparent;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a {
   padding-right: 2 * $global-padding;
+
+  &:after {
+    margin-right: .5 * $global-margin;
+  }
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent.active:hover > a {
+.dropdown.menu > li.is-dropdown-submenu-parent.active:hover > a > .caret {
   background-color: $primary-color;
   color: #fff;
 }
@@ -231,16 +240,16 @@ header .top-bar-left {
   width: 100%;
 }
 
-.vertical-menu .submenu-toggle {
+.vertical-menu .caret {
   height: 38px;
 }
 
-.submenu-toggle:after {
+.caret:after {
   border-color: #fff transparent transparent;
     border-color: $primary-color transparent transparent;
 }
 
-.menu .active > .submenu-toggle {
+.menu .active > a > .caret {
   background-color: $primary-color;
 
   &:after {
@@ -252,6 +261,11 @@ header .top-bar {
   @include breakpoint(small down) {
     padding: 0;    
   }
+}
+
+header .flex-fix {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .title-bar {
@@ -371,6 +385,55 @@ body.vertical-menu header .desktop {
   @include breakpoint(medium down) {
     display: none;
   }
+}
+
+.title-bar > .search-toggle {
+  margin-left: auto;
+  background-color: transparent;
+}
+
+#primary-nav > .search-toggle {
+  @include breakpoint(medium down) {
+    display: none;
+  }
+}
+
+.search-toggle {
+  margin: (-.25 * $global-margin) (-.5 * $global-margin);
+  margin-left: (2 * $global-margin);
+  padding: $global-padding;
+
+  @include breakpoint(small down) {
+    margin: 0;
+    padding: 0 $global-padding;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+#search-container {
+  @include xy-grid-container;
+  padding: $global-padding 0;
+  border-bottom: 1px solid $light-gray;
+  max-width: none;
+    
+  @include breakpoint(medium down) {
+    background-color: #fff;
+    padding: $global-padding;
+    border-bottom: 1px solid $medium-gray;
+  }
+
+  .o-icon-search:before {
+    content: "\f002" / "";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+}
+
+.top-bar #search-container.closed {
+  display: none;
 }
 
 
@@ -645,6 +708,7 @@ body.vertical-menu footer {
 
 .description.ellipsis {
   display: -webkit-box;
+  line-clamp: 4;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;  
   overflow: hidden;

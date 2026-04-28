@@ -4,7 +4,7 @@
 @import 'globals-inkwell';
 @import 'settings';
 
-// Sea Foam Settings
+// Inkwell Settings
 
 $topbar-background: transparent;
 
@@ -30,10 +30,17 @@ header {
 }
 
 header .menu a {
-  color: $black;
+  color: $black !important;
   text-decoration: underline;
 }
 
+.dropdown.menu > li.is-active > a {
+  background-color: lighten($primary-color, 40%);
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a:after {
+  border-color: $black transparent transparent !important;
+}
 
 header .button {
   border: 1px solid #000;
