@@ -34,11 +34,6 @@ header .submenu a {
   color: get-color(secondary);
 }
 
-.dropdown .is-dropdown-submenu a:hover {
-  background-color: #fff;
-  color: get-color(primary);
-}
-
 .dropdown.menu > li.is-active > a {
   color: $white;
 }

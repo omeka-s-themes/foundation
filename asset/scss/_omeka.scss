@@ -204,6 +204,14 @@ h1.site-title {
   border-color: $menu-item-color-active transparent transparent;
 }
 
+.is-dropdown-submenu .is-dropdown-submenu-parent.opens-left > a:after {
+  border-color: transparent $primary-color transparent;
+}
+
+.is-dropdown-submenu .is-dropdown-submenu-parent.opens-left.is-active > a:after {
+  border-color: transparent $menu-item-color-active transparent;
+}
+
 .dropdown.menu > li.is-dropdown-submenu-parent > a {
   padding-right: 2 * $global-padding;
 
@@ -228,6 +236,10 @@ header .top-bar-right,
 header .top-bar-left {
   display: flex;
   align-items: center;
+}
+
+.is-dropdown-submenu {
+  margin: 0;
 }
 
 .vertical.menu button.submenu-toggle {
@@ -308,7 +320,7 @@ body.dropdown-menu .banner.contained {
 }
 
 #offCanvas .vertical.menu,
-header .vertical.menu {
+body.vertical-menu header .vertical.menu {
   margin: $global-margin 0;
 
   a {

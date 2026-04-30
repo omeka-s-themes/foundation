@@ -67,6 +67,10 @@ header .menu a {
   border-color: $black transparent transparent !important;
 }
 
+.is-dropdown-submenu .is-dropdown-submenu-parent.opens-left > a:after {
+  border-color: transparent $black transparent;
+}
+
 header .button {
   border: 1px solid #000;
   margin-left: -1px;
