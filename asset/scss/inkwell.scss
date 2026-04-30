@@ -68,7 +68,11 @@ header .menu a {
 }
 
 .is-dropdown-submenu .is-dropdown-submenu-parent.opens-left > a:after {
-  border-color: transparent $black transparent;
+  border-color: transparent $black transparent !important;
+}
+
+.is-dropdown-submenu .is-dropdown-submenu-parent.opens-right > a:after {
+  border-color: transparent transparent transparent $black !important;
 }
 
 header .button {

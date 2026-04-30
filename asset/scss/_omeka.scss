@@ -212,6 +212,14 @@ h1.site-title {
   border-color: transparent $menu-item-color-active transparent;
 }
 
+.is-dropdown-submenu .is-dropdown-submenu-parent.opens-right > a:after {
+  border-color: transparent transparent transparent $primary-color;
+}
+
+.is-dropdown-submenu .is-dropdown-submenu-parent.opens-right.is-active > a:after {
+  border-color: transparent transparent transparent $menu-item-color-active;
+}
+
 .dropdown.menu > li.is-dropdown-submenu-parent > a {
   padding-right: 2 * $global-padding;
 
