@@ -7,6 +7,7 @@
 // Inkwell Settings
 
 $topbar-background: transparent;
+$offcanvas-background: $primary-color;
 
 $header-font-family: "Playfair Display", serif;
   
@@ -76,13 +77,26 @@ header .input-group-field {
   box-shadow: none;
 }
 
-body.vertical-menu header a {
-  color: #000;
-  text-decoration: underline;
+body.vertical-menu header h1.site-title {
+  font-weight: normal;
+
+  a {
+    text-decoration: none;
+  }
 }
 
-.vertical-menu .submenu-toggle:after {
-  border-color: $black transparent transparent;
+#offCanvas a,
+body.vertical-menu header a {
+  color: #000 !important;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
+}
+
+.vertical.menu .submenu-toggle:after {
+  border-color: $black transparent transparent !important;
 }
 
 .off-canvas-content #search-submit {

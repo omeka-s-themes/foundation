@@ -44,7 +44,6 @@ $layoutAttributes = [
                 <li class="dropdown<?php if ($page->isActive(true)) echo ' active' ?>">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $page->getHref(); ?>">
                         <?php echo $this->escapeHtml($this->translate($page->getLabel(),$this->navigation($container)->getTranslatorTextDomain())); ?>
-                        <b class="caret"></b>
                     </a>
                     <?php echo $this->partial('common/sub-navigation', ['container'=> $container, 'children' => $page->getPages(), 'level' => 1]); ?>
                 </li>

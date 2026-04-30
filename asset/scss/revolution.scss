@@ -14,6 +14,7 @@ $topbar-background: transparent;
 $thumbnail-border: 4px solid transparent;
 $thumbnail-shadow: 0 0 0 1px $gold;
 $thumbnail-shadow-hover: 0 0 6px 1px rgba($gold, 0.5);
+$offcanvas-background: $primary-color;
 
 @import 'foundation-core';
 @import 'omeka';

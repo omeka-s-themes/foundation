@@ -137,6 +137,10 @@ body.vertical-menu #user-bar ~ #content {
   }
 }
 
+#offCanvas {
+  padding: $global-padding;
+}
+
 .top-bar form {
   margin-bottom: 0;
 }
@@ -208,11 +212,6 @@ h1.site-title {
   }
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent.active:hover > a > .caret {
-  background-color: $primary-color;
-  color: #fff;
-}
-
 .top-bar-right .search {
   margin-left: $global-margin;
 }
@@ -231,21 +230,18 @@ header .top-bar-left {
   align-items: center;
 }
 
-.vertical-menu .dropdown-toggle {
-  width: 100%;
-}
-
-.vertical-menu .submenu-toggle {
+.vertical.menu button.submenu-toggle {
   height: 24px;
   width: 24px;
+  top: .5 * $global-margin;
 
   &:after {
     border-color: $menu-item-color-active transparent transparent;
   }
-}
 
-.vertical-menu .caret {
-  height: 38px;
+  &:focus {
+    outline: auto;
+  }
 }
 
 header .top-bar {
@@ -311,18 +307,45 @@ body.dropdown-menu .banner.contained {
   }
 }
 
+#offCanvas .vertical.menu,
+header .vertical.menu {
+  margin: $global-margin 0;
+
+  a {
+    color: $white;
+  }
+
+  a:focus {
+    position: relative;
+    z-index: 1;
+  }
+
+  ul,
+  li {
+    margin: 0;
+  }
+
+  ul {
+    margin-left: $global-margin;
+  }
+  
+  li a {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 
 body.vertical-menu header {
   background-color: $primary-color;
   width: 100%;
 
+  a {
+    color: $white;
+  }
+
   @include breakpoint(large up) {
     padding: $global-padding;     
     @include xy-cell(2, $gutters: 0);
-  }
-  
-  a {
-    color: $white;
   }
   
   .title-bar {
@@ -341,23 +364,6 @@ body.vertical-menu header {
   .site-title img {
     max-height: none;
     max-width: 100%;
-  }
-  
-  .vertical.menu {
-    margin: $global-margin 0;
-  }
-  
-  .vertical.menu li {
-    margin: 0;
-  }
-  
-  .vertical.menu li a {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .dropdown .vertical.menu {
-    margin: 0 0 0 $global-margin;
   }
 }
 

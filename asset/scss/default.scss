@@ -2,6 +2,9 @@
 
 @import 'globals-default';
 @import 'settings';
+
+$offcanvas-background: $primary-color;
+
 @import 'foundation-core';
 @import 'omeka';
 
