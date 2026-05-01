@@ -199,15 +199,11 @@ h1.site-title {
   color: $menu-item-color-active;
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent.active > a:after,
-.dropdown.menu > li.is-dropdown-submenu-parent.is-active > a:after {
-  border-color: $menu-item-color-active transparent transparent;
-}
-
 .is-dropdown-submenu .is-dropdown-submenu-parent.opens-left > a:after {
   border-color: transparent $primary-color transparent;
 }
 
+.is-dropdown-submenu .is-dropdown-submenu-parent.opens-left.active > a:after,
 .is-dropdown-submenu .is-dropdown-submenu-parent.opens-left.is-active > a:after {
   border-color: transparent $menu-item-color-active transparent;
 }
@@ -218,6 +214,11 @@ h1.site-title {
 
 .is-dropdown-submenu .is-dropdown-submenu-parent.opens-right.is-active > a:after {
   border-color: transparent transparent transparent $menu-item-color-active;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent.active > a:after,
+.dropdown.menu > li.is-dropdown-submenu-parent.is-active > a:after {
+  border-color: $menu-item-color-active transparent transparent;
 }
 
 .dropdown.menu > li.is-dropdown-submenu-parent > a {
