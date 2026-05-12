@@ -4,6 +4,8 @@
 @import 'settings';
 
 $offcanvas-background: $primary-color;
+$tab-item-font-size: rem-calc(16);
+$tab-content-border: transparent;
 
 @import 'foundation-core';
 @import 'omeka';
