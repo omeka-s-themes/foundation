@@ -5,11 +5,9 @@ $siteTitle = $this->escapeHtml($site->title());
 <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
     <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
     <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $siteTitle; ?></span></a></h1>
+    <button type="button" class="search-toggle closed button" aria-controls="search-form" aria-expanded="false" aria-label="<?php echo $this->translate('Search'); ?>"><i class="fas fa-search"></i></button>
 </div>
 <div class="desktop">
   <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $siteTitle; ?></span></a></h1>
   <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'vertical', 'navId' => 'main-nav']); ?>
-  <div class="search">
-      <?php echo $this->partial('common/search-form'); ?>
-  </div>
 </div>

@@ -53,10 +53,13 @@ if ($userBar) {
                 <?php else: ?>
                 <?php echo $this->partial('common/header-dropdown'); ?>
                 <?php endif; ?>
+                <?php if ($banner && ($navLayout == 'dropdown')): ?>
+                <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
+                <?php endif; ?>
+                <div id="search-container" class="closed">
+                    <?php echo $this->partial('common/search-form'); ?>
+                </div>
             </header>
-            <?php if ($banner && ($navLayout == 'dropdown')): ?>
-            <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
-            <?php endif; ?>
             <div id="content" role="main">
                 <?php if ($banner && ($navLayout == 'vertical')): ?>
                 <div class="banner <?php echo $bannerWidth; ?>"><img src="<?php echo $this->themeSettingAssetUrl('banner'); ?>" title="Banner" role="presentation" aria-hidden="true"></div>
