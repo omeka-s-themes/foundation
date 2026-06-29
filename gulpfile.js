@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('css', function () {
     var sass = require('gulp-sass')(require('sass'));
@@ -13,6 +14,7 @@ gulp.task('css', function () {
     ];
 
     return gulp.src('./asset/scss/*.scss')
+        .pipe(sourcemaps.init())
         .pipe(sass.sync({
             outputStyle: 'compressed',
             includePaths: sassPaths
@@ -20,6 +22,7 @@ gulp.task('css', function () {
         .pipe(postcss([
             autoprefixer()
         ]))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./asset/css'));
 });
 
