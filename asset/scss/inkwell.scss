@@ -55,13 +55,22 @@ header {
   }
 }
 
-header .menu a {
+header a {
   color: $black !important;
   text-decoration: underline;
 
   &:hover {
     background-color: transparent;
   }
+}
+
+.site-title {
+  font-weight: normal;
+}
+
+.title-bar button,
+body.vertical-menu header .title-bar button {
+  color: $button-color;
 }
 
 .dropdown.menu > li.is-active > a {
@@ -129,7 +138,8 @@ label,
 }
 
 @include breakpoint(medium down) {
-  header .menu-toggle[type="button"] {
+  header [type="button"],
+  header .button {
     border: 0;
   }
 
