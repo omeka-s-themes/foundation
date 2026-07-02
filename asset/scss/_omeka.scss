@@ -1122,10 +1122,6 @@ justify-content: space-between;
     margin-bottom: $global-margin;
 }
 
-.value-content:not(:only-child) {
-    margin-right: .25 * $global-margin;
-}
-
 #itemfiles {
   margin: 0 0 $global-margin;
   list-style: none;
@@ -1192,7 +1188,7 @@ justify-content: space-between;
 .advanced-search-content {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, minmax(min-content, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-column-gap: $global-margin;
   grid-row-gap: $global-margin;
   margin-bottom: $global-margin;
@@ -1227,14 +1223,6 @@ justify-content: space-between;
 #advanced-search .inputs button {
   list-style: none;
   line-height: 1.5;
-}
-
-#advanced-search .inputs select {
-
-  @include breakpoint(small down) {
-    width: 100%;
-    margin-bottom: 0;
-  }
 }
 
 #advanced-search .chosen-choices {
@@ -1278,6 +1266,10 @@ justify-content: space-between;
   padding-right: $global-padding;
 }
 
+#advanced-search .multi-value.field .field-meta {
+  padding-right: 3 * $global-padding;
+}
+
 #advanced-search .multi-value .value:only-child .remove-value {
   display: none;
 }
@@ -1295,7 +1287,7 @@ justify-content: space-between;
 }
 
 #advanced-search .field-meta {
-  padding-right: 3 * $global-padding;
+  margin-bottom: .25 * $global-margin;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -1311,20 +1303,16 @@ justify-content: space-between;
 }
 
 #advanced-search .add-value {
-  position: absolute;
-  top: 0;
-  right: 0;
   padding: $label-padding;
 }
 
 #advanced-search button.remove-value {
   padding: 3px;
-  overflow: hidden;
   min-width: 36px;
+  margin-bottom: 0;
 }
 
 #advanced-search .value > *:not(:last-child) {
-  margin-right: 5px;
   margin-left: 0;
 }
 
