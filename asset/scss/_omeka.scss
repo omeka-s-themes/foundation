@@ -1871,11 +1871,15 @@ body.full-width .top-bar.sub-menu {
   width: auto;
 }
 
+#advanced-search [id^="numeric-"] .inputs {
+  gap: .25 * $global-padding;
+}
+
 #advanced-search [id^="numeric-"] .inputs input,
 #advanced-search [id*="numeric-"] .inputs input,
 #advanced-search [id*="numeric-"] .inputs select {
-  margin: 0 .25rem 0 0;
-
+  margin: 0;
+  height: auto;
 }
 
 [id*="numeric-"] .inputs input[type="number"],
