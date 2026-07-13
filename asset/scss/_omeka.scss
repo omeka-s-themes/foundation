@@ -15,15 +15,6 @@
   display: none;
 }
 
-[type="submit"], 
-[type="button"] {
-  @include button();
-
-  &:disabled {
-    @include button-disabled();
-  }
-}
-
 input::placeholder {
   color: $dark-gray;
   font-style: italic;
@@ -1986,4 +1977,10 @@ body.full-width .top-bar.sub-menu {
       display: flex;
       flex-wrap: wrap;
       align-items: stretch;
+    }
+
+    // -- Collectiong
+
+    .block-collecting [type="submit"] {
+      @include button();
     }
