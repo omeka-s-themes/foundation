@@ -62,15 +62,16 @@ body:not(.vertical-menu) header {
   right: -1rem;
 }
 
+body.vertical-menu #content,
+body.vertical-menu footer {
+    background: transparent var(--main-bg-image) repeat;
+}
+
 @include breakpoint(medium up) {
   body.vertical-menu {
       background-image: none;
   }
   
-  body.vertical-menu #content,
-  body.vertical-menu footer {
-      background: transparent var(--main-bg-image) repeat;
-  }
 }
 
 body.full-width .top-bar.sub-menu .is-at-top {
