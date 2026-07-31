@@ -1,5 +1,10 @@
 @import "util/util";
-@import url('https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica:400,400i|IM+Fell+English+SC|Lusitana:400,700&display=swap');
+
+@include font-face('IMFellDWPica-Regular', 'IM Fell DW Pica');
+@include font-face('IMFellDWPica-Italic', 'IM Fell DW Pica', $style: italic);
+@include font-face('IMFellEnglishSC-Regular', 'IM Fell English SC');
+@include font-face('Lusitana-Regular', 'Lusitana');
+@include font-face('Lusitana-Bold', 'Lusitana', $weight: 700);
 
 $brown: #520603;
 $red: #b71811;

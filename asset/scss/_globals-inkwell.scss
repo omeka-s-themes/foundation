@@ -1,5 +1,11 @@
 @import "util/util";
-@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700,700i|Playfair+Display:400,400i&display=swap');
+
+@include font-face('EBGaramond-Regular', 'EB Garamond');
+@include font-face('EBGaramond-Italic', 'EB Garamond', $style: italic);
+@include font-face('EBGaramond-Bold', 'EB Garamond', $weight: 700);
+@include font-face('EBGaramond-BoldItalic', 'EB Garamond', $style: italic, $weight: 700);
+@include font-face('PlayfairDisplay-Regular', 'Playfair Display');
+@include font-face('PlayfairDisplay-Italic', 'Playfair Display', $style: italic);
 
 $foundation-palette: (
   primary: #ffcc00,
