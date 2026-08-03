@@ -1864,7 +1864,7 @@ body.full-width .top-bar.sub-menu {
 }
 
 #advanced-search [id^="numeric-"] .inputs {
-  gap: .25 * $global-padding;
+  gap: (.5 * $global-padding) (.25 * $global-padding);
 }
 
 #advanced-search [id^="numeric-"] .inputs input,
@@ -1902,7 +1902,7 @@ body.full-width .top-bar.sub-menu {
   line-height: 1.5;
   flex-wrap: nowrap;
   margin: 0;
-  align-self: stretch;
+  align-self: flex-end;
   
   @include breakpoint(small down) {
     margin: (.25 * $global-margin) 0 0;
