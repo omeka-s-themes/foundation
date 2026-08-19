@@ -1,7 +1,7 @@
 <div class="top-bar" id="dropdown-bar">
     <div class="top-bar-left">
         <nav class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large" aria-label="<?php echo $this->translate('Mobile navigation'); ?>">
-            <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
+            <button class="menu-toggle button" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
         </nav>
         <?php $siteLogo = ($this->themeSetting('logo')) ? '<img src="' . $this->themeSettingAssetUrl('logo') . '" title="Logo" alt="">' : ''; ?>
         <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $this->escapeHtml($site->title()); ?></span></a></h1>
