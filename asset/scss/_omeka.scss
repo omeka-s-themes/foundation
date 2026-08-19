@@ -317,7 +317,7 @@ header .top-bar-left {
 header .top-bar {
   padding: (.25 * $global-padding) (.5 * $global-padding);
 
-  @include breakpoint(small down) {
+  @include breakpoint(medium down) {
     background-color: $primary-color;
     padding: 0;
     position: relative;
