@@ -3,7 +3,7 @@ $siteLogo = ($this->themeSetting('logo')) ? '<img src="' . $this->themeSettingAs
 $siteTitle = $this->escapeHtml($site->title());
 ?>
 <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="large">
-    <button class="menu-toggle" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
+    <button class="menu-toggle button" type="button" data-toggle="offCanvas" aria-label="<?php echo $this->translate('Menu'); ?>"><i class="fas fa-bars"></i></button>
     <h1 class="site-title"><a href="<?php echo $site->url(); ?>"><?php echo $siteLogo; ?><span class="site-title-label <?php echo ($siteLogo !== '') ? 'sr-only' : ''; ?>"><?php echo $siteTitle; ?></span></a></h1>
     <button type="button" class="search-toggle closed button" aria-controls="search-form" aria-expanded="false" aria-label="<?php echo $this->translate('Search'); ?>"><i class="fas fa-search"></i></button>
 </div>
